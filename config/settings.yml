@@ -1,0 +1,9 @@
+impac:
+  paths:
+    mnohub_api: /mnoe/jpi/v1
+mno:
+  paths:
+    root: /api/mnoe/v1
+frontend_host:
+pricing:
+  enabled: false

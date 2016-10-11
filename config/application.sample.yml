@@ -1,0 +1,15 @@
+# Add configuration values here, as shown below.
+
+# Tenant Credentials
+tenant_id: my_tenant_id
+tenant_key: my_tenant_access_key
+
+# Emailing platform
+# MANDRILL_API_KEY: changeme
+# SPARKPOST_API_KEY: changeme
+
+# Rails secret key
+SECRET_KEY_BASE: e48e21d80b2943c1872f69fb3cf4f8a8c24bc9fa3abdc14549df2dc181d46bfb5698271fb4bc1511e45ba0633ef02b494985b67f6e418182014f95a5e600f808
+
+# Google Tag Manager
+google_tag_container: GTM-TH3MLB
