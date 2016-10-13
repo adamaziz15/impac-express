@@ -73,4 +73,8 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.action_mailer.default_url_options = {
+    host: ENV['mailer_default_host'].presence || 'impac-mnoe-uat.maestrano.io'
+  }
 end
