@@ -3,12 +3,17 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.2.6'
 
 # Maestrano Enterprise Engine
-# Bundle edge Mnoe instead: gem 'mno-enterprise', github: 'maestrano/mno-enterprise'
-gem 'mno-enterprise', '~> 3.0'
+# Edge mnoe
+gem 'mno-enterprise', git: 'https://github.com/maestrano/mno-enterprise.git'
+# gem 'mno-enterprise', '~> 3.0'
 
 # Use puma as the app server
 gem 'puma'
 
+gem 'sparkpost', '~> 0.1.4'
+
+# Background jobs
+gem 'sucker_punch', '~> 2.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

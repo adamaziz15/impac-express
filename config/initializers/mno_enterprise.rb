@@ -3,7 +3,7 @@ MnoEnterprise.configure do |config|
   # General Configuration
   #===============================================
   # Name of your company/application
-  config.app_name = "My Company"
+  config.app_name = "Impac Developers"
 
   # Fallback default country.
   # Used as default in geolocalised fields (e.g.: country, phone number)
@@ -31,14 +31,14 @@ MnoEnterprise.configure do |config|
   # Adapter used to send emails
   # Default to :mandrill
   # config.mail_adapter = :mandrill
-  # config.mail_adapter = :sparkpost
+  config.mail_adapter = :sparkpost
 
   # Support email address
-  config.support_email = 'support@example.com'
+  config.support_email = 'support@maestrano.com'
 
   # Default sender for system generated emails
-  config.default_sender_name = 'My Company'
-  config.default_sender_email = 'no-reply@example.com'
+  config.default_sender_name = 'Impac Developers'
+  config.default_sender_email = 'no-reply@maestrano.com'
 
   #===============================================
   # External Routes
@@ -63,7 +63,7 @@ MnoEnterprise.configure do |config|
   # I18n - Controls:
   #   - Routing in development
   #   - Filter and locale management in controllers
-  config.i18n_enabled = true
+  config.i18n_enabled = false
 
   #===============================================
   # Third Party Plugins
