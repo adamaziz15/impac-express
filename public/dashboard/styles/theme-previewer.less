@@ -687,7 +687,6 @@ ul.dock {
       .box-shadow(@mno-dock-sub-menu-box-shadow);
       .menu-item {
         cursor: pointer;
-        padding: 5px 20px;
 
         &:hover {
           background-color: @mno-dock-sub-menu-hover;
@@ -701,6 +700,7 @@ ul.dock {
           display: flex;
           text-decoration: none;
           color: @mno-dock-sub-menu-text-color;
+          padding: 5px 20px;
 
           &.connect-btn-center, img.connect-btn-center {
             margin: auto;
@@ -841,6 +841,16 @@ ul.dock > li.prev img.app-logo {
   }
 }
 
+
+dashboard-language-selectbox {
+  display: block;
+
+  .selector-line {
+    display: inline-block;
+    margin: 5px auto;
+  }
+}
+
 dashboard-company-selectbox {
   /*-----------------------------------------------------------------------*/
   /*                       Company Select Box                              */
@@ -856,6 +866,10 @@ dashboard-company-selectbox {
     border-left: 1px solid @dashboard-cpy-select-border-color;
     border-bottom: 1px solid @dashboard-cpy-select-border-color;
     z-index: 999;
+
+    @media (max-width: @screen-sm) {
+      border-radius: 0;
+    }
 
     // Change company button
     .btn.switch-company {
@@ -1011,16 +1025,6 @@ dashboard-company-selectbox {
       border-top: 1px solid @dashboard-cpy-select-border-color;
       top: ~'calc(1px + ' @navbar-height ~')';  // Add top border
     }
-  }
-}
-
-
-dashboard-language-selectbox {
-  display: block;
-
-  .selector-line {
-    display: inline-block;
-    margin: 5px auto;
   }
 }
 
@@ -1251,6 +1255,16 @@ dashboard-menu {
   }
 }
 
+mno-inline-message {
+  .mno-inline-checked {
+    color: @dashboard-account-inline-text-color-checked;
+  }
+
+  .mno-inline-unchecked {
+    color: @dashboard-account-inline-text-color-unchecked;
+  }
+}
+
 mno-impersonation-bar {
   #impersonate-bar {
     background-color: @bg-inverse-color;
@@ -1260,16 +1274,6 @@ mno-impersonation-bar {
     @media (max-width: @screen-xs-max) {
       padding-top: 40px;
     }
-  }
-}
-
-mno-inline-message {
-  .mno-inline-checked {
-    color: @dashboard-account-inline-text-color-checked;
-  }
-
-  .mno-inline-unchecked {
-    color: @dashboard-account-inline-text-color-unchecked;
   }
 }
 
@@ -2153,6 +2157,10 @@ form.editable-wrap .editable-controls input {
     border: none;
     border-radius: 2px;
   }
+  .show-content .btn.btn-promo {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   //-------------------------------
   // Content - Carousel
@@ -2318,6 +2326,19 @@ form.editable-wrap .editable-controls input {
   }
   .marketplace-app-card:hover .arrow {
     visibility: visible;
+  }
+}
+
+#app-connect-modal {
+
+  select {
+    display: block;
+    margin: auto;
+  }
+
+  button[type="submit"] {
+    display: block;
+    margin: auto;
   }
 }
 
