@@ -17,7 +17,7 @@ Bundler.require(*Rails.groups)
 
 module ImpacExpress
   class Application < Rails::Application
-        config.generators do |g|
+    config.generators do |g|
       g.test_framework :rspec, fixture: false
       g.view_specs false
       g.helper_specs false
@@ -34,5 +34,33 @@ module ImpacExpress
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # STDOUT logging for Rails 4
+    # For Rails 5 see https://github.com/heroku/rails_12factor#rails-5-and-beyond
+    if ENV["RAILS_LOG_TO_STDOUT"].present?
+      log_level = ([(ENV['LOG_LEVEL'] || ::Rails.application.config.log_level).to_s.upcase, "INFO"] & %w[DEBUG INFO WARN ERROR FATAL UNKNOWN]).compact.first
+      logger       = ::ActiveSupport::Logger.new(STDOUT)
+      logger.formatter = proc do |severity, datetime, progname, msg|
+        "#{datetime} #{severity}: #{String === msg ? msg : msg.inspect}\n"
+      end
+      logger       = ActiveSupport::TaggedLogging.new(logger) if defined?(ActiveSupport::TaggedLogging)
+      logger.level = ::ActiveSupport::Logger.const_get(log_level)
+      config.logger = logger
+
+      STDOUT.sync = true
+    end
+
+    # CORS
+    config.middleware.insert_before 0, 'Rack::Cors' do
+      allow do
+        allowed_headers = ['X-Requested-With', 'X-Prototype-Version', 'accept', 'content-type', 'x-csrf-token', 'Authorization', 'origin']
+
+        origins 'http://localhost:7001'
+
+        resource '/mnoe/jpi/v1/current_user',
+          headers: allowed_headers,
+          methods: [:get]
+      end
+    end
   end
 end
