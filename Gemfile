@@ -27,6 +27,7 @@ end
 
 # CI gems
 group :development do
+  gem 'rack-cors'
   # Security audits
   gem 'brakeman', require: false
   gem 'bundler-audit', require: false
