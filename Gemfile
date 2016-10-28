@@ -20,6 +20,9 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
+# CORS
+gem 'rack-cors'
+
 # Ops gems
 group :uat, :production do
   gem 'newrelic_rpm'
@@ -27,7 +30,6 @@ end
 
 # CI gems
 group :development do
-  gem 'rack-cors'
   # Security audits
   gem 'brakeman', require: false
   gem 'bundler-audit', require: false
