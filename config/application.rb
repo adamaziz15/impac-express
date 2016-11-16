@@ -53,9 +53,9 @@ module ImpacExpress
     # CORS
     config.middleware.insert_before 0, 'Rack::Cors' do
       allow do
-        allowed_headers = ['X-Requested-With', 'X-Prototype-Version', 'Accept', 'Content-Type', 'X-CSRF-Token', 'Authorization', 'Origin']
+        allowed_headers = ['X-Requested-With', 'X-Prototype-Version', 'Accept', 'Content-Type', 'x-xsrf-token', 'Authorization', 'Origin']
 
-        origins 'http://localhost:7001'
+        origins 'localhost:7001'
 
         resource '/mnoe/jpi/v1/current_user',
           headers: allowed_headers,
@@ -63,7 +63,7 @@ module ImpacExpress
 
         resource '/mnoe/auth/users/*',
           headers: allowed_headers,
-          methods: [:get, :post, :options]
+          methods: [:get, :post, :put, :delete, :options]
 
         resource '/mnoe/jpi/v1/impac/*',
           headers: allowed_headers,
