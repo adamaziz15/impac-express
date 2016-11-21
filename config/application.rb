@@ -39,11 +39,11 @@ module ImpacExpress
     # For Rails 5 see https://github.com/heroku/rails_12factor#rails-5-and-beyond
     if ENV["RAILS_LOG_TO_STDOUT"].present?
       log_level = ([(ENV['LOG_LEVEL'] || ::Rails.application.config.log_level).to_s.upcase, "INFO"] & %w[DEBUG INFO WARN ERROR FATAL UNKNOWN]).compact.first
-      logger       = ::ActiveSupport::Logger.new(STDOUT)
+      logger = ::ActiveSupport::Logger.new(STDOUT)
       logger.formatter = proc do |severity, datetime, progname, msg|
         "#{datetime} #{severity}: #{String === msg ? msg : msg.inspect}\n"
       end
-      logger       = ActiveSupport::TaggedLogging.new(logger) if defined?(ActiveSupport::TaggedLogging)
+      logger = ActiveSupport::TaggedLogging.new(logger) if defined?(ActiveSupport::TaggedLogging)
       logger.level = ::ActiveSupport::Logger.const_get(log_level)
       config.logger = logger
 
@@ -53,13 +53,21 @@ module ImpacExpress
     # CORS
     config.middleware.insert_before 0, 'Rack::Cors' do
       allow do
-        allowed_headers = ['X-Requested-With', 'X-Prototype-Version', 'accept', 'content-type', 'x-csrf-token', 'Authorization', 'origin']
+        allowed_headers = ['X-Requested-With', 'X-Prototype-Version', 'Accept', 'Content-Type', 'x-xsrf-token', 'Authorization', 'Origin']
 
-        origins 'http://localhost:7001'
+        origins 'localhost:7001'
 
         resource '/mnoe/jpi/v1/current_user',
           headers: allowed_headers,
-          methods: [:get]
+          methods: [:get, :options]
+
+        resource '/mnoe/auth/users/*',
+          headers: allowed_headers,
+          methods: [:get, :post, :put, :delete, :options]
+
+        resource '/mnoe/jpi/v1/impac/*',
+          headers: allowed_headers,
+          methods: [:get, :post, :put, :delete, :options]
       end
     end
   end
