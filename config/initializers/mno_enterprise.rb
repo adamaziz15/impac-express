@@ -52,7 +52,7 @@ MnoEnterprise.configure do |config|
   #===============================================
   # Angular CSRF protection - Only needed if the AngularJS App
   # is not served through Rails asset pipeline
-  config.include_angular_csrf = true
+  config.include_angular_csrf = false
 
   # I18n - Controls:
   #   - Routing in development
