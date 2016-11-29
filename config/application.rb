@@ -75,6 +75,10 @@ module ImpacExpress
           headers: allowed_headers,
           methods: [:get, :post, :put, :delete, :options]
 
+        resource '/mnoe/auth/users',
+          headers: allowed_headers,
+          methods: [:post, :put, :delete, :options]
+
         resource '/mnoe/jpi/v1/impac/*',
           headers: allowed_headers,
           methods: [:get, :post, :put, :delete, :options]
