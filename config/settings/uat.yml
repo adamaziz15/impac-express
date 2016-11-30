@@ -1,6 +1,8 @@
 impac:
   protocol: https
   host: api-impac-uat.maestrano.io
+  pusher:
+    key: <%= ENV['impac_pusher_key'] %>
 mno:
   protocol: https
   host: api-hub-uat.maestrano.io
