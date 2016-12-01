@@ -4,6 +4,9 @@
 tenant_id: my_tenant_id
 tenant_key: my_tenant_access_key
 
+# Websockets via Pusher for Impac!
+impac_pusher_key: my_impac_pusher_key
+
 # Emailing platform
 SMTP_HOST: smtp.mailgun.org
 SMTP_PORT: 587
