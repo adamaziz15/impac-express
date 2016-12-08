@@ -481,37 +481,6 @@ html, body {
 
 
 
-.font(@size,@weight,@color) {
-  font-weight:@weight;
-  font-size:@size;
-  color:@color;
-}
-
-.icon-fa(@icon) {
-  .fa;
-  @fa-icon-variable: "fa-var-@{icon}";
-  &:before { content: @@fa-icon-variable; }
-}
-
-.size(@width; @height) {
-  width: @width;
-  height: @height;
-}
-
-.square(@size) {
-  .size(@size; @size);
-}
-
-.rgba(@color, @alpha) {
-  background-color: rgba(red(@color), green(@color), blue(@color), @alpha);
-}
-
-.ellipsis() {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 @menu-left-width: 80px;
 
 #layout-loading {
@@ -566,6 +535,214 @@ html, body {
     margin-left: @menu-left-width;
     .container {
       width: @container-lg - @menu-left-width;
+    }
+  }
+}
+
+.font(@size,@weight,@color) {
+  font-weight:@weight;
+  font-size:@size;
+  color:@color;
+}
+
+.icon-fa(@icon) {
+  .fa;
+  @fa-icon-variable: "fa-var-@{icon}";
+  &:before { content: @@fa-icon-variable; }
+}
+
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
+
+.square(@size) {
+  .size(@size; @size);
+}
+
+.rgba(@color, @alpha) {
+  background-color: rgba(red(@color), green(@color), blue(@color), @alpha);
+}
+
+.ellipsis() {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+dashboard-company-selectbox {
+  /*-----------------------------------------------------------------------*/
+  /*                       Company Select Box                              */
+  /*-----------------------------------------------------------------------*/
+  .company-select-box {
+    position: absolute;
+    right: 0;
+    width: @dashboard-cpy-select-width;
+    background-color: @dashboard-cpy-select-bg-color;
+    color: @dashboard-cpy-select-header-text-color;
+    font-size: @dashboard-cpy-select-header-text-size;
+    border-radius: @dashboard-cpy-select-border-radius;
+    border-left: 1px solid @dashboard-cpy-select-border-color;
+    border-bottom: 1px solid @dashboard-cpy-select-border-color;
+    z-index: 999;
+
+    @media (max-width: @screen-sm) {
+      border-radius: 0;
+    }
+
+    // Change company button
+    .btn.switch-company {
+      color: @dashboard-cpy-select-header-text-color;
+      background-color: @dashboard-cpy-select-switch-btn-bg-color;
+      margin-left: 15px;
+    }
+    .btn.switch-company i {
+      @dashboard-cpy-select-switch-btn-icon();
+    }
+    .btn.switch-company i.active {
+      @dashboard-cpy-select-switch-btn-icon-active();
+    }
+
+    // Section always visible
+    .box-header {
+      cursor: pointer;
+      text-align: right;
+      outline: none;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+
+      img {
+        border-radius: 50%;
+        height: @dashboard-cpy-select-pic-width;
+        width: @dashboard-cpy-select-pic-width;
+      }
+
+      .title {
+        margin: 0 10px;
+        width: ~'calc(100% -' (2 * @dashboard-cpy-select-pic-width) ~')';
+        text-align: left;
+
+        .company {
+          width: 100%;
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .name {
+          font-weight: bold;
+          color: @dashboard-cpy-select-header-text-bold-color;
+        }
+      }
+      .expand-menu {
+        margin-left: auto;
+      }
+    }
+
+    // Section visible when change company is clicked
+    .box-content {
+      border-top: solid 1px @dashboard-cpy-select-link-color;
+      .border-bottom-radius(5px);
+
+      hr {
+        margin: 0;
+        border-top: 1px solid @dashboard-cpy-select-border-color;
+      }
+
+      // List of companies
+      ul {
+        list-style: none;
+        padding: 15px 20px 0 20px;
+        max-height: 400px;
+        min-width: 250px;
+        overflow-y: auto;
+
+        > li {
+          position: relative;
+          outline: none;
+
+          // Circle next to company name
+          // Indicate which company is currently viewed on dashboard
+          > a {
+            padding: 4px;
+            display: flex;
+
+            &:hover {
+              background-color: @dashboard-cpy-select-link-hover-bg-color;
+              border-bottom-left-radius: 0px;
+            }
+
+            > i {
+              flex: 0 0 20px;
+              width: 13px;
+              padding: 2px 0;
+              display: inline-flex;
+              text-align: center;
+              color: @dashboard-cpy-select-link-icon-color;
+            }
+
+            > span {
+              text-align: left;
+              display: inline-flex;
+              flex: 1 1 auto;
+            }
+          }
+        }
+      }
+
+      // General look of the links
+      a {
+        color: @dashboard-cpy-select-link-color;
+        line-height: 17px;
+        display: block;
+        padding: 4px 0 4px 20px;
+
+        &:hover {
+          text-decoration: none;
+          color: @dashboard-cpy-select-link-hover-color;
+          background-color: @dashboard-cpy-select-link-hover-bg-color;
+          border-bottom-left-radius: 10px;
+        }
+
+        // Icon on the side of the link
+        i {
+          width: 20px;
+          text-align: center;
+          font-size: 11pt;
+        }
+      }
+
+
+      .default-link {
+        padding: 10px 20px;
+        text-align: left;
+
+        .btn {
+          width: 100%;
+          margin-bottom: 10px;
+          padding: 3px;
+
+          a {
+            color: @dashboard-cpy-select-link-create-text-color;
+            padding: 2px;
+
+            &:hover {
+              background: transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: @screen-sm) {
+    .company-select-box {
+      width: 100%;
+      position: fixed;
+      border-left: none;
+      border-top: 1px solid @dashboard-cpy-select-border-color;
+      top: ~'calc(1px + ' @navbar-height ~')';  // Add top border
     }
   }
 }
@@ -839,183 +1016,6 @@ ul.dock > li.prev img.app-logo {
 
     .add-app {
       color: @mno-dock-mobile-add-app-color;
-    }
-  }
-}
-
-dashboard-company-selectbox {
-  /*-----------------------------------------------------------------------*/
-  /*                       Company Select Box                              */
-  /*-----------------------------------------------------------------------*/
-  .company-select-box {
-    position: absolute;
-    right: 0;
-    width: @dashboard-cpy-select-width;
-    background-color: @dashboard-cpy-select-bg-color;
-    color: @dashboard-cpy-select-header-text-color;
-    font-size: @dashboard-cpy-select-header-text-size;
-    border-radius: @dashboard-cpy-select-border-radius;
-    border-left: 1px solid @dashboard-cpy-select-border-color;
-    border-bottom: 1px solid @dashboard-cpy-select-border-color;
-    z-index: 999;
-
-    @media (max-width: @screen-sm) {
-      border-radius: 0;
-    }
-
-    // Change company button
-    .btn.switch-company {
-      color: @dashboard-cpy-select-header-text-color;
-      background-color: @dashboard-cpy-select-switch-btn-bg-color;
-      margin-left: 15px;
-    }
-    .btn.switch-company i {
-      @dashboard-cpy-select-switch-btn-icon();
-    }
-    .btn.switch-company i.active {
-      @dashboard-cpy-select-switch-btn-icon-active();
-    }
-
-    // Section always visible
-    .box-header {
-      cursor: pointer;
-      text-align: right;
-      outline: none;
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-
-      img {
-        border-radius: 50%;
-        height: @dashboard-cpy-select-pic-width;
-        width: @dashboard-cpy-select-pic-width;
-      }
-
-      .title {
-        margin: 0 10px;
-        width: ~'calc(100% -' (2 * @dashboard-cpy-select-pic-width) ~')';
-        text-align: left;
-
-        .company {
-          width: 100%;
-          display: block;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        .name {
-          font-weight: bold;
-          color: @dashboard-cpy-select-header-text-bold-color;
-        }
-      }
-      .expand-menu {
-        margin-left: auto;
-      }
-    }
-
-    // Section visible when change company is clicked
-    .box-content {
-      border-top: solid 1px @dashboard-cpy-select-link-color;
-      .border-bottom-radius(5px);
-
-      hr {
-        margin: 0;
-        border-top: 1px solid @dashboard-cpy-select-border-color;
-      }
-
-      // List of companies
-      ul {
-        list-style: none;
-        padding: 15px 20px 0 20px;
-        max-height: 400px;
-        min-width: 250px;
-        overflow-y: auto;
-
-        > li {
-          position: relative;
-          outline: none;
-
-          // Circle next to company name
-          // Indicate which company is currently viewed on dashboard
-          > a {
-            padding: 4px;
-            display: flex;
-
-            &:hover {
-              background-color: @dashboard-cpy-select-link-hover-bg-color;
-              border-bottom-left-radius: 0px;
-            }
-
-            > i {
-              flex: 0 0 20px;
-              width: 13px;
-              padding: 2px 0;
-              display: inline-flex;
-              text-align: center;
-              color: @dashboard-cpy-select-link-icon-color;
-            }
-
-            > span {
-              text-align: left;
-              display: inline-flex;
-              flex: 1 1 auto;
-            }
-          }
-        }
-      }
-
-      // General look of the links
-      a {
-        color: @dashboard-cpy-select-link-color;
-        line-height: 17px;
-        display: block;
-        padding: 4px 0 4px 20px;
-
-        &:hover {
-          text-decoration: none;
-          color: @dashboard-cpy-select-link-hover-color;
-          background-color: @dashboard-cpy-select-link-hover-bg-color;
-          border-bottom-left-radius: 10px;
-        }
-
-        // Icon on the side of the link
-        i {
-          width: 20px;
-          text-align: center;
-          font-size: 11pt;
-        }
-      }
-
-
-      .default-link {
-        padding: 10px 20px;
-        text-align: left;
-
-        .btn {
-          width: 100%;
-          margin-bottom: 10px;
-          padding: 3px;
-
-          a {
-            color: @dashboard-cpy-select-link-create-text-color;
-            padding: 2px;
-
-            &:hover {
-              background: transparent;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  @media (max-width: @screen-sm) {
-    .company-select-box {
-      width: 100%;
-      position: fixed;
-      border-left: none;
-      border-top: 1px solid @dashboard-cpy-select-border-color;
-      top: ~'calc(1px + ' @navbar-height ~')';  // Add top border
     }
   }
 }
@@ -1310,6 +1310,479 @@ mno-loader {
 
 mno-password {
   display: block;
+}
+
+#account {
+  .row:not(:first-child) {
+    margin-top: 15px;
+  }
+}
+
+#dashboard-apps-list {
+  .app-dashboard {
+    min-height: 280px;
+    max-width: 225px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    background-color: @dashboard-apps-tile-bg-color;
+    text-align: center;
+    padding: 30px 0px;
+    padding-bottom: 0px;
+    margin-top: 15px;
+
+    .btn-change-plan {
+      margin-top:50px;
+    }
+
+    .title {
+      .font(14px,normal,@dashboard-apps-tile-text-color);
+      margin-top:10px;
+      margin-bottom:10px;
+    }
+
+    .app-line {
+      .font(12px,normal,@text-inverse-color);
+    }
+
+    img.app-logo {
+      border-radius: 5px;
+      .square(85px);
+      border: solid @dashboard-apps-tile-logo-border-size @dashboard-apps-tile-logo-border-color;
+    }
+
+    .connector-logo {
+      margin-top: 3px;
+      margin-bottom: 3px;
+      cursor: pointer;
+    }
+
+    .office365-connector-logo {
+      height: 32px;
+      padding: 2px;
+    }
+
+    .tutorial {
+      display:block;
+      margin-top: 7px;
+    }
+
+    // App Tile Settings (top right)
+    a.options {
+      line-height: 19px;
+      .square(20px);
+      border-radius: 20px;
+      color: @dashboard-apps-tile-settings-color;
+      background-color: @dashboard-apps-tile-settings-bg-color;
+      float:right;
+      margin: -25px 5px 0px 0px;
+    }
+
+    a.options:hover {
+      color: @dashboard-apps-tile-settings-hover-color;
+      background-color: @dashboard-apps-tile-settings-hover-bg-color;
+    }
+    a.options i {
+      margin-top: 3px;
+    }
+
+    .app-custom-info {
+      position: relative;
+      top: -10px;
+      z-index: 999;
+    }
+
+    // Add application tile (tile with + button)
+    &.add-app {
+      padding:15px 0px;
+      font-size:140px;
+      color: @dashboard-apps-tile-add-color;
+      background-color: @dashboard-apps-tile-add-bg-color;
+    }
+
+    &.add-app a {
+      color: @dashboard-bg-color;
+
+      &:hover {
+        color: @brand-warning;
+      }
+    }
+  }
+}
+
+.dashboard-organization {
+
+  //-----------------------------------
+  // Tabs Styling
+  //-----------------------------------
+  ul.nav.nav-tabs {
+    border-bottom: none;
+  }
+
+  // Tab Header Wrapper Styling
+  ul.nav.nav-tabs > li {
+    margin-right: 5px;
+    padding-bottom: 5px;
+    background-color: transparent;
+    border-bottom: solid 5px transparent;
+    padding: 0px;
+    cursor: pointer;
+  }
+  ul.nav.nav-tabs > li.active when (@dashboard-cpy-tabs-subline-size > 0) {
+    border-bottom: solid 4px @dashboard-cpy-tabs-active-bg-color;
+  }
+
+  // Tab Header Styling
+  ul.nav.nav-tabs > li > a {
+    padding: 20px 40px;
+    border: none;
+    color: @dashboard-cpy-tabs-text-color;
+    background-color: @dashboard-cpy-tabs-bg-color;
+    .border-top-radius(@dashboard-cpy-tabs-border-radius);
+    .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
+
+
+  }
+  ul.nav.nav-tabs > li > a:hover {
+    background-color: @dashboard-cpy-tabs-hover-bg-color;
+    color: @dashboard-cpy-tabs-hover-text-color;
+  }
+  ul.nav.nav-tabs > li.active > a,
+  ul.nav.nav-tabs > li.active > a:hover,
+  ul.nav.nav-tabs > li.active > a:focus {
+    padding-bottom: 20px;
+    background-color: @dashboard-cpy-tabs-active-bg-color;
+    color: @dashboard-cpy-tabs-active-text-color;
+
+    & when (@dashboard-cpy-tabs-subline-size = 0) {
+      .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
+    }
+  }
+
+  // Tab Content Styling
+  .tab-content {
+    border-top: solid @dashboard-cpy-tabs-subline-size @dashboard-cpy-tabs-subline-color;
+    padding-top: 20px;
+  }
+
+  .tab-content .tab-pane {
+    background-color: transparent;
+  }
+
+  @media(max-width: 720px) {
+    ul.nav.nav-tabs > li {
+      width:100%;
+
+      &.active {
+        border-bottom: solid 5px transparent;
+        a {
+          background-color: @dashboard-cpy-tabs-active-bg-color;
+          color: white;
+        }
+      }
+    }
+  }
+
+  //-----------------------------------
+  // Well Styling
+  //-----------------------------------
+  .well {
+    border: none;
+    background-color: @dashboard-cpy-tabcontent-bg-color;
+  }
+
+  //-----------------------------------
+  // Accordion Styling
+  //-----------------------------------
+  .panel-group .panel {
+    background-color: @dashboard-cpy-tabcontent-bg-color;
+    box-shadow: none;
+    border: none;
+    margin: 0px 0px 25px 0px;
+
+    .cc-icons i {
+      display: inline-block;
+    }
+  }
+
+  .panel-group .panel .panel-heading {
+    background-color: @dashboard-cpy-tabcontent-bg-color;
+    border: none;
+  }
+
+  .panel-group .panel-collapse > .panel-body {
+    background-color: @dashboard-cpy-tabcontent-bg-color;
+    border: none;
+  }
+
+  //-----------------------------------
+  // CC Form
+  //-----------------------------------
+  .cc-header small div {
+    display: inline-block;
+    vertical-align: top;
+    
+    i {
+      display: inline-block;
+      zoom: 0.40;
+      vertical-align: top;
+    }
+    img {
+      max-height: 30px;
+      vertical-align: top;
+    }
+  }
+
+  .cc-header-eft {
+    font-size: 13px;
+    line-height: 29px;
+    color: #777777;
+    float: right;
+  }
+}
+
+//-----------------------------------
+// User Edition Modal
+//-----------------------------------
+.modal.member-edit .role-management {
+  text-align: center;
+}
+
+.modal.member-edit .role-management .fa {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.modal.member-edit .role-management p {
+  font-weight: 300;
+}
+
+//-----------------------------------
+// Team Member Add Modal
+//-----------------------------------
+.team-member-add-modal table {
+  margin: auto;
+  font-weight: 300;
+}
+.team-member-add-modal table td {
+  border: none;
+  padding: 8px;
+}
+
+.team-member-add-modal table tr td:first-child {
+  text-align: right;
+}
+
+.team-member-add-modal table tr td:last-child {
+  text-align: left;
+}
+
+#impac {
+  impac-dashboard.with-dock {
+    @media(min-width: @screen-md-min) {
+      display: block;
+      .top-buffer-4;
+    }
+  }
+}
+
+//-------------------------------
+// Show View
+//-------------------------------
+.dashboard-marketplace-app {
+
+  //-------------------------------
+  // Header
+  //-------------------------------
+  .show-header .media-object {
+    max-width: 80px;
+    border-radius: 5px;
+    border: solid 1px darken(@bg-main-color, 5%);
+  }
+
+  .show-header .media-body h2 {
+    line-height: 80px;
+    color: @dashboard-marketplace-show-header-text-color;
+  }
+
+  //-------------------------------
+  // Content - General
+  //-------------------------------
+  .show-content .well {
+    background-color: white;
+    border: none;
+    border-radius: 2px;
+  }
+  .show-content .btn.btn-promo {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  //-------------------------------
+  // Content - Carousel
+  //-------------------------------
+  .show-content .carousel img {
+    max-height: 300px;
+    margin: auto;
+  }
+
+  .show-content .carousel .carousel-inner {
+    text-align: center;
+  }
+
+  .show-content .carousel .carousel-control {
+    background: transparent;
+    cursor: pointer;
+    max-height: 300px;
+  }
+
+  .show-content .carousel .carousel-indicators {
+    visibility: hidden;
+  }
+
+  .show-content .carousel .carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+    margin-left: 0px;
+  }
+
+  //-------------------------------
+  // Content
+  // Height of columns in desktop
+  //-------------------------------
+  @media (min-width: @screen-md-min) {
+    .show-content .carousel { height: 340px; }
+    .show-content .well-details { height: 340px; }
+  }
+
+  .show-content .message {
+    text-align: left;
+    background-color: rgb(244, 248, 249);
+    padding: 10px 10px;
+    border-radius: 4px;
+    border: solid 1px #e9f0f3;
+  }
+
+  //-------------------------------
+  // Content - Features
+  //-------------------------------
+  .show-content ul.app-features {
+    list-style: none;
+    padding-left: 0px;
+    text-align: left;
+    margin-top: 20px;
+  }
+
+  .show-content ul.app-features li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .show-content ul.app-features li > img {
+    margin-right: 5px;
+  }
+
+  //-------------------------------
+  // Content - Benefits
+  //-------------------------------
+  .show-content ul.key-benefits {
+    list-style: none;
+    padding-left: 0px;
+    text-align: left;
+    margin-top: 20px;
+  }
+
+  .show-content ul.key-benefits > li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .show-content ul.key-benefits > li > .fa.fa-check {
+    color: @elem-positive-color;
+    margin-right: 5px;
+  }
+
+  //-------------------------------
+  // Content - Testimonials
+  //-------------------------------
+  .show-content .ribbon-testimonial .body {
+    color: @dashboard-marketplace-tile-text-color;
+  }
+
+  .show-content .ribbon-testimonial .from .name {
+    color: @bg-inverse-color;
+  }
+}
+
+.dashboard-marketplace {
+
+  .marketplace-nav input, select {
+    color: @dashboard-marketplace-search-text-color;
+    border: solid 1px @dashboard-marketplace-search-border-color;
+    background: transparent;
+    box-shadow: none;
+    height: 35px;
+
+    // Placeholder
+    .placeholder(@dashboard-marketplace-search-text-color);
+  }
+
+  // Fix Windows (Chrome/FF/IE) bug on dropdown options colors
+  // when parent "select" color is set to white
+  .marketplace-nav select option {
+    color: black;
+  }
+
+  //-------------------------------
+  // Marketplace list
+  //-------------------------------
+  .marketplace-list {
+    margin-top: 20px;
+  }
+
+  //-------------------------------
+  // App Card
+  //-------------------------------
+  .marketplace-app-card {
+    background-color: @dashboard-marketplace-tile-bg-color;
+    color: rgb(51, 51, 51);
+    cursor: pointer;
+    @dashboard-marketplace-app-card();
+
+    &:hover {
+      text-decoration: none;
+      background-color: @dashboard-marketplace-tile-hover-bg-color;
+    }
+  }
+
+  // Application logo
+  .marketplace-app-card img.media-object {
+    max-width: 100px;
+    border: solid 1px @dashboard-marketplace-tile-img-border-color;
+    border-radius: 5px;
+  }
+  .marketplace-app-card:hover img.media-object {
+    border: solid 1px darken(@dashboard-marketplace-tile-hover-img-border-color,5%);
+  }
+
+  // Application Description
+  .marketplace-app-card .media-body {
+    padding-right: 10px;
+    color: @dashboard-marketplace-tile-text-color;
+  }
+  .marketplace-app-card:hover .media-body {
+    color: @dashboard-marketplace-tile-hover-text-color;
+  }
+
+  // App tile arrow right
+  .marketplace-app-card .arrow {
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    color: @dashboard-marketplace-tile-hover-arrow-color;
+    visibility: hidden;
+  }
+  .marketplace-app-card:hover .arrow {
+    visibility: visible;
+  }
 }
 
 // Base style
@@ -1856,479 +2329,6 @@ form.editable-wrap .editable-controls input {
   color: @text-strong-color;
   margin-top: -10px;
   padding-left: 5px;
-}
-
-#account {
-  .row:not(:first-child) {
-    margin-top: 15px;
-  }
-}
-
-#dashboard-apps-list {
-  .app-dashboard {
-    min-height: 280px;
-    max-width: 225px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 5px;
-    background-color: @dashboard-apps-tile-bg-color;
-    text-align: center;
-    padding: 30px 0px;
-    padding-bottom: 0px;
-    margin-top: 15px;
-
-    .btn-change-plan {
-      margin-top:50px;
-    }
-
-    .title {
-      .font(14px,normal,@dashboard-apps-tile-text-color);
-      margin-top:10px;
-      margin-bottom:10px;
-    }
-
-    .app-line {
-      .font(12px,normal,@text-inverse-color);
-    }
-
-    img.app-logo {
-      border-radius: 5px;
-      .square(85px);
-      border: solid @dashboard-apps-tile-logo-border-size @dashboard-apps-tile-logo-border-color;
-    }
-
-    .connector-logo {
-      margin-top: 3px;
-      margin-bottom: 3px;
-      cursor: pointer;
-    }
-
-    .office365-connector-logo {
-      height: 32px;
-      padding: 2px;
-    }
-
-    .tutorial {
-      display:block;
-      margin-top: 7px;
-    }
-
-    // App Tile Settings (top right)
-    a.options {
-      line-height: 19px;
-      .square(20px);
-      border-radius: 20px;
-      color: @dashboard-apps-tile-settings-color;
-      background-color: @dashboard-apps-tile-settings-bg-color;
-      float:right;
-      margin: -25px 5px 0px 0px;
-    }
-
-    a.options:hover {
-      color: @dashboard-apps-tile-settings-hover-color;
-      background-color: @dashboard-apps-tile-settings-hover-bg-color;
-    }
-    a.options i {
-      margin-top: 3px;
-    }
-
-    .app-custom-info {
-      position: relative;
-      top: -10px;
-      z-index: 999;
-    }
-
-    // Add application tile (tile with + button)
-    &.add-app {
-      padding:15px 0px;
-      font-size:140px;
-      color: @dashboard-apps-tile-add-color;
-      background-color: @dashboard-apps-tile-add-bg-color;
-    }
-
-    &.add-app a {
-      color: @dashboard-bg-color;
-
-      &:hover {
-        color: @brand-warning;
-      }
-    }
-  }
-}
-
-.dashboard-organization {
-
-  //-----------------------------------
-  // Tabs Styling
-  //-----------------------------------
-  ul.nav.nav-tabs {
-    border-bottom: none;
-  }
-
-  // Tab Header Wrapper Styling
-  ul.nav.nav-tabs > li {
-    margin-right: 5px;
-    padding-bottom: 5px;
-    background-color: transparent;
-    border-bottom: solid 5px transparent;
-    padding: 0px;
-    cursor: pointer;
-  }
-  ul.nav.nav-tabs > li.active when (@dashboard-cpy-tabs-subline-size > 0) {
-    border-bottom: solid 4px @dashboard-cpy-tabs-active-bg-color;
-  }
-
-  // Tab Header Styling
-  ul.nav.nav-tabs > li > a {
-    padding: 20px 40px;
-    border: none;
-    color: @dashboard-cpy-tabs-text-color;
-    background-color: @dashboard-cpy-tabs-bg-color;
-    .border-top-radius(@dashboard-cpy-tabs-border-radius);
-    .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
-
-
-  }
-  ul.nav.nav-tabs > li > a:hover {
-    background-color: @dashboard-cpy-tabs-hover-bg-color;
-    color: @dashboard-cpy-tabs-hover-text-color;
-  }
-  ul.nav.nav-tabs > li.active > a,
-  ul.nav.nav-tabs > li.active > a:hover,
-  ul.nav.nav-tabs > li.active > a:focus {
-    padding-bottom: 20px;
-    background-color: @dashboard-cpy-tabs-active-bg-color;
-    color: @dashboard-cpy-tabs-active-text-color;
-
-    & when (@dashboard-cpy-tabs-subline-size = 0) {
-      .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
-    }
-  }
-
-  // Tab Content Styling
-  .tab-content {
-    border-top: solid @dashboard-cpy-tabs-subline-size @dashboard-cpy-tabs-subline-color;
-    padding-top: 20px;
-  }
-
-  .tab-content .tab-pane {
-    background-color: transparent;
-  }
-
-  @media(max-width: 720px) {
-    ul.nav.nav-tabs > li {
-      width:100%;
-
-      &.active {
-        border-bottom: solid 5px transparent;
-        a {
-          background-color: @dashboard-cpy-tabs-active-bg-color;
-          color: white;
-        }
-      }
-    }
-  }
-
-  //-----------------------------------
-  // Well Styling
-  //-----------------------------------
-  .well {
-    border: none;
-    background-color: @dashboard-cpy-tabcontent-bg-color;
-  }
-
-  //-----------------------------------
-  // Accordion Styling
-  //-----------------------------------
-  .panel-group .panel {
-    background-color: @dashboard-cpy-tabcontent-bg-color;
-    box-shadow: none;
-    border: none;
-    margin: 0px 0px 25px 0px;
-
-    .cc-icons i {
-      display: inline-block;
-    }
-  }
-
-  .panel-group .panel .panel-heading {
-    background-color: @dashboard-cpy-tabcontent-bg-color;
-    border: none;
-  }
-
-  .panel-group .panel-collapse > .panel-body {
-    background-color: @dashboard-cpy-tabcontent-bg-color;
-    border: none;
-  }
-
-  //-----------------------------------
-  // CC Form
-  //-----------------------------------
-  .cc-header small div {
-    display: inline-block;
-    vertical-align: top;
-    
-    i {
-      display: inline-block;
-      zoom: 0.40;
-      vertical-align: top;
-    }
-    img {
-      max-height: 30px;
-      vertical-align: top;
-    }
-  }
-
-  .cc-header-eft {
-    font-size: 13px;
-    line-height: 29px;
-    color: #777777;
-    float: right;
-  }
-}
-
-//-----------------------------------
-// User Edition Modal
-//-----------------------------------
-.modal.member-edit .role-management {
-  text-align: center;
-}
-
-.modal.member-edit .role-management .fa {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.modal.member-edit .role-management p {
-  font-weight: 300;
-}
-
-//-----------------------------------
-// Team Member Add Modal
-//-----------------------------------
-.team-member-add-modal table {
-  margin: auto;
-  font-weight: 300;
-}
-.team-member-add-modal table td {
-  border: none;
-  padding: 8px;
-}
-
-.team-member-add-modal table tr td:first-child {
-  text-align: right;
-}
-
-.team-member-add-modal table tr td:last-child {
-  text-align: left;
-}
-
-#impac {
-  impac-dashboard.with-dock {
-    @media(min-width: @screen-md-min) {
-      display: block;
-      .top-buffer-4;
-    }
-  }
-}
-
-//-------------------------------
-// Show View
-//-------------------------------
-.dashboard-marketplace-app {
-
-  //-------------------------------
-  // Header
-  //-------------------------------
-  .show-header .media-object {
-    max-width: 80px;
-    border-radius: 5px;
-    border: solid 1px darken(@bg-main-color, 5%);
-  }
-
-  .show-header .media-body h2 {
-    line-height: 80px;
-    color: @dashboard-marketplace-show-header-text-color;
-  }
-
-  //-------------------------------
-  // Content - General
-  //-------------------------------
-  .show-content .well {
-    background-color: white;
-    border: none;
-    border-radius: 2px;
-  }
-  .show-content .btn.btn-promo {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  //-------------------------------
-  // Content - Carousel
-  //-------------------------------
-  .show-content .carousel img {
-    max-height: 300px;
-    margin: auto;
-  }
-
-  .show-content .carousel .carousel-inner {
-    text-align: center;
-  }
-
-  .show-content .carousel .carousel-control {
-    background: transparent;
-    cursor: pointer;
-    max-height: 300px;
-  }
-
-  .show-content .carousel .carousel-indicators {
-    visibility: hidden;
-  }
-
-  .show-content .carousel .carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
-    margin-left: 0px;
-  }
-
-  //-------------------------------
-  // Content
-  // Height of columns in desktop
-  //-------------------------------
-  @media (min-width: @screen-md-min) {
-    .show-content .carousel { height: 340px; }
-    .show-content .well-details { height: 340px; }
-  }
-
-  .show-content .message {
-    text-align: left;
-    background-color: rgb(244, 248, 249);
-    padding: 10px 10px;
-    border-radius: 4px;
-    border: solid 1px #e9f0f3;
-  }
-
-  //-------------------------------
-  // Content - Features
-  //-------------------------------
-  .show-content ul.app-features {
-    list-style: none;
-    padding-left: 0px;
-    text-align: left;
-    margin-top: 20px;
-  }
-
-  .show-content ul.app-features li {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-
-  .show-content ul.app-features li > img {
-    margin-right: 5px;
-  }
-
-  //-------------------------------
-  // Content - Benefits
-  //-------------------------------
-  .show-content ul.key-benefits {
-    list-style: none;
-    padding-left: 0px;
-    text-align: left;
-    margin-top: 20px;
-  }
-
-  .show-content ul.key-benefits > li {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-
-  .show-content ul.key-benefits > li > .fa.fa-check {
-    color: @elem-positive-color;
-    margin-right: 5px;
-  }
-
-  //-------------------------------
-  // Content - Testimonials
-  //-------------------------------
-  .show-content .ribbon-testimonial .body {
-    color: @dashboard-marketplace-tile-text-color;
-  }
-
-  .show-content .ribbon-testimonial .from .name {
-    color: @bg-inverse-color;
-  }
-}
-
-.dashboard-marketplace {
-
-  .marketplace-nav input, select {
-    color: @dashboard-marketplace-search-text-color;
-    border: solid 1px @dashboard-marketplace-search-border-color;
-    background: transparent;
-    box-shadow: none;
-    height: 35px;
-
-    // Placeholder
-    .placeholder(@dashboard-marketplace-search-text-color);
-  }
-
-  // Fix Windows (Chrome/FF/IE) bug on dropdown options colors
-  // when parent "select" color is set to white
-  .marketplace-nav select option {
-    color: black;
-  }
-
-  //-------------------------------
-  // Marketplace list
-  //-------------------------------
-  .marketplace-list {
-    margin-top: 20px;
-  }
-
-  //-------------------------------
-  // App Card
-  //-------------------------------
-  .marketplace-app-card {
-    background-color: @dashboard-marketplace-tile-bg-color;
-    color: rgb(51, 51, 51);
-    cursor: pointer;
-    @dashboard-marketplace-app-card();
-
-    &:hover {
-      text-decoration: none;
-      background-color: @dashboard-marketplace-tile-hover-bg-color;
-    }
-  }
-
-  // Application logo
-  .marketplace-app-card img.media-object {
-    max-width: 100px;
-    border: solid 1px @dashboard-marketplace-tile-img-border-color;
-    border-radius: 5px;
-  }
-  .marketplace-app-card:hover img.media-object {
-    border: solid 1px darken(@dashboard-marketplace-tile-hover-img-border-color,5%);
-  }
-
-  // Application Description
-  .marketplace-app-card .media-body {
-    padding-right: 10px;
-    color: @dashboard-marketplace-tile-text-color;
-  }
-  .marketplace-app-card:hover .media-body {
-    color: @dashboard-marketplace-tile-hover-text-color;
-  }
-
-  // App tile arrow right
-  .marketplace-app-card .arrow {
-    position: absolute;
-    right: 20px;
-    top: 50px;
-    color: @dashboard-marketplace-tile-hover-arrow-color;
-    visibility: hidden;
-  }
-  .marketplace-app-card:hover .arrow {
-    visibility: visible;
-  }
 }
 
 #app-connect-modal {
