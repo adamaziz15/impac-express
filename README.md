@@ -31,4 +31,3 @@ rm -rf tmp/build tmp/cache
 bin/rake mnoe:admin:dist
 bin/rake mnoe:frontend:update
 ```
-
