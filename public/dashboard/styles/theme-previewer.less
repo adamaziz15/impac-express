@@ -481,64 +481,6 @@ html, body {
 
 
 
-@menu-left-width: 80px;
-
-#layout-loading {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  background-color: @dashboard-bg-color;
-  z-index: 1000;
-  padding-top: 50px;
-
-  &.ng-hide {
-    transition: all linear 1s;
-    opacity: 0;
-  }
-
-  .layout-loading-text {
-    display: inline-block;
-    padding-top: 15px;
-    color: @dashboard-loader-color;
-  }
-}
-
-#dashboard {
-  .container {
-    position: relative;
-  }
-
-  @media (max-width: @screen-xs-max) {
-    padding-top: 40px;
-  }
-
-  /* Fix the container width if the screen is sm+ */
-  @media screen and (min-width: @screen-sm-min) {
-    margin-left: @menu-left-width;
-    .container {
-      width: @container-sm - @menu-left-width;
-    }
-  }
-
-  /* Fix the container width if the screen is md+ */
-  @media screen and (min-width: @screen-md-min) {
-    margin-left: @menu-left-width;
-    .container {
-      width: @container-md - @menu-left-width;
-    }
-  }
-
-  /* Fix the container width if the screen is lg+ */
-  @media screen and (min-width: @screen-lg-min) {
-    margin-left: @menu-left-width;
-    .container {
-      width: @container-lg - @menu-left-width;
-    }
-  }
-}
-
 .font(@size,@weight,@color) {
   font-weight:@weight;
   font-size:@size;
@@ -570,6 +512,34 @@ html, body {
   overflow: hidden;
 }
 
+#layout-loading {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  background-color: @dashboard-bg-color;
+  z-index: 1000;
+  padding-top: 50px;
+
+  &.ng-hide {
+    transition: all linear 1s;
+    opacity: 0;
+  }
+
+  .layout-loading-text {
+    display: inline-block;
+    padding-top: 15px;
+    color: @bg-inverse-color;
+  }
+}
+
+#dashboard {
+  @media (max-width: @screen-xs-max) {
+    padding-top: 40px;
+  }
+}
+
 dashboard-company-selectbox {
   /*-----------------------------------------------------------------------*/
   /*                       Company Select Box                              */
@@ -577,18 +547,12 @@ dashboard-company-selectbox {
   .company-select-box {
     position: absolute;
     right: 0;
-    width: @dashboard-cpy-select-width;
     background-color: @dashboard-cpy-select-bg-color;
     color: @dashboard-cpy-select-header-text-color;
     font-size: @dashboard-cpy-select-header-text-size;
-    border-radius: @dashboard-cpy-select-border-radius;
-    border-left: 1px solid @dashboard-cpy-select-border-color;
-    border-bottom: 1px solid @dashboard-cpy-select-border-color;
-    z-index: 999;
-
-    @media (max-width: @screen-sm) {
-      border-radius: 0;
-    }
+    padding: @dashboard-cpy-select-padding;
+    .border-bottom-radius(@dashboard-cpy-select-border-radius);
+    z-index: 10;
 
     // Change company button
     .btn.switch-company {
@@ -605,417 +569,59 @@ dashboard-company-selectbox {
 
     // Section always visible
     .box-header {
-      cursor: pointer;
       text-align: right;
-      outline: none;
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-
-      img {
-        border-radius: 50%;
-        height: @dashboard-cpy-select-pic-width;
-        width: @dashboard-cpy-select-pic-width;
-      }
-
-      .title {
-        margin: 0 10px;
-        width: ~'calc(100% -' (2 * @dashboard-cpy-select-pic-width) ~')';
-        text-align: left;
-
-        .company {
-          width: 100%;
-          display: block;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        .name {
-          font-weight: bold;
-          color: @dashboard-cpy-select-header-text-bold-color;
-        }
-      }
-      .expand-menu {
-        margin-left: auto;
-      }
     }
 
     // Section visible when change company is clicked
     .box-content {
+      margin-top: 10px;
       border-top: solid 1px @dashboard-cpy-select-link-color;
       .border-bottom-radius(5px);
-
-      hr {
-        margin: 0;
-        border-top: 1px solid @dashboard-cpy-select-border-color;
-      }
-
-      // List of companies
-      ul {
-        list-style: none;
-        padding: 15px 20px 0 20px;
-        max-height: 400px;
-        min-width: 250px;
-        overflow-y: auto;
-
-        > li {
-          position: relative;
-          outline: none;
-
-          // Circle next to company name
-          // Indicate which company is currently viewed on dashboard
-          > a {
-            padding: 4px;
-            display: flex;
-
-            &:hover {
-              background-color: @dashboard-cpy-select-link-hover-bg-color;
-              border-bottom-left-radius: 0px;
-            }
-
-            > i {
-              flex: 0 0 20px;
-              width: 13px;
-              padding: 2px 0;
-              display: inline-flex;
-              text-align: center;
-              color: @dashboard-cpy-select-link-icon-color;
-            }
-
-            > span {
-              text-align: left;
-              display: inline-flex;
-              flex: 1 1 auto;
-            }
-          }
-        }
-      }
-
-      // General look of the links
-      a {
-        color: @dashboard-cpy-select-link-color;
-        line-height: 17px;
-        display: block;
-        padding: 4px 0 4px 20px;
-
-        &:hover {
-          text-decoration: none;
-          color: @dashboard-cpy-select-link-hover-color;
-          background-color: @dashboard-cpy-select-link-hover-bg-color;
-          border-bottom-left-radius: 10px;
-        }
-
-        // Icon on the side of the link
-        i {
-          width: 20px;
-          text-align: center;
-          font-size: 11pt;
-        }
-      }
-
-
-      .default-link {
-        padding: 10px 20px;
-        text-align: left;
-
-        .btn {
-          width: 100%;
-          margin-bottom: 10px;
-          padding: 3px;
-
-          a {
-            color: @dashboard-cpy-select-link-create-text-color;
-            padding: 2px;
-
-            &:hover {
-              background: transparent;
-            }
-          }
-        }
-      }
     }
-  }
-
-  @media (max-width: @screen-sm) {
-    .company-select-box {
-      width: 100%;
-      position: fixed;
-      border-left: none;
-      border-top: 1px solid @dashboard-cpy-select-border-color;
-      top: ~'calc(1px + ' @navbar-height ~')';  // Add top border
-    }
-  }
-}
-
-#app-dock-container {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  text-align: center;
-}
-
-ul.dock {
-  position: relative;
-  display: inline-block;
-  background-color: @mno-dock-bg-color;
-  opacity: 1;
-  padding: 5px;
-  z-index: 999;
-  .border-bottom-radius(5px);
-  height: 90px;
-  .transition(height 0.3s);
-
-  & > li {
-    display: inline-block;
-    position: relative;
-    vertical-align: top;
-
-    .title {
-      position: absolute;
-      top: 0;
-      color: @mno-dock-app-title-color;
-      display: none;
-      width: 100%;
-      text-align: center;
-    }
-
-    img.app-logo {
-      outline: none;
-      cursor: pointer;
-      margin: 5px;
-      .square(@mno-dock-app-logo-square-width);
-      .transition(all 0.3s);
-      .border-top-radius(5px);
-      .border-bottom-radius(5px);
-      .transform-origin(50% 0%); // Origin from top
-    }
-
-    .add-app {
-      cursor: pointer;
-      margin: 5px;
-      .square(@mno-dock-app-logo-square-width);
-      .transition(all 0.3s);
-      .transform-origin(50% 0%); // Origin from top
-      border: 1px solid @mno-dock-add-app-border-color;
-      .border-top-radius(5px);
-      .border-bottom-radius(5px);
-
-      display: table;
-
-      a {
-        display: table-cell;
-        vertical-align: middle;
-        color: @mno-dock-add-app-text-color;
-      }
-    }
-  }
-
-  // Expand button
-  li.expand-menu {
-    border-left: 1px solid @mno-dock-expand-left-border-color;
-    height: 100%;
-
-    & > div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-
-      a {
-        padding-left: 6px;
-        padding-right: 5px;
-        .transition(height 0.3s);
-        cursor: pointer;
-        color: @mno-dock-expand-arrow-color;
-
-        &:hover {
-          text-decoration: none;
-          color: @mno-dock-expand-arrow-color-hover;
-        }
-      }
-    }
-  }
-
-  //=======================================
-  // Submenu
-  //=======================================
-  .dock-menu {
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    z-index: 1000;
-    margin-top: 68px;
-    visibility:hidden;
-    opacity:0;
-    transition: visibility 0s linear 0.5s,opacity 0.5s linear;
-
-    div.dock-arrow {
-      position: relative;
-      right: 50%;
-    }
-
-    div.inner-dock-menu { // Inner div holding the menu
-      position: relative;
-      right: 50%;
-      padding: 5px 0px;
-      .border-top-radius(5px);
-      .border-bottom-radius(5px);
-      background-color: @mno-dock-sub-menu-bg-color;
-
-      .box-shadow(@mno-dock-sub-menu-box-shadow);
-      .menu-item {
-        cursor: pointer;
-
-        &:hover {
-          background-color: @mno-dock-sub-menu-hover;
-
-          a {
-            color: @mno-dock-sub-menu-text-hover-color;
-          }
-        }
-
-        a {
-          display: flex;
-          text-decoration: none;
-          color: @mno-dock-sub-menu-text-color;
-          padding: 5px 20px;
-
-          &.connect-btn-center, img.connect-btn-center {
-            margin: auto;
-          }
-
-          i.fa {
-            color: @mno-dock-sub-menu-icon;
-            margin-top: 3px;
-            margin-right: 6px;
-          }
-        }
-
-        .connector-logo {
-          margin-top:3px;
-          margin-bottom:3px;
-          cursor: pointer;
-        }
-      }
-    }
-  }
-
-  & > li.active {
-    .dock-menu {
-      // display: block;
-      visibility: visible;
-      opacity: 1;
-      transition-delay: 0s;
-    }
-  }
-}
-
-ul.dock.minimized {
-  height: @mno-dock-app-logo-square-width;
-  .transition(height 0.3s);
-
-  img.app-logo, .add-app {
-    .square(@mno-dock-app-logo-minimized-square-width);
-  }
-
-  .add-app {
-    span {
-      .transition(all 0.3s);
-      display: none;
-    }
-  }
-
-  .dock-menu {
-    margin-top: @mno-dock-app-logo-minimized-square-width;
-  }
-}
-
-ul.dock.animated  > li:hover, ul.dock > li.active {
-  img.app-logo {
-    transform: scale(1.8) translate(0, 10px);
-    margin: 5px 1.6em 5px;
-    z-index: 9999;
-
-    border: @mno-dock-app-box-border;
-    .box-shadow(@mno-dock-app-box-shadow);
-  }
-
-  .title {
-    display: block;
-  }
-
-  /* one element after and element before (with JS)*/
-  & + li img.app-logo, ul.dock > li.prev img.app-logo {
-    .scale(1.4);
-    margin: 5px 1.6em 5px;
-  }
-}
-
-ul.dock > li.prev img.app-logo {
-  .scale(1.4);
-  margin: 5px 1.4em 5px;
-}
-
-// Mobile
-#app-dock-mobile-container {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  z-index: 1030;
-
-  .mobile-dock-button {
-    width: 100%;
-    text-transform: uppercase;
-    padding: 10px;
-    color: @mno-dock-mobile-button-color;
-    background-color: @mno-dock-mobile-button-bg-color;
-  }
-
-  #mobile-dock {
-    z-index: 1030;
-
-    &.collapse.in {
+    .box-content ul {
+      list-style: none;
+      padding-top: 15px;
+      max-height: 400px;
+      min-width: 250px;
       overflow-y: auto;
     }
+    .box-content ul li a {
+      color: @dashboard-cpy-select-link-color;
+      line-height: 25px;
+      display: block;
+      padding-left: 5px;
 
-    .btn {
-      text-transform: uppercase;
-    }
-
-    ul {
-      margin-bottom: 0;
-      background-color: @mno-dock-mobile-bg-color;
-
-      & > li {
-        border-bottom: @mno-dock-mobile-app-border-bottom;
-        padding-top: 5px;
-        padding-bottom: 5px;
-
-        .app-line {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-
-          .title {
-            color: @mno-dock-mobile-app-name-color;
-            font-weight: bold;
-          }
-
-          img.app-logo {
-            .square(48px);
-          }
-        }
-
-        &:hover, &.active {
-          background-color: @mno-dock-mobile-app-active-color;
-        }
+      &:hover {
+        text-decoration: none;
+        color: @dashboard-cpy-select-link-hover-color;
+        background-color: @dashboard-cpy-select-link-hover-bg-color;
       }
     }
 
-    .add-app {
-      color: @mno-dock-mobile-add-app-color;
+    // Circle next to company name
+    // Indicate which company is currently viewed on dashboard
+    .box-content ul li a i.fa {
+      width: 13px;
+      margin-right: 6px;
+      text-align: center;
+      color: @dashboard-cpy-select-link-color;
+    }
+
+    // Create new company
+    .box-content .create-new, .box-content .admin-link {
+      text-align: center;
+    }
+    .box-content .create-new a {
+      color: @dashboard-cpy-select-link-create-color;
+    }
+
+    // Admin platform link
+    .box-content .admin-link {
+      margin-top: 3px;
+
+      a {
+        color: @dashboard-cpy-select-link-admin-color;
+      }
     }
   }
 }
@@ -1271,11 +877,11 @@ mno-impersonation-bar {
 
 mno-inline-message {
   .mno-inline-checked {
-    color: @dashboard-account-inline-text-color-checked;
+    color: @brand-success;
   }
 
   .mno-inline-unchecked {
-    color: @dashboard-account-inline-text-color-unchecked;
+    color: @brand-warning;
   }
 }
 
@@ -1310,6 +916,596 @@ mno-loader {
 
 mno-password {
   display: block;
+}
+
+// Base style
+.accordion {
+  .panel-group > .panel {
+    margin: 25px 0px;
+  }
+
+  .panel-group > .panel,
+  .panel-group > .panel > .panel-heading {
+    background-color: white;
+    border: none;
+    box-shadow: none;
+  }
+
+  .panel-group .panel .panel-body {
+    p {
+      font-weight: 300;
+    }
+
+    ul > li {
+      font-weight: 300;
+    }
+  }
+
+  .panel-group .panel .panel-heading {
+    padding: 0px;
+    background-color: white;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
+    .panel-title > div,
+    .panel-title > a {
+      font-size: 90%;
+      display: block;
+      padding-left: 10px;
+      line-height: 54px;
+      height: 54px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .panel-title a.btn.pull-right {
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    .panel-title span.pull-right {
+      margin-right: 20px;
+      margin-top: 20px;
+    }
+  }
+}
+
+
+// Accordion Black background style
+.accordion.inverse {
+
+  .panel-group > .panel,
+  .panel-group > .panel > .panel-heading {
+    background-color: @bg-inverse-color;
+    border: none;
+    box-shadow: none;
+  }
+
+  .panel-group > .panel > .panel-heading > .panel-title .text-muted {
+    color: @text-inverse-color;
+    font-weight: 700;
+  }
+
+  .panel-group > .panel > .panel-collapse > .panel-body {
+    border-top: solid 1px black;
+  }
+
+  .panel-group > .panel > .panel-heading > .panel-title > .caret-up,
+  .panel-group > .panel > .panel-heading > .panel-title > .caret-down {
+    color: @text-inverse-color;
+  }
+}
+
+// Accordion Compact style
+.accordion.accordion-compact {
+  margin-top: 40px;
+
+  .panel-group .panel .panel-heading .panel-title > a {
+    line-height: 35px;
+    height: 35px;
+  }
+
+  .panel-group .panel .panel-heading .panel-title span.caret.pull-right {
+    margin-top: 17px;
+  }
+
+  .panel-group .panel {
+    margin: 11px 0px;
+  }
+}
+
+.btn-fluid-wrapper .btn {
+  width: 100%;
+}
+
+.btn {
+  &.float-right {
+    float:right;
+  }
+  &.btn-promo {
+    font-size:18px;
+    padding-left:30px;
+    padding-right:30px;
+  }
+
+  .subtitle {
+    font-size:@small;
+    font-weight:300;
+    width:100%;
+    display:block;
+    text-align:center;
+  }
+
+  &.arrow,
+  &.arrow-right {
+    background-image: image-url('icons/icon-arrow-right.png');
+    background-repeat: no-repeat;
+    background-position: 96% 50%;
+  }
+
+  &.arrow-left {
+    background-image: image-url('icons/icon-arrow-left.png');
+    background-repeat: no-repeat;
+    background-position: 4% 50%;
+  }
+
+  &.btn-dark {
+    .font(16px, 300, @bg-main-color);
+    background-color: @bg-inverse-color;
+
+    &:hover {
+      color: @elem-cozy-color;
+    }
+  }
+
+  &.btn-shaded {
+    background-color: @bg-inverse-color;
+    border: solid 1px @bg-inverse-intense-color;
+    color: @text-inverse-color;
+    font-weight: 400;
+
+    &:hover {
+      color: lighten(@text-inverse-color,5%);
+      background-color: lighten(@bg-inverse-color,5%);
+    }
+  }
+
+  &.btn-grey {
+    background-color: @bg-main-color;
+    border: solid 1px @bg-main-color;
+    color: lighten(@bg-inverse-color,5%);
+    font-weight: 400;
+
+    &:hover {
+      color: @bg-inverse-color;
+      background-color: darken(@bg-main-color,5%);
+    }
+
+    &.btn-grey-bordered {
+      border: solid 1px darken(@bg-main-color,5%);
+    }
+  }
+
+  &.btn-whited {
+    background-color: lighten(#ccc,15%);
+    border: solid 1px #ccc;
+    color: #ccc;
+    font-weight: 400;
+
+    &:hover {
+      color: darken(#ccc,20%);
+      background-color: #ccc;
+    }
+  }
+}
+
+input.fluroblue[type=radio] {
+  width   : 18px;
+  margin  : 0;
+  padding : 0;
+  opacity : 0;
+}
+
+input.fluroblue[type=radio] + label{
+  display      : inline-block;
+  margin-left  : -12px;
+  padding-left : 25px;
+  background   : image-url('icons/radio-fluroblue.png') no-repeat 0 -18px;
+  line-height  : 18px;
+}
+
+input.fluroblue[type=radio]:checked + label{
+  background-position : 0 1px;
+}
+
+form label {
+  color: @input-label-color;
+}
+
+.input-group-addon.select select {
+  background-color: @input-bg;
+}
+
+
+select {
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+// Remove dropdown arrow (Chrome, Firefox and IE)
+select.unstyled {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+//----------------------------------------
+// Styling for phone: select + input
+//----------------------------------------
+form .phone {
+  select.form-control {
+    width:30%;
+  }
+
+  input.form-control[type='text'] {
+    margin-left:23%;
+    margin-top:-34px;
+    width:77%;
+  }
+}
+
+form .select.fa {
+  margin: -28px 7% 0px 0px;
+  float: right;
+}
+
+//----------------------------------------
+// Styling for password checker
+//----------------------------------------
+form li.checked {
+  color: lighten(@decorator-inverse-color,30%);
+}
+
+form li.unchecked {
+  color: lighten(@text-strong-color,70%);
+}
+
+//----------------------------------------
+// Style for forms on inverse backgrounds
+//----------------------------------------
+form.inverse {
+  select {
+    background-color: @bg-inverse-color;
+    .font(16px, 300, @decorator-inverse-color);
+    border:solid 1px #111c21;
+
+    border-radius: 5px;
+    height:44px;
+    -webkit-appearance: none;
+    padding-left:15px;
+    width:100%;
+
+    // Placeholder
+    .placeholder(@decorator-inverse-color);
+  }
+
+  .select.fa {
+    .font(16px,300,@decorator-inverse-color);
+    margin: -28px 7% 0px 0px;
+    float: right;
+  }
+
+  .form-control {
+    // Placeholder
+    .placeholder(@decorator-inverse-color);
+  }
+}
+
+//------------------------------------
+// Dark forms styles
+//------------------------------------
+
+form.dark {
+  input[type='text'], input[type='email'], textarea {
+    border-radius: 5px;
+    .font(16px, 300, @bg-main-color);
+    background-color: @bg-inverse-color;
+    border: solid 1px @bg-inverse-color;
+    line-height: 25px;
+    margin-bottom: 0px;
+    width: 100%;
+    min-height: 42px;
+    padding: 5px 5px 5px 15px;
+  }
+
+  *::-webkit-input-placeholder {
+      color: @bg-main-color;
+  }
+  *:-moz-placeholder {
+      /* FF 4-18 */
+      color: @bg-main-color;
+  }
+  *::-moz-placeholder {
+      /* FF 19+ */
+      color: @bg-main-color;
+  }
+  *:-ms-input-placeholder {
+      /* IE 10+ */
+      color: @bg-main-color;
+  }
+
+  label {
+    color: @bg-main-color;
+  }
+}
+
+.dark {
+  .bootstrap-select {
+    select {
+      .font(16px, 300, @bg-main-color);
+      background-color: @bg-inverse-color;
+    }
+
+    .dropdown-toggle {
+      height: 42px;
+    }
+
+    .dropdown-menu {
+      .font(16px, 300, @bg-main-color);
+      background-color: @bg-inverse-color;
+    }
+    .dropdown-menu > li > a {
+      .font(16px, 300, @bg-main-color);
+    }
+
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+      .font(16px, 300, @decorator-inverse-color);
+      background-color: @bg-inverse-color;
+    }
+  }
+}
+
+// Put a dropdown inside an input-group-addon
+.input-group-addon.select {
+  padding:0px;
+  border-radius: 6px 0px 0px 6px;
+  background-color: @input-bg;
+
+  select {
+    height:100%;
+    border:0px;
+  }
+}
+
+//------------------------------------
+// Invalid inputs (AngularJS)
+//------------------------------------
+input.ng-dirty.ng-invalid {
+  border-color: @brand-danger;
+}
+
+//-----------------------------------------
+// Responsive tables (using TWB grid)
+// see templates/dashboard/organization/invoices.html
+// for an example
+//-----------------------------------------
+.table-cell .th-row,
+.table-cell .td-row {
+  margin-top: @table-cell-row-spacing;
+  margin-bottom: @table-cell-row-spacing;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: @table-cell-row-padding;
+  padding-bottom: @table-cell-row-padding;
+}
+
+.table-cell .th-row {
+  color: @table-cell-header-text-color;
+  background-color: @table-cell-header-bg-color;
+  font-size: @table-cell-header-text-size;
+  line-height: (@table-cell-header-text-size + @table-cell-row-padding)*2;
+  @table-cell-header-additional-rule();
+}
+
+.table-cell .td-row {
+  font-size: @table-cell-row-text-size;
+  line-height: (@table-cell-row-text-size + @table-cell-row-padding)*2;
+}
+
+.table-cell .td-row:nth-child(odd) {
+  background-color: @table-cell-row-odd-bg-color;
+}
+
+.table-cell .td-row:nth-child(even) {
+  background-color: @table-cell-row-even-bg-color;
+}
+
+.table-cell .td-row .cell {
+  // Add '...' at the end of text if too long for the cell
+  .ellipsis();
+}
+
+.table-cell .td-row .cell > .cell-label {
+  font-weight: bold;
+}
+
+.table-cell .td-row .cell > a > i {
+  font-size: 20px;
+}
+@media (max-width: @screen-sm) {
+  .table-cell .td-row .cell > a { padding-left: 0px; }
+}
+
+// Inverse Style
+.table-cell.inverse .th-row {
+  background-color: @bg-inverse-intense-color;
+  color: white;
+}
+
+.table-cell.inverse .td-row:nth-child(odd) {
+  background-color: lighten(@bg-inverse-color,3%);
+}
+
+.table-cell.inverse .td-row:nth-child(even) {
+  background-color: lighten(@bg-inverse-color,5%);
+}
+
+// Table style in a well
+.well .table-cell .th-row,
+.well .table-cell .td-row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.testimonial {
+  font-size: 25px;
+  font-weight:300;
+  color:@bg-inverse-color;
+  padding:20px;
+  min-height: 115px;
+
+  &.promo-dark {
+    color:white;
+    border-radius: 10px;
+    .rgba(@bg-inverse-color, 0.7);
+  }
+
+  .author {
+    font-style:italic;
+    font-size:16px;
+  }
+
+  .body {
+    background-color:@bg-main-color;
+    border-radius: 5px;
+    padding:20px;
+    color: @text-strong-color;
+    font-weight:300;
+    font-size:16px;
+    font-style:italic;
+
+    .arrow {
+      .rotate(45deg);
+      width: 0;
+      height: 0;
+      border-top: 18px solid transparent;
+      border-bottom: 18px solid transparent;
+      border-right:18px solid @decorator-main-color;
+      position:absolute;
+      right:48px;
+      margin-top:8px;
+    }
+  }
+
+  .from {
+    margin:7px 0px 0px 30px;
+
+    .name {
+      display:inline;
+      font-size:14px;
+      font-weight:700;
+      color:@text-inverse-color;
+    }
+
+    .company {
+      display:inline;
+      font-size:14px;
+      font-weight:300;
+      color:@decorator-inverse-color;
+    }
+
+    .avatar {
+      img {
+        float:right;
+        margin:33px 9px 0px 0px;
+      }
+    }
+  }
+}
+
+.ribbon-testimonial {
+
+  .body {
+    background-color:@bg-main-color;
+    border-radius: 5px;
+    padding:20px;
+    color:@text-strong-color;
+    font-weight:300;
+    font-size:16px;
+    font-style:italic;
+
+    .arrow {
+      .rotate(45deg);
+      width: 0;
+      height: 0;
+      border-top: 18px solid transparent;
+      border-bottom: 18px solid transparent;
+      border-right:18px solid @decorator-main-color;
+      position:absolute;
+      right:28px;
+      margin-top:8px;
+    }
+  }
+
+  .from {
+    margin:7px 0px 0px 30px;
+    .name {
+      display:inline;
+      font-size:14px;
+      font-weight:700;
+      color: @text-inverse-color;
+    }
+
+    .company {
+      display:inline;
+      font-size:14px;
+      font-weight:300;
+      color: @decorator-inverse-color;
+    }
+
+  }
+}
+
+.ribbon-testimonial.ribbon-white {
+  .body {
+    background-color: white;
+  }
+
+  .arrow {
+    border-right:18px solid #ccc;
+  }
+}
+
+/*-----------------------------------------------------------------------*/
+/*                       Dashboard Section Title                         */
+/*-----------------------------------------------------------------------*/
+.myspace .section-title {
+  color: @dashboard-section-title-color;
+  text-align: @dashboard-section-title-alignment;
+}
+
+.myspace .section-title:after when (@dashboard-section-title-alignment = center) and (@dashboard-section-title-display-subline = true){
+  .fa;
+  display: block;
+  content: @fa-var-caret-up;
+  margin-top: 10px;
+  font-size: 24px;
+  border-bottom: solid 1px @dashboard-section-title-color;
+  line-height: 8px;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.text-bg-inverse {
+  color: @bg-inverse-color;
 }
 
 #account {
@@ -1499,10 +1695,6 @@ mno-password {
     box-shadow: none;
     border: none;
     margin: 0px 0px 25px 0px;
-
-    .cc-icons i {
-      display: inline-block;
-    }
   }
 
   .panel-group .panel .panel-heading {
@@ -1518,19 +1710,8 @@ mno-password {
   //-----------------------------------
   // CC Form
   //-----------------------------------
-  .cc-header small div {
-    display: inline-block;
-    vertical-align: top;
-    
-    i {
-      display: inline-block;
-      zoom: 0.40;
-      vertical-align: top;
-    }
-    img {
-      max-height: 30px;
-      vertical-align: top;
-    }
+  .cc-header small img {
+    max-height: 30px;
   }
 
   .cc-header-eft {
@@ -1578,11 +1759,12 @@ mno-password {
 }
 
 #impac {
-  impac-dashboard.with-dock {
-    @media(min-width: @screen-md-min) {
-      display: block;
-      .top-buffer-4;
-    }
+  impac-dashboard > div.analytics.show-dhb > div:nth-child(8) > div.col-md-8.col-md-offset-2 {
+    .top-buffer-7();
+  }
+
+  #no-widgets-container > div > div:nth-child(1) > div.align-center > button {
+    .top-buffer-2();
   }
 }
 
@@ -1612,10 +1794,6 @@ mno-password {
     background-color: white;
     border: none;
     border-radius: 2px;
-  }
-  .show-content .btn.btn-promo {
-    padding-left: 0;
-    padding-right: 0;
   }
 
   //-------------------------------
@@ -1651,14 +1829,6 @@ mno-password {
   @media (min-width: @screen-md-min) {
     .show-content .carousel { height: 340px; }
     .show-content .well-details { height: 340px; }
-  }
-
-  .show-content .message {
-    text-align: left;
-    background-color: rgb(244, 248, 249);
-    padding: 10px 10px;
-    border-radius: 4px;
-    border: solid 1px #e9f0f3;
   }
 
   //-------------------------------
@@ -1785,624 +1955,6 @@ mno-password {
   }
 }
 
-// Base style
-.accordion {
-  .panel-group > .panel {
-    margin: 25px 0px;
-  }
-
-  .panel-group > .panel,
-  .panel-group > .panel > .panel-heading {
-    color: @dashboard-account-tabs-text-color;
-    background-color: @dashboard-account-panel-bg-color;
-    border: none;
-    box-shadow: none;
-  }
-
-  label {
-    color: @dashboard-account-panel-text-color;
-  }
-
-  .form-control {
-    background-color: @input-bg;
-  }
-
-  .panel-group .panel .panel-body {
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-
-    p {
-      font-weight: 300;
-    }
-
-    ul > li {
-      font-weight: 300;
-    }
-  }
-
-  .panel-group .panel .panel-heading {
-    padding: 0;
-    background-color: @dashboard-account-panel-bg-color;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-
-    .panel-title > div,
-    .panel-title > a {
-      font-size: 90%;
-      display: block;
-      padding-left: 10px;
-      line-height: 54px;
-      height: 54px;
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
-
-    .panel-title a.btn.pull-right {
-      margin-top: 10px;
-      margin-right: 10px;
-    }
-
-    .panel-title span.pull-right {
-      margin-right: 20px;
-      margin-top: 20px;
-    }
-  }
-}
-
-// Accordion Black background style
-.accordion.inverse {
-
-  .panel-group > .panel,
-  .panel-group > .panel > .panel-heading {
-    background-color: @bg-inverse-color;
-    border: none;
-    box-shadow: none;
-  }
-
-  .panel-group > .panel > .panel-heading > .panel-title .text-muted {
-    color: @text-inverse-color;
-    font-weight: 700;
-  }
-
-  .panel-group > .panel > .panel-collapse > .panel-body {
-    border-top: solid 1px black;
-  }
-
-  .panel-group > .panel > .panel-heading > .panel-title > .caret-up,
-  .panel-group > .panel > .panel-heading > .panel-title > .caret-down {
-    color: @text-inverse-color;
-  }
-}
-
-// Accordion Compact style
-.accordion.accordion-compact {
-  margin-top: 40px;
-
-  .panel-group .panel .panel-heading .panel-title > a {
-    line-height: 35px;
-    height: 35px;
-  }
-
-  .panel-group .panel .panel-heading .panel-title span.caret.pull-right {
-    margin-top: 17px;
-  }
-
-  .panel-group .panel {
-    margin: 11px 0px;
-  }
-}
-
-.btn-fluid-wrapper .btn {
-  width: 100%;
-}
-
-.btn {
-  &.float-right {
-    float:right;
-  }
-  &.btn-promo {
-    font-size:18px;
-    padding-left:30px;
-    padding-right:30px;
-  }
-
-  .subtitle {
-    font-size:@small;
-    font-weight:300;
-    width:100%;
-    display:block;
-    text-align:center;
-  }
-
-  &.arrow,
-  &.arrow-right {
-    background-image: image-url('icons/icon-arrow-right.png');
-    background-repeat: no-repeat;
-    background-position: 96% 50%;
-  }
-
-  &.arrow-left {
-    background-image: image-url('icons/icon-arrow-left.png');
-    background-repeat: no-repeat;
-    background-position: 4% 50%;
-  }
-
-  &.btn-dark {
-    .font(16px, 300, @bg-main-color);
-    background-color: @bg-inverse-color;
-
-    &:hover {
-      color: @elem-cozy-color;
-    }
-  }
-
-  &.btn-shaded {
-    background-color: @bg-inverse-color;
-    border: solid 1px @bg-inverse-intense-color;
-    color: @text-inverse-color;
-    font-weight: 400;
-
-    &:hover {
-      color: lighten(@text-inverse-color,5%);
-      background-color: lighten(@bg-inverse-color,5%);
-    }
-  }
-
-  &.btn-whited {
-    background-color: lighten(#ccc,15%);
-    border: solid 1px #ccc;
-    color: #ccc;
-    font-weight: 400;
-
-    &:hover {
-      color: darken(#ccc,20%);
-      background-color: #ccc;
-    }
-  }
-}
-
-input.fluroblue[type=radio] {
-  width   : 18px;
-  margin  : 0;
-  padding : 0;
-  opacity : 0;
-}
-
-input.fluroblue[type=radio] + label{
-  display      : inline-block;
-  margin-left  : -12px;
-  padding-left : 25px;
-  background   : image-url('icons/radio-fluroblue.png') no-repeat 0 -18px;
-  line-height  : 18px;
-}
-
-input.fluroblue[type=radio]:checked + label{
-  background-position : 0 1px;
-}
-
-form label {
-  color: @input-label-color;
-}
-
-.input-group-addon.select select {
-  background-color: @input-bg;
-}
-
-//----------------------------------------
-// Styling for phone: select + input
-//----------------------------------------
-form .phone {
-  select.form-control {
-    width:30%;
-  }
-
-  input.form-control[type='text'] {
-    margin-left:23%;
-    margin-top:-34px;
-    width:77%;
-  }
-}
-
-form .select.fa {
-  margin: -28px 7% 0px 0px;
-  float: right;
-}
-
-//----------------------------------------
-// Styling for password checker
-//----------------------------------------
-form li.checked {
-  color: lighten(@decorator-inverse-color,30%);
-}
-
-form li.unchecked {
-  color: lighten(@text-strong-color,70%);
-}
-
-//----------------------------------------
-// Style for forms on inverse backgrounds
-//----------------------------------------
-form.inverse {
-  select {
-    background-color: @bg-inverse-color;
-    .font(16px, 300, @decorator-inverse-color);
-    border:solid 1px #111c21;
-
-    border-radius: 5px;
-    height:44px;
-    -webkit-appearance: none;
-    padding-left:15px;
-    width:100%;
-
-    // Placeholder
-    .placeholder(@decorator-inverse-color);
-  }
-
-  .select.fa {
-    .font(16px,300,@decorator-inverse-color);
-    margin: -28px 7% 0px 0px;
-    float: right;
-  }
-
-  .form-control {
-    // Placeholder
-    .placeholder(@decorator-inverse-color);
-  }
-}
-
-//------------------------------------
-// Dark forms styles
-//------------------------------------
-form.dark {
-  input[type='text'], input[type='email'], textarea {
-    border-radius: 5px;
-    .font(16px, 300, @bg-main-color);
-    background-color: @bg-inverse-color;
-    border: solid 1px @bg-inverse-color;
-    line-height: 25px;
-    margin-bottom: 0px;
-    width: 100%;
-    min-height: 42px;
-    padding: 5px 5px 5px 15px;
-  }
-
-  label {
-    color: @bg-main-color;
-  }
-}
-
-.dark {
-  .bootstrap-select {
-    select {
-      .font(16px, 300, @bg-main-color);
-      background-color: @bg-inverse-color;
-    }
-
-    .dropdown-toggle {
-      height: 42px;
-    }
-
-    .dropdown-menu {
-      .font(16px, 300, @bg-main-color);
-      background-color: @bg-inverse-color;
-    }
-    .dropdown-menu > li > a {
-      .font(16px, 300, @bg-main-color);
-    }
-
-    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-      .font(16px, 300, @decorator-inverse-color);
-      background-color: @bg-inverse-color;
-    }
-  }
-}
-
-// Put a dropdown inside an input-group-addon
-.input-group-addon.select {
-  padding:0px;
-  border-radius: 6px 0px 0px 6px;
-  background-color: @input-bg;
-
-  select {
-    height:100%;
-    border:0px;
-  }
-}
-
-//------------------------------------
-// Invalid inputs (AngularJS)
-//------------------------------------
-input.ng-dirty.ng-invalid {
-  border-color: @brand-danger;
-}
-
-//-----------------------------------------
-// Responsive tables (using TWB grid)
-// see templates/dashboard/organization/invoices.html
-// for an example
-//-----------------------------------------
-.table-cell .th-row,
-.table-cell .td-row {
-  margin-top: @table-cell-row-spacing;
-  margin-bottom: @table-cell-row-spacing;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-top: @table-cell-row-padding;
-  padding-bottom: @table-cell-row-padding;
-}
-
-.table-cell .th-row {
-  color: @text-color;
-  background-color: @table-cell-header-bg-color;
-  font-size: @table-cell-header-text-size;
-  line-height: (@table-cell-header-text-size + @table-cell-row-padding)*2;
-  @table-cell-header-additional-rule();
-}
-
-.table-cell .td-row {
-  font-size: @table-cell-row-text-size;
-  line-height: (@table-cell-row-text-size + @table-cell-row-padding)*2;
-}
-
-.table-cell .td-row:nth-child(odd) {
-  background-color: @table-cell-row-odd-bg-color;
-}
-
-.table-cell .td-row:nth-child(even) {
-  background-color: @table-cell-row-even-bg-color;
-}
-
-.table-cell .td-row .cell {
-  // Add '...' at the end of text if too long for the cell
-  .ellipsis();
-}
-
-.table-cell .td-row .cell > .cell-label {
-  font-weight: bold;
-}
-
-.table-cell .td-row .cell > a > i {
-  font-size: 20px;
-}
-@media (max-width: @screen-sm) {
-  .table-cell .td-row .cell > a { padding-left: 0px; }
-}
-
-// Inverse Style
-.table-cell.inverse .th-row {
-  background-color: @bg-inverse-intense-color;
-  color: white;
-}
-
-.table-cell.inverse .td-row:nth-child(odd) {
-  background-color: lighten(@bg-inverse-color,3%);
-}
-
-.table-cell.inverse .td-row:nth-child(even) {
-  background-color: lighten(@bg-inverse-color,5%);
-}
-
-.table-cell .btn-link.btn-link-info {
-  color: @brand-info !important;
-
-  &:hover, &:focus {
-    color: darken(@brand-info, 30%) !important;
-  }
-}
-
-.table-cell .btn-link.btn-link-warning {
-  color: @brand-warning !important;
-
-  &:hover, &:focus {
-    color: darken(@brand-warning, 30%) !important;
-  }
-}
-
-.table-cell .btn-link.btn-link-danger {
-  color: @brand-danger !important;
-
-  &:hover, &:focus {
-    color: darken(@brand-danger, 30%) !important;
-  }
-}
-
-// Table style in a well
-.well .table-cell .th-row,
-.well .table-cell .td-row {
-  margin-left: -15px;
-  margin-right: -15px;
-}
-
-.ribbon-testimonial {
-
-  .body {
-    background-color:@bg-main-color;
-    border-radius: 5px;
-    padding:20px;
-    color:@text-strong-color;
-    font-weight:300;
-    font-size:16px;
-    font-style:italic;
-
-    .arrow {
-      .rotate(45deg);
-      width: 0;
-      height: 0;
-      border-top: 18px solid transparent;
-      border-bottom: 18px solid transparent;
-      border-right:18px solid @decorator-main-color;
-      position:absolute;
-      right:28px;
-      margin-top:8px;
-    }
-  }
-
-  .from {
-    margin:7px 0px 0px 30px;
-    .name {
-      display:inline;
-      font-size:14px;
-      font-weight:700;
-      color: @text-inverse-color;
-    }
-
-    .company {
-      display:inline;
-      font-size:14px;
-      font-weight:300;
-      color: @decorator-inverse-color;
-    }
-
-  }
-}
-
-.ribbon-testimonial.ribbon-white {
-  .body {
-    background-color: white;
-  }
-
-  .arrow {
-    border-right:18px solid #ccc;
-  }
-}
-
-/*-----------------------------------------------------------------------*/
-/*                       Dashboard Section Title                         */
-/*-----------------------------------------------------------------------*/
-.myspace .section-title {
-  color: @dashboard-section-title-color;
-  text-align: @dashboard-section-title-alignment;
-}
-
-.myspace .section-title:after when (@dashboard-section-title-alignment = center) and (@dashboard-section-title-display-subline = true){
-  .fa;
-  display: block;
-  content: @fa-var-caret-up;
-  margin-top: 10px;
-  font-size: 24px;
-  border-bottom: solid 1px @dashboard-section-title-color;
-  line-height: 8px;
-  max-width: 60%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.editable.editable-click,
-a.editable.editable-click {
-  color: @text-strong-color;
-  border: none;
-
-  &:hover {
-    //color: @bluegray2;
-    border-bottom: dashed 1px fadeout(@text-strong-color,60%);
-  }
-}
-
-form.editable-wrap {
-  margin: 0 !important;
-}
-
-form.editable-wrap .editable-controls {
-  padding: 0;
-}
-
-form.editable-wrap .editable-controls input {
-  height: 30px;
-  padding: 0 5px;
-  border: dashed 1px @text-strong-color;
-  .box-shadow(none);
-}
-
-.editable-instructions {
-  display: inline;
-}
-
-.editable-instructions form.editable-wrap .editable-controls:after {
-  display: block;
-  content: "press enter to confirm";
-  font-style: italic;
-  font-size: 10px;
-  line-height: 12px;
-  color: @text-strong-color;
-  margin-top: -10px;
-  padding-left: 5px;
-}
-
-#app-connect-modal {
-
-  select {
-    display: block;
-    margin: auto;
-  }
-
-  button[type="submit"] {
-    display: block;
-    margin: auto;
-  }
-}
-
-//=======================================
-// Settings Modals
-//=======================================
-#app-settings-modal {
-
-  .modal-body {
-    padding: 5px;
-
-    div.app-name {
-      border: 0px;
-
-      .fa {
-        margin-left: 5px;
-      }
-    }
-
-    h4, .title {
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .sentence-check {
-      width: 100%;
-    }
-
-    .buttons {
-      width: 100%;
-      text-align: right;
-      padding-top: 20px;
-    }
-
-    .label {
-      font-size: 100%;
-      text-transform: capitalize;
-      padding: 6px 12px;
-
-      &.updating, &.upgrading, &.provisioning {
-        background-color: @mno-dock-settings-app-upgrading;
-      }
-      &.running, &.starting, &.restarting {
-        background-color: @mno-dock-settings-app-running;
-      }
-      &.terminating, &.terminated {
-        background-color: @mno-dock-settings-app-terminating;
-      }
-      &.neutral {
-        background-color: @mno-dock-settings-app-neutral;
-      }
-    }
-
-    .centered-buttons {
-      display: flex;
-      align-content: center;
-      justify-content: space-around;
-    }
-  }
-}
-
 .dashboard-teams {
 
   //-----------------------------------
@@ -2454,8 +2006,9 @@ form.editable-wrap .editable-controls input {
         width: 20%;
       }
 
-      tr > th.th-first {
+      tr > th.td-first {
         text-align: left;
+        padding-left: 10px;
       }
 
       tr td.td-first {
@@ -2539,51 +2092,5 @@ form.editable-wrap .editable-controls input {
 
 // Use this file to declare your custom fonts
 // See https://github.com/maestrano/mno-enterprise#adding-a-custom-font
-
-
-.mnoe-icon {
-  background-image: url('../images/sprites/mnoe-sprites.png');
-}
-
-.mnoe-icon-cc-icons-mno-cc-amex {
-  background-position: -0px -0px;
-  width: 46px;
-  height: 30px;
-}
-.mnoe-icon-cc-icons-mno-cc-jcb {
-  background-position: -0px -30px;
-  width: 46px;
-  height: 30px;
-}
-.mnoe-icon-cc-icons-mno-cc-mastercard {
-  background-position: -0px -60px;
-  width: 46px;
-  height: 30px;
-}
-.mnoe-icon-cc-icons-mno-cc-visa {
-  background-position: -0px -90px;
-  width: 46px;
-  height: 30px;
-}
-.mnoe-icon-cpy-logo-siteseal {
-  background-position: -0px -120px;
-  width: 131px;
-  height: 32px;
-}
-.mnoe-icon-cc-icons-mno-cc-lock {
-  background-position: -0px -152px;
-  width: 35px;
-  height: 46px;
-}
-.mnoe-icon-cpy-logo-cba {
-  background-position: -0px -198px;
-  width: 94px;
-  height: 70px;
-}
-.mnoe-icon-cpy-logo-eway {
-  background-position: -0px -268px;
-  width: 140px;
-  height: 70px;
-}
 
 // endinjector
