@@ -1,6 +1,8 @@
 impac:
   protocol: http
   host: localhost:4000
+  pusher:
+      key: <%= ENV['impac_pusher_key'] %>
 mno:
   protocol: https
   host: api-enterprise.maestrano.com
