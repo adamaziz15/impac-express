@@ -512,6 +512,8 @@ html, body {
   overflow: hidden;
 }
 
+@menu-left-width: 80px;
+
 #layout-loading {
   position: absolute;
   top: 0px;
@@ -530,23 +532,314 @@ html, body {
   .layout-loading-text {
     display: inline-block;
     padding-top: 15px;
-    color: @bg-inverse-color;
+    color: @dashboard-loader-color;
   }
 }
 
 #dashboard {
+  .container {
+    position: relative;
+  }
+
   @media (max-width: @screen-xs-max) {
     padding-top: 40px;
   }
+
+  /* Fix the container width if the screen is sm+ */
+  @media screen and (min-width: @screen-sm-min) {
+    margin-left: @menu-left-width;
+    .container {
+      width: @container-sm - @menu-left-width;
+    }
+  }
+
+  /* Fix the container width if the screen is md+ */
+  @media screen and (min-width: @screen-md-min) {
+    margin-left: @menu-left-width;
+    .container {
+      width: @container-md - @menu-left-width;
+    }
+  }
+
+  /* Fix the container width if the screen is lg+ */
+  @media screen and (min-width: @screen-lg-min) {
+    margin-left: @menu-left-width;
+    .container {
+      width: @container-lg - @menu-left-width;
+    }
+  }
 }
 
+#app-dock-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  text-align: center;
+}
 
-dashboard-language-selectbox {
-  display: block;
+ul.dock {
+  position: relative;
+  display: inline-block;
+  background-color: @mno-dock-bg-color;
+  opacity: 1;
+  padding: 5px;
+  z-index: 999;
+  .border-bottom-radius(5px);
+  height: 90px;
+  .transition(height 0.3s);
 
-  .selector-line {
+  & > li {
     display: inline-block;
-    margin: 5px auto;
+    position: relative;
+    vertical-align: top;
+
+    .title {
+      position: absolute;
+      top: 0;
+      color: @mno-dock-app-title-color;
+      display: none;
+      width: 100%;
+      text-align: center;
+    }
+
+    img.app-logo {
+      outline: none;
+      cursor: pointer;
+      margin: 5px;
+      .square(@mno-dock-app-logo-square-width);
+      .transition(all 0.3s);
+      .border-top-radius(5px);
+      .border-bottom-radius(5px);
+      .transform-origin(50% 0%); // Origin from top
+    }
+
+    .add-app {
+      cursor: pointer;
+      margin: 5px;
+      .square(@mno-dock-app-logo-square-width);
+      .transition(all 0.3s);
+      .transform-origin(50% 0%); // Origin from top
+      border: 1px solid @mno-dock-add-app-border-color;
+      .border-top-radius(5px);
+      .border-bottom-radius(5px);
+
+      display: table;
+
+      a {
+        display: table-cell;
+        vertical-align: middle;
+        color: @mno-dock-add-app-text-color;
+      }
+    }
+  }
+
+  // Expand button
+  li.expand-menu {
+    border-left: 1px solid @mno-dock-expand-left-border-color;
+    height: 100%;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
+      a {
+        padding-left: 6px;
+        padding-right: 5px;
+        .transition(height 0.3s);
+        cursor: pointer;
+        color: @mno-dock-expand-arrow-color;
+
+        &:hover {
+          text-decoration: none;
+          color: @mno-dock-expand-arrow-color-hover;
+        }
+      }
+    }
+  }
+
+  //=======================================
+  // Submenu
+  //=======================================
+  .dock-menu {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    z-index: 1000;
+    margin-top: 68px;
+    visibility:hidden;
+    opacity:0;
+    transition: visibility 0s linear 0.5s,opacity 0.5s linear;
+
+    div.dock-arrow {
+      position: relative;
+      right: 50%;
+    }
+
+    div.inner-dock-menu { // Inner div holding the menu
+      position: relative;
+      right: 50%;
+      padding: 5px 0px;
+      .border-top-radius(5px);
+      .border-bottom-radius(5px);
+      background-color: @mno-dock-sub-menu-bg-color;
+
+      .box-shadow(@mno-dock-sub-menu-box-shadow);
+      .menu-item {
+        cursor: pointer;
+
+        &:hover {
+          background-color: @mno-dock-sub-menu-hover;
+
+          a {
+            color: @mno-dock-sub-menu-text-hover-color;
+          }
+        }
+
+        a {
+          display: flex;
+          text-decoration: none;
+          color: @mno-dock-sub-menu-text-color;
+          padding: 5px 20px;
+
+          &.connect-btn-center, img.connect-btn-center {
+            margin: auto;
+          }
+
+          i.fa {
+            color: @mno-dock-sub-menu-icon;
+            margin-top: 3px;
+            margin-right: 6px;
+          }
+        }
+
+        .connector-logo {
+          margin-top:3px;
+          margin-bottom:3px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  & > li.active {
+    .dock-menu {
+      // display: block;
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s;
+    }
+  }
+}
+
+ul.dock.minimized {
+  height: @mno-dock-app-logo-square-width;
+  .transition(height 0.3s);
+
+  img.app-logo, .add-app {
+    .square(@mno-dock-app-logo-minimized-square-width);
+  }
+
+  .add-app {
+    span {
+      .transition(all 0.3s);
+      display: none;
+    }
+  }
+
+  .dock-menu {
+    margin-top: @mno-dock-app-logo-minimized-square-width;
+  }
+}
+
+ul.dock.animated  > li:hover, ul.dock > li.active {
+  img.app-logo {
+    transform: scale(1.8) translate(0, 10px);
+    margin: 5px 1.6em 5px;
+    z-index: 9999;
+
+    border: @mno-dock-app-box-border;
+    .box-shadow(@mno-dock-app-box-shadow);
+  }
+
+  .title {
+    display: block;
+  }
+
+  /* one element after and element before (with JS)*/
+  & + li img.app-logo, ul.dock > li.prev img.app-logo {
+    .scale(1.4);
+    margin: 5px 1.6em 5px;
+  }
+}
+
+ul.dock > li.prev img.app-logo {
+  .scale(1.4);
+  margin: 5px 1.4em 5px;
+}
+
+// Mobile
+#app-dock-mobile-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1030;
+
+  .mobile-dock-button {
+    width: 100%;
+    text-transform: uppercase;
+    padding: 10px;
+    color: @mno-dock-mobile-button-color;
+    background-color: @mno-dock-mobile-button-bg-color;
+  }
+
+  #mobile-dock {
+    z-index: 1030;
+
+    &.collapse.in {
+      overflow-y: auto;
+    }
+
+    .btn {
+      text-transform: uppercase;
+    }
+
+    ul {
+      margin-bottom: 0;
+      background-color: @mno-dock-mobile-bg-color;
+
+      & > li {
+        border-bottom: @mno-dock-mobile-app-border-bottom;
+        padding-top: 5px;
+        padding-bottom: 5px;
+
+        .app-line {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+
+          .title {
+            color: @mno-dock-mobile-app-name-color;
+            font-weight: bold;
+          }
+
+          img.app-logo {
+            .square(48px);
+          }
+        }
+
+        &:hover, &.active {
+          background-color: @mno-dock-mobile-app-active-color;
+        }
+      }
+    }
+
+    .add-app {
+      color: @mno-dock-mobile-add-app-color;
+    }
   }
 }
 
@@ -557,12 +850,18 @@ dashboard-company-selectbox {
   .company-select-box {
     position: absolute;
     right: 0;
+    width: @dashboard-cpy-select-width;
     background-color: @dashboard-cpy-select-bg-color;
     color: @dashboard-cpy-select-header-text-color;
     font-size: @dashboard-cpy-select-header-text-size;
-    padding: @dashboard-cpy-select-padding;
-    .border-bottom-radius(@dashboard-cpy-select-border-radius);
-    z-index: 10;
+    border-radius: @dashboard-cpy-select-border-radius;
+    border-left: 1px solid @dashboard-cpy-select-border-color;
+    border-bottom: 1px solid @dashboard-cpy-select-border-color;
+    z-index: 999;
+
+    @media (max-width: @screen-sm) {
+      border-radius: 0;
+    }
 
     // Change company button
     .btn.switch-company {
@@ -579,60 +878,155 @@ dashboard-company-selectbox {
 
     // Section always visible
     .box-header {
+      cursor: pointer;
       text-align: right;
+      outline: none;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+
+      img {
+        border-radius: 50%;
+        height: @dashboard-cpy-select-pic-width;
+        width: @dashboard-cpy-select-pic-width;
+      }
+
+      .title {
+        margin: 0 10px;
+        width: ~'calc(100% -' (2 * @dashboard-cpy-select-pic-width) ~')';
+        text-align: left;
+
+        .company {
+          width: 100%;
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .name {
+          font-weight: bold;
+          color: @dashboard-cpy-select-header-text-bold-color;
+        }
+      }
+      .expand-menu {
+        margin-left: auto;
+      }
     }
 
     // Section visible when change company is clicked
     .box-content {
-      margin-top: 10px;
       border-top: solid 1px @dashboard-cpy-select-link-color;
       .border-bottom-radius(5px);
-    }
-    .box-content ul {
-      list-style: none;
-      padding-top: 15px;
-      max-height: 400px;
-      min-width: 250px;
-      overflow-y: auto;
-    }
-    .box-content ul li a {
-      color: @dashboard-cpy-select-link-color;
-      line-height: 25px;
-      display: block;
-      padding-left: 5px;
 
-      &:hover {
-        text-decoration: none;
-        color: @dashboard-cpy-select-link-hover-color;
-        background-color: @dashboard-cpy-select-link-hover-bg-color;
+      hr {
+        margin: 0;
+        border-top: 1px solid @dashboard-cpy-select-border-color;
       }
-    }
 
-    // Circle next to company name
-    // Indicate which company is currently viewed on dashboard
-    .box-content ul li a i.fa {
-      width: 13px;
-      margin-right: 6px;
-      text-align: center;
-      color: @dashboard-cpy-select-link-color;
-    }
+      // List of companies
+      ul {
+        list-style: none;
+        padding: 15px 20px 0 20px;
+        max-height: 400px;
+        min-width: 250px;
+        overflow-y: auto;
 
-    // Create new company
-    .box-content .create-new, .box-content .admin-link {
-      text-align: center;
-    }
-    .box-content .create-new a {
-      color: @dashboard-cpy-select-link-create-color;
-    }
+        > li {
+          position: relative;
+          outline: none;
 
-    // Admin platform link
-    .box-content .admin-link {
-      margin-top: 3px;
+          // Circle next to company name
+          // Indicate which company is currently viewed on dashboard
+          > a {
+            padding: 4px;
+            display: flex;
 
+            &:hover {
+              background-color: @dashboard-cpy-select-link-hover-bg-color;
+              border-bottom-left-radius: 0px;
+            }
+
+            > i {
+              flex: 0 0 20px;
+              width: 13px;
+              padding: 2px 0;
+              display: inline-flex;
+              text-align: center;
+              color: @dashboard-cpy-select-link-icon-color;
+            }
+
+            > span {
+              text-align: left;
+              display: inline-flex;
+              flex: 1 1 auto;
+            }
+          }
+        }
+      }
+
+      // General look of the links
       a {
-        color: @dashboard-cpy-select-link-admin-color;
+        color: @dashboard-cpy-select-link-color;
+        line-height: 17px;
+        display: block;
+        padding: 4px 0 4px 20px;
+
+        &:hover {
+          text-decoration: none;
+          color: @dashboard-cpy-select-link-hover-color;
+          background-color: @dashboard-cpy-select-link-hover-bg-color;
+          border-bottom-left-radius: 10px;
+        }
+
+        // Icon on the side of the link
+        i {
+          width: 20px;
+          text-align: center;
+          font-size: 11pt;
+        }
+      }
+
+
+      .default-link {
+        padding: 10px 20px;
+        text-align: left;
+
+        .btn {
+          width: 100%;
+          margin-bottom: 10px;
+          padding: 3px;
+
+          a {
+            color: @dashboard-cpy-select-link-create-text-color;
+            padding: 2px;
+
+            &:hover {
+              background: transparent;
+            }
+          }
+        }
       }
     }
+  }
+
+  @media (max-width: @screen-sm) {
+    .company-select-box {
+      width: 100%;
+      position: fixed;
+      border-left: none;
+      border-top: 1px solid @dashboard-cpy-select-border-color;
+      top: ~'calc(1px + ' @navbar-height ~')';  // Add top border
+    }
+  }
+}
+
+
+dashboard-language-selectbox {
+  display: block;
+
+  .selector-line {
+    display: inline-block;
+    margin: 5px auto;
   }
 }
 
@@ -877,11 +1271,11 @@ mno-impersonation-bar {
 
 mno-inline-message {
   .mno-inline-checked {
-    color: @brand-success;
+    color: @dashboard-account-inline-text-color-checked;
   }
 
   .mno-inline-unchecked {
-    color: @brand-warning;
+    color: @dashboard-account-inline-text-color-unchecked;
   }
 }
 
@@ -926,12 +1320,24 @@ mno-password {
 
   .panel-group > .panel,
   .panel-group > .panel > .panel-heading {
-    background-color: white;
+    color: @dashboard-account-tabs-text-color;
+    background-color: @dashboard-account-panel-bg-color;
     border: none;
     box-shadow: none;
   }
 
+  label {
+    color: @dashboard-account-panel-text-color;
+  }
+
+  .form-control {
+    background-color: @input-bg;
+  }
+
   .panel-group .panel .panel-body {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
     p {
       font-weight: 300;
     }
@@ -942,8 +1348,8 @@ mno-password {
   }
 
   .panel-group .panel .panel-heading {
-    padding: 0px;
-    background-color: white;
+    padding: 0;
+    background-color: @dashboard-account-panel-bg-color;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 
@@ -972,7 +1378,6 @@ mno-password {
     }
   }
 }
-
 
 // Accordion Black background style
 .accordion.inverse {
@@ -1073,22 +1478,6 @@ mno-password {
     }
   }
 
-  &.btn-grey {
-    background-color: @bg-main-color;
-    border: solid 1px @bg-main-color;
-    color: lighten(@bg-inverse-color,5%);
-    font-weight: 400;
-
-    &:hover {
-      color: @bg-inverse-color;
-      background-color: darken(@bg-main-color,5%);
-    }
-
-    &.btn-grey-bordered {
-      border: solid 1px darken(@bg-main-color,5%);
-    }
-  }
-
   &.btn-whited {
     background-color: lighten(#ccc,15%);
     border: solid 1px #ccc;
@@ -1127,22 +1516,6 @@ form label {
 
 .input-group-addon.select select {
   background-color: @input-bg;
-}
-
-
-select {
-    text-indent: 1px;
-    text-overflow: '';
-}
-
-// Remove dropdown arrow (Chrome, Firefox and IE)
-select.unstyled {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
-select::-ms-expand {
-    display: none;
 }
 
 //----------------------------------------
@@ -1210,7 +1583,6 @@ form.inverse {
 //------------------------------------
 // Dark forms styles
 //------------------------------------
-
 form.dark {
   input[type='text'], input[type='email'], textarea {
     border-radius: 5px;
@@ -1222,22 +1594,6 @@ form.dark {
     width: 100%;
     min-height: 42px;
     padding: 5px 5px 5px 15px;
-  }
-
-  *::-webkit-input-placeholder {
-      color: @bg-main-color;
-  }
-  *:-moz-placeholder {
-      /* FF 4-18 */
-      color: @bg-main-color;
-  }
-  *::-moz-placeholder {
-      /* FF 19+ */
-      color: @bg-main-color;
-  }
-  *:-ms-input-placeholder {
-      /* IE 10+ */
-      color: @bg-main-color;
   }
 
   label {
@@ -1306,7 +1662,7 @@ input.ng-dirty.ng-invalid {
 }
 
 .table-cell .th-row {
-  color: @table-cell-header-text-color;
+  color: @text-color;
   background-color: @table-cell-header-bg-color;
   font-size: @table-cell-header-text-size;
   line-height: (@table-cell-header-text-size + @table-cell-row-padding)*2;
@@ -1356,77 +1712,35 @@ input.ng-dirty.ng-invalid {
   background-color: lighten(@bg-inverse-color,5%);
 }
 
+.table-cell .btn-link.btn-link-info {
+  color: @brand-info !important;
+
+  &:hover, &:focus {
+    color: darken(@brand-info, 30%) !important;
+  }
+}
+
+.table-cell .btn-link.btn-link-warning {
+  color: @brand-warning !important;
+
+  &:hover, &:focus {
+    color: darken(@brand-warning, 30%) !important;
+  }
+}
+
+.table-cell .btn-link.btn-link-danger {
+  color: @brand-danger !important;
+
+  &:hover, &:focus {
+    color: darken(@brand-danger, 30%) !important;
+  }
+}
+
 // Table style in a well
 .well .table-cell .th-row,
 .well .table-cell .td-row {
   margin-left: -15px;
   margin-right: -15px;
-}
-
-.testimonial {
-  font-size: 25px;
-  font-weight:300;
-  color:@bg-inverse-color;
-  padding:20px;
-  min-height: 115px;
-
-  &.promo-dark {
-    color:white;
-    border-radius: 10px;
-    .rgba(@bg-inverse-color, 0.7);
-  }
-
-  .author {
-    font-style:italic;
-    font-size:16px;
-  }
-
-  .body {
-    background-color:@bg-main-color;
-    border-radius: 5px;
-    padding:20px;
-    color: @text-strong-color;
-    font-weight:300;
-    font-size:16px;
-    font-style:italic;
-
-    .arrow {
-      .rotate(45deg);
-      width: 0;
-      height: 0;
-      border-top: 18px solid transparent;
-      border-bottom: 18px solid transparent;
-      border-right:18px solid @decorator-main-color;
-      position:absolute;
-      right:48px;
-      margin-top:8px;
-    }
-  }
-
-  .from {
-    margin:7px 0px 0px 30px;
-
-    .name {
-      display:inline;
-      font-size:14px;
-      font-weight:700;
-      color:@text-inverse-color;
-    }
-
-    .company {
-      display:inline;
-      font-size:14px;
-      font-weight:300;
-      color:@decorator-inverse-color;
-    }
-
-    .avatar {
-      img {
-        float:right;
-        margin:33px 9px 0px 0px;
-      }
-    }
-  }
 }
 
 .ribbon-testimonial {
@@ -1503,9 +1817,45 @@ input.ng-dirty.ng-invalid {
   margin-right: auto;
 }
 
+.editable.editable-click,
+a.editable.editable-click {
+  color: @text-strong-color;
+  border: none;
 
-.text-bg-inverse {
-  color: @bg-inverse-color;
+  &:hover {
+    //color: @bluegray2;
+    border-bottom: dashed 1px fadeout(@text-strong-color,60%);
+  }
+}
+
+form.editable-wrap {
+  margin: 0 !important;
+}
+
+form.editable-wrap .editable-controls {
+  padding: 0;
+}
+
+form.editable-wrap .editable-controls input {
+  height: 30px;
+  padding: 0 5px;
+  border: dashed 1px @text-strong-color;
+  .box-shadow(none);
+}
+
+.editable-instructions {
+  display: inline;
+}
+
+.editable-instructions form.editable-wrap .editable-controls:after {
+  display: block;
+  content: "press enter to confirm";
+  font-style: italic;
+  font-size: 10px;
+  line-height: 12px;
+  color: @text-strong-color;
+  margin-top: -10px;
+  padding-left: 5px;
 }
 
 #account {
@@ -1695,6 +2045,10 @@ input.ng-dirty.ng-invalid {
     box-shadow: none;
     border: none;
     margin: 0px 0px 25px 0px;
+
+    .cc-icons i {
+      display: inline-block;
+    }
   }
 
   .panel-group .panel .panel-heading {
@@ -1710,8 +2064,19 @@ input.ng-dirty.ng-invalid {
   //-----------------------------------
   // CC Form
   //-----------------------------------
-  .cc-header small img {
-    max-height: 30px;
+  .cc-header small div {
+    display: inline-block;
+    vertical-align: top;
+    
+    i {
+      display: inline-block;
+      zoom: 0.40;
+      vertical-align: top;
+    }
+    img {
+      max-height: 30px;
+      vertical-align: top;
+    }
   }
 
   .cc-header-eft {
@@ -1759,12 +2124,11 @@ input.ng-dirty.ng-invalid {
 }
 
 #impac {
-  impac-dashboard > div.analytics.show-dhb > div:nth-child(8) > div.col-md-8.col-md-offset-2 {
-    .top-buffer-7();
-  }
-
-  #no-widgets-container > div > div:nth-child(1) > div.align-center > button {
-    .top-buffer-2();
+  impac-dashboard.with-dock {
+    @media(min-width: @screen-md-min) {
+      display: block;
+      .top-buffer-4;
+    }
   }
 }
 
@@ -1794,6 +2158,10 @@ input.ng-dirty.ng-invalid {
     background-color: white;
     border: none;
     border-radius: 2px;
+  }
+  .show-content .btn.btn-promo {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   //-------------------------------
@@ -1829,6 +2197,14 @@ input.ng-dirty.ng-invalid {
   @media (min-width: @screen-md-min) {
     .show-content .carousel { height: 340px; }
     .show-content .well-details { height: 340px; }
+  }
+
+  .show-content .message {
+    text-align: left;
+    background-color: rgb(244, 248, 249);
+    padding: 10px 10px;
+    border-radius: 4px;
+    border: solid 1px #e9f0f3;
   }
 
   //-------------------------------
@@ -1955,6 +2331,78 @@ input.ng-dirty.ng-invalid {
   }
 }
 
+#app-connect-modal {
+
+  select {
+    display: block;
+    margin: auto;
+  }
+
+  button[type="submit"] {
+    display: block;
+    margin: auto;
+  }
+}
+
+//=======================================
+// Settings Modals
+//=======================================
+#app-settings-modal {
+
+  .modal-body {
+    padding: 5px;
+
+    div.app-name {
+      border: 0px;
+
+      .fa {
+        margin-left: 5px;
+      }
+    }
+
+    h4, .title {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .sentence-check {
+      width: 100%;
+    }
+
+    .buttons {
+      width: 100%;
+      text-align: right;
+      padding-top: 20px;
+    }
+
+    .label {
+      font-size: 100%;
+      text-transform: capitalize;
+      padding: 6px 12px;
+
+      &.updating, &.upgrading, &.provisioning {
+        background-color: @mno-dock-settings-app-upgrading;
+      }
+      &.running, &.starting, &.restarting {
+        background-color: @mno-dock-settings-app-running;
+      }
+      &.terminating, &.terminated {
+        background-color: @mno-dock-settings-app-terminating;
+      }
+      &.neutral {
+        background-color: @mno-dock-settings-app-neutral;
+      }
+    }
+
+    .centered-buttons {
+      display: flex;
+      align-content: center;
+      justify-content: space-around;
+    }
+  }
+}
+
 .dashboard-teams {
 
   //-----------------------------------
@@ -2006,9 +2454,8 @@ input.ng-dirty.ng-invalid {
         width: 20%;
       }
 
-      tr > th.td-first {
+      tr > th.th-first {
         text-align: left;
-        padding-left: 10px;
       }
 
       tr td.td-first {
@@ -2092,5 +2539,51 @@ input.ng-dirty.ng-invalid {
 
 // Use this file to declare your custom fonts
 // See https://github.com/maestrano/mno-enterprise#adding-a-custom-font
+
+
+.mnoe-icon {
+  background-image: url('../images/sprites/mnoe-sprites.png');
+}
+
+.mnoe-icon-cc-icons-mno-cc-amex {
+  background-position: -0px -0px;
+  width: 46px;
+  height: 30px;
+}
+.mnoe-icon-cc-icons-mno-cc-jcb {
+  background-position: -0px -30px;
+  width: 46px;
+  height: 30px;
+}
+.mnoe-icon-cc-icons-mno-cc-mastercard {
+  background-position: -0px -60px;
+  width: 46px;
+  height: 30px;
+}
+.mnoe-icon-cc-icons-mno-cc-visa {
+  background-position: -0px -90px;
+  width: 46px;
+  height: 30px;
+}
+.mnoe-icon-cpy-logo-siteseal {
+  background-position: -0px -120px;
+  width: 131px;
+  height: 32px;
+}
+.mnoe-icon-cc-icons-mno-cc-lock {
+  background-position: -0px -152px;
+  width: 35px;
+  height: 46px;
+}
+.mnoe-icon-cpy-logo-cba {
+  background-position: -0px -198px;
+  width: 94px;
+  height: 70px;
+}
+.mnoe-icon-cpy-logo-eway {
+  background-position: -0px -268px;
+  width: 140px;
+  height: 70px;
+}
 
 // endinjector
