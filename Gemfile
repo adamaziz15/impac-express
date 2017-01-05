@@ -4,7 +4,7 @@ gem 'rails', '~> 4.2.6'
 
 # Maestrano Enterprise Engine
 # Edge mnoe
-gem 'mno-enterprise', git: 'https://github.com/maestrano/mno-enterprise.git'
+gem 'mno-enterprise', git: 'https://github.com/maestrano/mno-enterprise.git', branch: 'feature/build-process'
 # gem 'mno-enterprise', '~> 3.0'
 
 # Use puma as the app server

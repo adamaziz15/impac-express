@@ -67,7 +67,6 @@
 //--------------------------------------
 @dashboard-side-menu-padding:                   30px 0px 0px 14px;
 @dashboard-side-menu-bg-color:                  @bg-inverse-color;
-@dashboard-side-menu-horizontal:                { min-width:550px; };
 
 @dashboard-side-menu-brand-logo-img:            "/dashboard/images/main-logo.png";
 @dashboard-side-menu-brand-logo:                { background-size: 204px; width: 51px; margin-left: 5px; };
@@ -104,7 +103,6 @@
 @dashboard-cpy-select-bg-color:                 @bg-inverse-color;
 @dashboard-cpy-select-border-radius:            0 0 0 6px;
 @dashboard-cpy-select-border-color:             @text-inverse-link-color;
-@dashboard-cpy-select-padding:                  15px 25px;
 
 @dashboard-cpy-select-header-text-bold-color:   @text-inverse-color;
 @dashboard-cpy-select-header-text-color:        @text-inverse-link-color;
@@ -116,13 +114,6 @@
 @dashboard-cpy-select-link-hover-color:         @text-inverse-link-hover-color;
 @dashboard-cpy-select-link-hover-bg-color:      @bg-inverse-link-hover;
 @dashboard-cpy-select-link-create-text-color:   @text-inverse-strong-color;
-@dashboard-cpy-select-link-create-color:        @decorator-alt-color;
-@dashboard-cpy-select-link-admin-color:         @elem-positive-color;
-
-@dashboard-cpy-select-switch-btn-color:         @dashboard-cpy-select-header-text-color;
-@dashboard-cpy-select-switch-btn-bg-color:      @dashboard-cpy-select-bg-color;
-@dashboard-cpy-select-switch-btn-icon:          { .icon-fa(caret-down); }; //pass a ruleset
-@dashboard-cpy-select-switch-btn-icon-active:   { .icon-fa(caret-up); }; //pass a ruleset
 
 // Loaders
 //--------------------------------------
@@ -152,7 +143,9 @@
 /*-----------------------------------------------------------------------*/
 @dashboard-account-tabs-bg-color:                    @bg-inverse-color;
 @dashboard-account-tabs-text-color:                  @text-strong-color;
-@dashboard-account-panel-bg-color:                   @bg-inverse-color;
+@dashboard-account-panel-header-bg-color:            @bg-inverse-color;
+@dashboard-account-panel-body-bg-color:              @bg-inverse-color;
+@dashboard-account-panel-header-text-color:          @text-strong-color;
 @dashboard-account-panel-text-color:                 @text-strong-color;
 @dashboard-account-inline-text-color-checked:        @bg-inverse-color;
 @dashboard-account-inline-text-color-unchecked:      @elem-cozy-color;
@@ -177,12 +170,16 @@
 
 // Tab Content
 //--------------------------------------
-@dashboard-cpy-tabcontent-bg-color:              @dashboard-cpy-tabs-bg-color;
-
+@dashboard-cpy-tabcontent-header-bg-color:       @bg-inverse-color;
+@dashboard-cpy-tabcontent-body-bg-color:         @bg-on-bg-inverse-color;
+@dashboard-cpy-tabcontent-bg-color:              @bg-inverse-color;
 // Teams section
 //--------------------------------------
 @dashboard-cpy-teams-matrix-bg-color:            @bg-inverse-color;
 @dashboard-cpy-teams-matrix-border-color:        @bg-inverse-color;
+@dashboard-cpy-teams-matrix-text-color:          @text-inverse-color;
+@dashboard-cpy-teams-matrix-text-hover-color:    @text-inverse-color;
+@dashboard-cpy-teams-matrix-text-edit-color:     @text-strong-color;
 
 /*-----------------------------------------------------------------------*/
 /*                              Dock                                     */
@@ -311,7 +308,9 @@
 /*-----------------------------------------------------------------------*/
 /*                     Responsive Table (cell table)                     */
 /*-----------------------------------------------------------------------*/
-@table-cell-row-spacing:               10px;
+@table-cell-header-row-spacing:        10px;
+@table-cell-header-row-padding:        3px;
+@table-cell-row-spacing:               0px;
 @table-cell-row-padding:               3px;
 
 @table-cell-header-text-size:          12px;
