@@ -85,4 +85,9 @@ module ImpacExpress
       end
     end
   end
+
+  # Force reload the settings after the env variables in application.yml have been registered.
+  # This is so impac_pusher_key set in application.yml is available in Settings in development.
+  # TODO: refactor & streamline the way settings / secrets are managed across projects.
+  Settings.reload!
 end
