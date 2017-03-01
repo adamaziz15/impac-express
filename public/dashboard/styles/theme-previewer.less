@@ -480,6 +480,37 @@ html, body {
 
 
 
+.font(@size,@weight,@color) {
+  font-weight:@weight;
+  font-size:@size;
+  color:@color;
+}
+
+.icon-fa(@icon) {
+  .fa;
+  @fa-icon-variable: "fa-var-@{icon}";
+  &:before { content: @@fa-icon-variable; }
+}
+
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
+
+.square(@size) {
+  .size(@size; @size);
+}
+
+.rgba(@color, @alpha) {
+  background-color: rgba(red(@color), green(@color), blue(@color), @alpha);
+}
+
+.ellipsis() {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 @menu-left-width: 80px;
 
 #layout-loading {
@@ -535,47 +566,6 @@ html, body {
     .container {
       width: @container-lg - @menu-left-width;
     }
-  }
-}
-
-.font(@size,@weight,@color) {
-  font-weight:@weight;
-  font-size:@size;
-  color:@color;
-}
-
-.icon-fa(@icon) {
-  .fa;
-  @fa-icon-variable: "fa-var-@{icon}";
-  &:before { content: @@fa-icon-variable; }
-}
-
-.size(@width; @height) {
-  width: @width;
-  height: @height;
-}
-
-.square(@size) {
-  .size(@size; @size);
-}
-
-.rgba(@color, @alpha) {
-  background-color: rgba(red(@color), green(@color), blue(@color), @alpha);
-}
-
-.ellipsis() {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-
-dashboard-language-selectbox {
-  display: block;
-
-  .selector-line {
-    display: inline-block;
-    margin: 5px auto;
   }
 }
 
@@ -1016,6 +1006,16 @@ dashboard-company-selectbox {
   }
 }
 
+
+dashboard-language-selectbox {
+  display: block;
+
+  .selector-line {
+    display: inline-block;
+    margin: 5px auto;
+  }
+}
+
 dashboard-menu {
   /*-----------------------------------------------------------------------*/
   /*                         Mobile menu                                   */
@@ -1255,6 +1255,16 @@ mno-impersonation-bar {
   }
 }
 
+mno-inline-message {
+  .mno-inline-checked {
+    color: @dashboard-account-inline-text-color-checked;
+  }
+
+  .mno-inline-unchecked {
+    color: @dashboard-account-inline-text-color-unchecked;
+  }
+}
+
 mno-loader {
   display: block;
 
@@ -1284,292 +1294,8 @@ mno-loader {
   position: relative;
 }
 
-mno-inline-message {
-  .mno-inline-checked {
-    color: @dashboard-account-inline-text-color-checked;
-  }
-
-  .mno-inline-unchecked {
-    color: @dashboard-account-inline-text-color-unchecked;
-  }
-}
-
-#account {
-  .row:not(:first-child) {
-    margin-top: 15px;
-  }
-}
-
 mno-password {
   display: block;
-}
-
-.dashboard-organization {
-
-  //-----------------------------------
-  // Tabs Styling
-  //-----------------------------------
-  ul.nav.nav-tabs {
-    border-bottom: none;
-  }
-
-  // Tab Header Wrapper Styling
-  ul.nav.nav-tabs > li {
-    margin-right: 5px;
-    padding-bottom: 5px;
-    background-color: transparent;
-    border-bottom: solid 5px transparent;
-    padding: 0px;
-    cursor: pointer;
-  }
-  ul.nav.nav-tabs > li.active when (@dashboard-cpy-tabs-subline-size > 0) {
-    border-bottom: solid 4px @dashboard-cpy-tabs-active-bg-color;
-  }
-
-  // Tab Header Styling
-  ul.nav.nav-tabs > li > a {
-    padding: 20px 40px;
-    border: none;
-    color: @dashboard-cpy-tabs-text-color;
-    background-color: @dashboard-cpy-tabs-bg-color;
-    .border-top-radius(@dashboard-cpy-tabs-border-radius);
-    .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
-
-
-  }
-  ul.nav.nav-tabs > li > a:hover {
-    background-color: @dashboard-cpy-tabs-hover-bg-color;
-    color: @dashboard-cpy-tabs-hover-text-color;
-  }
-  ul.nav.nav-tabs > li.active > a,
-  ul.nav.nav-tabs > li.active > a:hover,
-  ul.nav.nav-tabs > li.active > a:focus {
-    padding-bottom: 20px;
-    background-color: @dashboard-cpy-tabs-active-bg-color;
-    color: @dashboard-cpy-tabs-active-text-color;
-
-    & when (@dashboard-cpy-tabs-subline-size = 0) {
-      .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
-    }
-  }
-
-  // Tab Content Styling
-  .tab-content {
-    border-top: solid @dashboard-cpy-tabs-subline-size @dashboard-cpy-tabs-subline-color;
-    padding-top: 20px;
-  }
-
-  .tab-content .tab-pane {
-    background-color: transparent;
-  }
-
-  @media(max-width: 720px) {
-    ul.nav.nav-tabs > li {
-      width:100%;
-
-      &.active {
-        border-bottom: solid 5px transparent;
-        a {
-          background-color: @dashboard-cpy-tabs-active-bg-color;
-          color: white;
-        }
-      }
-    }
-  }
-
-  //-----------------------------------
-  // Well Styling
-  //-----------------------------------
-  .well {
-    border: none;
-    background-color: @dashboard-cpy-tabcontent-bg-color;
-  }
-
-  //-----------------------------------
-  // Accordion Styling
-  //-----------------------------------
-  .panel-group .panel {
-    background-color: @dashboard-cpy-tabcontent-bg-color;
-    box-shadow: none;
-    border: none;
-    margin: 0px 0px 25px 0px;
-
-    .cc-icons i {
-      display: inline-block;
-    }
-  }
-
-  .panel-group .panel .panel-heading {
-    background-color: @dashboard-cpy-tabcontent-header-bg-color;
-    border: none;
-  }
-
-  .panel-group .panel-collapse > .panel-body {
-    background-color: @dashboard-cpy-tabcontent-body-bg-color;
-    border: none;
-  }
-
-  //-----------------------------------
-  // CC Form
-  //-----------------------------------
-  .cc-header small div {
-    display: inline-block;
-    vertical-align: top;
-
-    i {
-      display: inline-block;
-      zoom: 0.40;
-      vertical-align: top;
-    }
-    img {
-      max-height: 30px;
-      vertical-align: top;
-    }
-  }
-
-  .cc-header-eft {
-    font-size: 13px;
-    line-height: 29px;
-    color: #777777;
-    float: right;
-  }
-}
-
-//-----------------------------------
-// User Edition Modal
-//-----------------------------------
-.modal.member-edit .role-management {
-  text-align: center;
-}
-
-.modal.member-edit .role-management .fa {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.modal.member-edit .role-management p {
-  font-weight: 300;
-}
-
-//-----------------------------------
-// Team Member Add Modal
-//-----------------------------------
-.team-member-add-modal table {
-  margin: auto;
-  font-weight: 300;
-}
-.team-member-add-modal table td {
-  border: none;
-  padding: 8px;
-}
-
-.team-member-add-modal table tr td:first-child {
-  text-align: right;
-}
-
-.team-member-add-modal table tr td:last-child {
-  text-align: left;
-}
-
-#dashboard-apps-list {
-  .app-dashboard {
-    min-height: 280px;
-    max-width: 225px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 5px;
-    background-color: @dashboard-apps-tile-bg-color;
-    text-align: center;
-    padding: 30px 0px;
-    padding-bottom: 0px;
-    margin-top: 15px;
-
-    .btn-change-plan {
-      margin-top:50px;
-    }
-
-    .title {
-      .font(14px,normal,@dashboard-apps-tile-text-color);
-      margin-top:10px;
-      margin-bottom:10px;
-    }
-
-    .app-line {
-      .font(12px,normal,@text-inverse-color);
-    }
-
-    img.app-logo {
-      border-radius: 5px;
-      .square(85px);
-      border: solid @dashboard-apps-tile-logo-border-size @dashboard-apps-tile-logo-border-color;
-    }
-
-    .connector-logo {
-      margin-top: 3px;
-      margin-bottom: 3px;
-      cursor: pointer;
-    }
-
-    .office365-connector-logo {
-      height: 32px;
-      padding: 2px;
-    }
-
-    .tutorial {
-      display:block;
-      margin-top: 7px;
-    }
-
-    // App Tile Settings (top right)
-    a.options {
-      line-height: 19px;
-      .square(20px);
-      border-radius: 20px;
-      color: @dashboard-apps-tile-settings-color;
-      background-color: @dashboard-apps-tile-settings-bg-color;
-      float:right;
-      margin: -25px 5px 0px 0px;
-    }
-
-    a.options:hover {
-      color: @dashboard-apps-tile-settings-hover-color;
-      background-color: @dashboard-apps-tile-settings-hover-bg-color;
-    }
-    a.options i {
-      margin-top: 3px;
-    }
-
-    .app-custom-info {
-      position: relative;
-      top: -10px;
-      z-index: 999;
-    }
-
-    // Add application tile (tile with + button)
-    &.add-app {
-      padding:15px 0px;
-      font-size:140px;
-      color: @dashboard-apps-tile-add-color;
-      background-color: @dashboard-apps-tile-add-bg-color;
-    }
-
-    &.add-app a {
-      color: @dashboard-bg-color;
-
-      &:hover {
-        color: @brand-warning;
-      }
-    }
-  }
-}
-
-#impac {
-  impac-dashboard.with-dock {
-    @media(min-width: @screen-md-min) {
-      display: block;
-      .top-buffer-4;
-    }
-  }
 }
 
 // Base style
@@ -2122,6 +1848,280 @@ form.editable-wrap .editable-controls input {
   padding-left: 5px;
 }
 
+#account {
+  .row:not(:first-child) {
+    margin-top: 15px;
+  }
+}
+
+#dashboard-apps-list {
+  .app-dashboard {
+    min-height: 280px;
+    max-width: 225px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    background-color: @dashboard-apps-tile-bg-color;
+    text-align: center;
+    padding: 30px 0px;
+    padding-bottom: 0px;
+    margin-top: 15px;
+
+    .btn-change-plan {
+      margin-top:50px;
+    }
+
+    .title {
+      .font(14px,normal,@dashboard-apps-tile-text-color);
+      margin-top:10px;
+      margin-bottom:10px;
+    }
+
+    .app-line {
+      .font(12px,normal,@text-inverse-color);
+    }
+
+    img.app-logo {
+      border-radius: 5px;
+      .square(85px);
+      border: solid @dashboard-apps-tile-logo-border-size @dashboard-apps-tile-logo-border-color;
+    }
+
+    .connector-logo {
+      margin-top: 3px;
+      margin-bottom: 3px;
+      cursor: pointer;
+    }
+
+    .office365-connector-logo {
+      height: 32px;
+      padding: 2px;
+    }
+
+    .tutorial {
+      display:block;
+      margin-top: 7px;
+    }
+
+    // App Tile Settings (top right)
+    a.options {
+      line-height: 19px;
+      .square(20px);
+      border-radius: 20px;
+      color: @dashboard-apps-tile-settings-color;
+      background-color: @dashboard-apps-tile-settings-bg-color;
+      float:right;
+      margin: -25px 5px 0px 0px;
+    }
+
+    a.options:hover {
+      color: @dashboard-apps-tile-settings-hover-color;
+      background-color: @dashboard-apps-tile-settings-hover-bg-color;
+    }
+    a.options i {
+      margin-top: 3px;
+    }
+
+    .app-custom-info {
+      position: relative;
+      top: -10px;
+      z-index: 999;
+    }
+
+    // Add application tile (tile with + button)
+    &.add-app {
+      padding:15px 0px;
+      font-size:140px;
+      color: @dashboard-apps-tile-add-color;
+      background-color: @dashboard-apps-tile-add-bg-color;
+    }
+
+    &.add-app a {
+      color: @dashboard-bg-color;
+
+      &:hover {
+        color: @brand-warning;
+      }
+    }
+  }
+}
+
+.dashboard-organization {
+
+  //-----------------------------------
+  // Tabs Styling
+  //-----------------------------------
+  ul.nav.nav-tabs {
+    border-bottom: none;
+  }
+
+  // Tab Header Wrapper Styling
+  ul.nav.nav-tabs > li {
+    margin-right: 5px;
+    padding-bottom: 5px;
+    background-color: transparent;
+    border-bottom: solid 5px transparent;
+    padding: 0px;
+    cursor: pointer;
+  }
+  ul.nav.nav-tabs > li.active when (@dashboard-cpy-tabs-subline-size > 0) {
+    border-bottom: solid 4px @dashboard-cpy-tabs-active-bg-color;
+  }
+
+  // Tab Header Styling
+  ul.nav.nav-tabs > li > a {
+    padding: 20px 40px;
+    border: none;
+    color: @dashboard-cpy-tabs-text-color;
+    background-color: @dashboard-cpy-tabs-bg-color;
+    .border-top-radius(@dashboard-cpy-tabs-border-radius);
+    .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
+
+
+  }
+  ul.nav.nav-tabs > li > a:hover {
+    background-color: @dashboard-cpy-tabs-hover-bg-color;
+    color: @dashboard-cpy-tabs-hover-text-color;
+  }
+  ul.nav.nav-tabs > li.active > a,
+  ul.nav.nav-tabs > li.active > a:hover,
+  ul.nav.nav-tabs > li.active > a:focus {
+    padding-bottom: 20px;
+    background-color: @dashboard-cpy-tabs-active-bg-color;
+    color: @dashboard-cpy-tabs-active-text-color;
+
+    & when (@dashboard-cpy-tabs-subline-size = 0) {
+      .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
+    }
+  }
+
+  // Tab Content Styling
+  .tab-content {
+    border-top: solid @dashboard-cpy-tabs-subline-size @dashboard-cpy-tabs-subline-color;
+    padding-top: 20px;
+  }
+
+  .tab-content .tab-pane {
+    background-color: transparent;
+  }
+
+  @media(max-width: 720px) {
+    ul.nav.nav-tabs > li {
+      width:100%;
+
+      &.active {
+        border-bottom: solid 5px transparent;
+        a {
+          background-color: @dashboard-cpy-tabs-active-bg-color;
+          color: white;
+        }
+      }
+    }
+  }
+
+  //-----------------------------------
+  // Well Styling
+  //-----------------------------------
+  .well {
+    border: none;
+    background-color: @dashboard-cpy-tabcontent-bg-color;
+  }
+
+  //-----------------------------------
+  // Accordion Styling
+  //-----------------------------------
+  .panel-group .panel {
+    background-color: @dashboard-cpy-tabcontent-bg-color;
+    box-shadow: none;
+    border: none;
+    margin: 0px 0px 25px 0px;
+
+    .cc-icons i {
+      display: inline-block;
+    }
+  }
+
+  .panel-group .panel .panel-heading {
+    background-color: @dashboard-cpy-tabcontent-header-bg-color;
+    border: none;
+  }
+
+  .panel-group .panel-collapse > .panel-body {
+    background-color: @dashboard-cpy-tabcontent-body-bg-color;
+    border: none;
+  }
+
+  //-----------------------------------
+  // CC Form
+  //-----------------------------------
+  .cc-header small div {
+    display: inline-block;
+    vertical-align: top;
+
+    i {
+      display: inline-block;
+      zoom: 0.40;
+      vertical-align: top;
+    }
+    img {
+      max-height: 30px;
+      vertical-align: top;
+    }
+  }
+
+  .cc-header-eft {
+    font-size: 13px;
+    line-height: 29px;
+    color: #777777;
+    float: right;
+  }
+}
+
+//-----------------------------------
+// User Edition Modal
+//-----------------------------------
+.modal.member-edit .role-management {
+  text-align: center;
+}
+
+.modal.member-edit .role-management .fa {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.modal.member-edit .role-management p {
+  font-weight: 300;
+}
+
+//-----------------------------------
+// Team Member Add Modal
+//-----------------------------------
+.team-member-add-modal table {
+  margin: auto;
+  font-weight: 300;
+}
+.team-member-add-modal table td {
+  border: none;
+  padding: 8px;
+}
+
+.team-member-add-modal table tr td:first-child {
+  text-align: right;
+}
+
+.team-member-add-modal table tr td:last-child {
+  text-align: left;
+}
+
+#impac {
+  impac-dashboard.with-dock {
+    @media(min-width: @screen-md-min) {
+      display: block;
+      .top-buffer-4;
+    }
+  }
+}
+
 //-------------------------------
 // Show View
 //-------------------------------
@@ -2332,6 +2332,78 @@ form.editable-wrap .editable-controls input {
   }
 }
 
+#app-connect-modal {
+
+  select {
+    display: block;
+    margin: auto;
+  }
+
+  button[type="submit"] {
+    display: block;
+    margin: auto;
+  }
+}
+
+//=======================================
+// Settings Modals
+//=======================================
+#app-settings-modal {
+
+  .modal-body {
+    padding: 5px;
+
+    div.app-name {
+      border: 0px;
+
+      .fa {
+        margin-left: 5px;
+      }
+    }
+
+    h4, .title {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .sentence-check {
+      width: 100%;
+    }
+
+    .buttons {
+      width: 100%;
+      text-align: right;
+      padding-top: 20px;
+    }
+
+    .label {
+      font-size: 100%;
+      text-transform: capitalize;
+      padding: 6px 12px;
+
+      &.updating, &.upgrading, &.provisioning {
+        background-color: @mno-dock-settings-app-upgrading;
+      }
+      &.running, &.starting, &.restarting {
+        background-color: @mno-dock-settings-app-running;
+      }
+      &.terminating, &.terminated {
+        background-color: @mno-dock-settings-app-terminating;
+      }
+      &.neutral {
+        background-color: @mno-dock-settings-app-neutral;
+      }
+    }
+
+    .centered-buttons {
+      display: flex;
+      align-content: center;
+      justify-content: space-around;
+    }
+  }
+}
+
 .dashboard-teams {
 
   //-----------------------------------
@@ -2465,78 +2537,6 @@ form.editable-wrap .editable-controls input {
   .permission-matrix-wrapper .table-right thead > tr > th {
     font-size: 11px;
     font-weight: 400;
-  }
-}
-
-#app-connect-modal {
-
-  select {
-    display: block;
-    margin: auto;
-  }
-
-  button[type="submit"] {
-    display: block;
-    margin: auto;
-  }
-}
-
-//=======================================
-// Settings Modals
-//=======================================
-#app-settings-modal {
-
-  .modal-body {
-    padding: 5px;
-
-    div.app-name {
-      border: 0px;
-
-      .fa {
-        margin-left: 5px;
-      }
-    }
-
-    h4, .title {
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .sentence-check {
-      width: 100%;
-    }
-
-    .buttons {
-      width: 100%;
-      text-align: right;
-      padding-top: 20px;
-    }
-
-    .label {
-      font-size: 100%;
-      text-transform: capitalize;
-      padding: 6px 12px;
-
-      &.updating, &.upgrading, &.provisioning {
-        background-color: @mno-dock-settings-app-upgrading;
-      }
-      &.running, &.starting, &.restarting {
-        background-color: @mno-dock-settings-app-running;
-      }
-      &.terminating, &.terminated {
-        background-color: @mno-dock-settings-app-terminating;
-      }
-      &.neutral {
-        background-color: @mno-dock-settings-app-neutral;
-      }
-    }
-
-    .centered-buttons {
-      display: flex;
-      align-content: center;
-      justify-content: space-around;
-    }
   }
 }
 
