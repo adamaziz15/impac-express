@@ -2,7 +2,7 @@
   "name": "impac-express",
   "private": true,
   "dependencies": {
-    "impac-angular": "git+https://git@github.com/maestrano/impac-angular.git#release/1.4.8",
-    "mno-enterprise-angular": "git+https://git@github.com/maestrano/mno-enterprise-angular.git#1.0.x"
+    "impac-angular": "git+https://git@github.com/xaun/impac-angular.git#feature/internationalisation",
+    "mno-enterprise-angular": "git+https://git@github.com/xaun/mno-enterprise-angular.git#patch-1"
   }
 }
