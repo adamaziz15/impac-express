@@ -49,6 +49,18 @@ html, body {
 .top-buffer-9 { margin-top: 9*@top-buffer-height; }
 .top-buffer-10 { margin-top: 10*@top-buffer-height; }
 
+@bottom-buffer-height: @grid-gutter-width/2;
+.bottom-buffer-1 { margin-bottom: 1*@bottom-buffer-height; }
+.bottom-buffer-2 { margin-bottom: 2*@bottom-buffer-height; }
+.bottom-buffer-3 { margin-bottom: 3*@bottom-buffer-height; }
+.bottom-buffer-4 { margin-bottom: 4*@bottom-buffer-height; }
+.bottom-buffer-5 { margin-bottom: 5*@bottom-buffer-height; }
+.bottom-buffer-6 { margin-bottom: 6*@bottom-buffer-height; }
+.bottom-buffer-7 { margin-bottom: 7*@bottom-buffer-height; }
+.bottom-buffer-8 { margin-bottom: 8*@bottom-buffer-height; }
+.bottom-buffer-9 { margin-bottom: 9*@bottom-buffer-height; }
+.bottom-buffer-10 { margin-bottom: 10*@bottom-buffer-height; }
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your less files automatically
@@ -462,6 +474,22 @@ html, body {
 /*-----------------------------------------------------------------------*/
 @btn-danger-background:         @brand-danger;
 
+/*-----------------------------------------------------------------------*/
+/*                          Reviews and comments                         */
+/*-----------------------------------------------------------------------*/
+@no-review-bg-panel-color:       darken(@bg-on-bg-inverse-color, 5%);
+
+@comment-bg:                     @bg-main-color;
+@comment-text-color:             @text-strong-color;
+@comment-attributes-color:       @bg-inverse-color;
+
+@no-question-bg-panel-color:     darken(@bg-on-bg-inverse-color, 5%);
+@question-search-btn-bg:         @bg-inverse-color;
+@question-search-btn-color:      @text-inverse-color;
+@question-search-border:         1px solid @bg-inverse-color;
+@question-bg:                    @bg-on-bg-inverse-color;
+@question-ribbon-bg:             @bg-on-bg-inverse-color;
+
 
 
 .font(@size, @weight, @color) {
@@ -826,16 +854,6 @@ ul.dock > li.prev img.app-logo {
   }
 }
 
-
-dashboard-language-selectbox {
-  display: block;
-
-  .selector-line {
-    display: inline-block;
-    margin: 5px auto;
-  }
-}
-
 dashboard-company-selectbox {
   /*-----------------------------------------------------------------------*/
   /*                       Company Select Box                              */
@@ -981,6 +999,16 @@ dashboard-company-selectbox {
       border-top: 1px solid @dashboard-cpy-select-border-color;
       top: ~'calc(1px + ' @navbar-height ~')';  // Add top border
     }
+  }
+}
+
+
+dashboard-language-selectbox {
+  display: block;
+
+  .selector-line {
+    display: inline-block;
+    margin: 5px auto;
   }
 }
 
@@ -1226,8 +1254,91 @@ mno-loader {
   position: relative;
 }
 
+mno-pagination {
+  display: block;
+  overflow: auto;
+
+  .pagination {
+    margin: 0;
+  }
+
+  .nb-items-col {
+    float: right;
+
+    .items-per-page-select {
+      display: inline;
+      width: 75px;
+
+      @media (max-width: @screen-xs-max) {
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
 mno-password {
   display: block;
+}
+
+average-star-rating, star-rating {
+  position: relative;
+  display: block;
+
+  ul.rating {
+    margin: 0;
+    padding: 0 !important;
+    display: inline-block;
+
+    li {
+      padding: 1px;
+      color: #ddd;
+      font-size: 20px;
+      text-shadow: .05em .05em #aaa;
+      list-style-type: none;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+
+      &.filled {
+        color: #fd0; //#21568b
+      }
+    }
+
+    &.readonly li.filled {
+      color: #666;
+    }
+  }
+
+  .average-rating-container {
+    display: inline-block;
+    position: relative;
+    height: 31px;
+    width: 103px;
+    overflow: hidden;
+
+    &.withrating {
+      margin-right: 37px;
+    }
+
+    .rating li {
+      cursor: inherit;
+    }
+
+    .background,
+    .foreground {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  .badge {
+    position: absolute;
+    top: 5px;
+    right: 0;
+  }
 }
 
 // Base style
@@ -1281,6 +1392,44 @@ mno-password {
 
     p, ul > li {
       font-weight: 300;
+    }
+  }
+}
+
+.btn {
+  &.btn-link {
+    padding: 0 6px;
+
+    &.btn-link-primary {
+      color: @brand-primary;
+
+      &:hover, &:focus {
+        color: darken(@brand-primary, 30%);
+      }
+    }
+
+    &.btn-link-info {
+      color: @brand-info;
+
+      &:hover, &:focus {
+        color: darken(@brand-info, 30%);
+      }
+    }
+
+    &.btn-link-warning {
+      color: @brand-warning;
+
+      &:hover, &:focus {
+        color: darken(@brand-warning, 30%);
+      }
+    }
+
+    &.btn-link-danger {
+      color: @brand-danger;
+
+      &:hover, &:focus {
+        color: darken(@brand-danger, 30%);
+      }
     }
   }
 }
@@ -1363,30 +1512,6 @@ input.ng-dirty.ng-invalid {
 
 @media (max-width: @screen-sm) {
   .table-cell .td-row .cell > a { padding-left: 0; }
-}
-
-.table-cell .btn-link.btn-link-info {
-  color: @brand-info !important;
-
-  &:hover, &:focus {
-    color: darken(@brand-info, 30%) !important;
-  }
-}
-
-.table-cell .btn-link.btn-link-warning {
-  color: @brand-warning !important;
-
-  &:hover, &:focus {
-    color: darken(@brand-warning, 30%) !important;
-  }
-}
-
-.table-cell .btn-link.btn-link-danger {
-  color: @brand-danger !important;
-
-  &:hover, &:focus {
-    color: darken(@brand-danger, 30%) !important;
-  }
 }
 
 // Table style in a well
@@ -1798,6 +1923,10 @@ form.editable-wrap .editable-controls input {
     color: @dashboard-marketplace-show-header-text-color;
   }
 
+  blockquote {
+    overflow-wrap: break-word;
+  }
+
   //-------------------------------
   // Content - General
   //-------------------------------
@@ -1812,7 +1941,13 @@ form.editable-wrap .editable-controls input {
     }
 
     img {
-      max-width: 100%;
+      .img-responsive;
+    }
+
+    .loading-icon {
+      font-size: 40px;
+      color: @dashboard-marketplace-show-header-text-color;
+      text-align: center;
     }
   }
 
@@ -1883,7 +2018,7 @@ form.editable-wrap .editable-controls input {
   //-------------------------------
   .show-content ul.key-benefits {
     list-style: none;
-    padding-left: 0px;
+    padding-left: 0;
     text-align: left;
     margin-top: 20px;
   }
@@ -1909,6 +2044,160 @@ form.editable-wrap .editable-controls input {
   .show-content .ribbon-testimonial .from .name {
     color: @dashboard-marketplace-show-sections-text-color;
   }
+
+  .nav.nav-tabs {
+    margin-bottom: 15px;
+  }
+
+  .filter-reviews {
+    width:auto;
+    display: inline;
+  }
+
+  .no-question-container {
+    padding: 20px 15px;
+    font-size: 16px;
+    background: @no-question-bg-panel-color;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+  }
+
+  .no-review-container {
+    padding: 20px 15px;
+    font-size: 16px;
+    background: @no-review-bg-panel-color;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+  }
+
+  #comments {
+    .add-review {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    blockquote {
+      margin-bottom: 0;
+    }
+
+    mno-pagination {
+      margin-bottom: 15px;
+    }
+
+    .comment {
+      float: right;
+      width: 85%;
+      background-color: @comment-bg;
+      margin-top: 5px;
+      padding: 5px 15px;
+    }
+  }
+
+  .questions {
+    margin-bottom: 15px;
+
+    .ribbon-question {
+      margin-top: 15px;
+      background-color: @question-ribbon-bg;
+      border-radius: 5px;
+      padding: 20px;
+
+      .question-body {
+        margin-bottom: 10px;
+      }
+
+      .question-title {
+        font-weight: bold;
+      }
+
+      .question-actions {
+        display: flex;
+        flex-flow: column;
+        align-items: flex-end;
+
+        @media (max-width: @screen-xs-max) {
+          flex-flow: row;
+        }
+
+        button:not(:last-child) {
+          margin-bottom: 5px;
+        }
+      }
+
+      .question-answer {
+        margin-bottom: 10px;
+      }
+
+      .question-attribute {
+        font-size: 1rem;
+        font-style: italic;
+      }
+    }
+
+    .questions-panel {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
+      input {
+        border-radius: 3px;
+        padding-left: 7px;
+        padding-right: 30px;
+        border: @question-search-border;
+        width: 250px;
+      }
+
+      form {
+        position: relative;
+      }
+
+      button.fa {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-color: @question-search-btn-bg;
+        color: @question-search-btn-color;
+        border: none;
+        width: 30px;
+      }
+
+      button {
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+.dashboard-marketplace-compare {
+
+  .marketplace-compare-table {
+    overflow-x: scroll;
+
+    th, td {
+      min-width: 200px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    img.media-object {
+      max-width: 120px;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+
+  .marketplace-compare-wrap {
+    margin-top: 20px;
+  }
+
+  .marketplace-compare-info {
+    overflow: auto;
+  }
 }
 
 .dashboard-marketplace {
@@ -1930,6 +2219,15 @@ form.editable-wrap .editable-controls input {
     color: black;
   }
 
+  .marketplace-nav {
+    min-height: 65px;
+  }
+
+  .marketplace-compare-action {
+    position: relative;
+    top: -15px;
+  }
+
   //-------------------------------
   // Marketplace list
   //-------------------------------
@@ -1941,6 +2239,7 @@ form.editable-wrap .editable-controls input {
   // App Card
   //-------------------------------
   .marketplace-app-card {
+    position: relative;
     background-color: @dashboard-marketplace-tile-bg-color;
     color: @dashboard-marketplace-tile-text-color;
     cursor: pointer;
@@ -1960,6 +2259,26 @@ form.editable-wrap .editable-controls input {
       img.media-object {
         border: solid 1px @dashboard-marketplace-tile-hover-img-border-color;
       }
+    }
+
+    .media {
+      margin-top: 0;
+    }
+  }
+
+  .marketplace-app-card-checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+
+    label {
+      width: 100%;
+      height: 100%;
+      //padding-left: 20px;
+      cursor: pointer;
     }
   }
 
@@ -2216,6 +2535,13 @@ form.editable-wrap .editable-controls input {
   .permission-matrix-wrapper .table-right thead > tr > th {
     font-size: 11px;
     font-weight: 400;
+  }
+}
+
+.create-review-modal {
+  textarea.form-control {
+    max-width: 100%;
+    background-color: white;
   }
 }
 
