@@ -49,6 +49,18 @@ html, body {
 .top-buffer-9 { margin-top: 9*@top-buffer-height; }
 .top-buffer-10 { margin-top: 10*@top-buffer-height; }
 
+@bottom-buffer-height: @grid-gutter-width/2;
+.bottom-buffer-1 { margin-bottom: 1*@bottom-buffer-height; }
+.bottom-buffer-2 { margin-bottom: 2*@bottom-buffer-height; }
+.bottom-buffer-3 { margin-bottom: 3*@bottom-buffer-height; }
+.bottom-buffer-4 { margin-bottom: 4*@bottom-buffer-height; }
+.bottom-buffer-5 { margin-bottom: 5*@bottom-buffer-height; }
+.bottom-buffer-6 { margin-bottom: 6*@bottom-buffer-height; }
+.bottom-buffer-7 { margin-bottom: 7*@bottom-buffer-height; }
+.bottom-buffer-8 { margin-bottom: 8*@bottom-buffer-height; }
+.bottom-buffer-9 { margin-bottom: 9*@bottom-buffer-height; }
+.bottom-buffer-10 { margin-bottom: 10*@bottom-buffer-height; }
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your less files automatically
@@ -57,64 +69,55 @@ html, body {
 /*-----------------------------------------------------------------------*/
 /*                       General Theme Colors                            */
 /*-----------------------------------------------------------------------*/
+@mno-demo-light-yellow:          #FBF8E9;
+@mno-demo-aqua-green:            #8CBEB2;
+@mno-demo-orange:                #F2B469;
+@mno-demo-strawberry:            #EE6163;
+@mno-demo-brown:                 #5C4B51;
+@mno-demo-white:                 #FFFFFF;
+
+/*-----------------------------------------------------------------------*/
+/*                       Twitter Bootstrap colors                        */
+/*-----------------------------------------------------------------------*/
+@brand-success:                  #33d375;
+@brand-warning:                  @mno-demo-orange;
+@brand-info:                     @mno-demo-aqua-green;
+@brand-danger:                   @mno-demo-strawberry;
+@brand-primary:                  @mno-demo-aqua-green;
 
 // Main colors
 //-------------------------------------------------------------
 // Dashboard background color
-@bg-main-color:                  #aeb5bf;
+@bg-main-color:                  @mno-demo-light-yellow;
 
 // Elements placed on top of bg-main-color
-@decorator-main-color:           #758192;
-
-// Elements placed on top of bg-main-color (secondary)
-@decorator-alt-color:            #977bf0;
+@decorator-main-color:           @mno-demo-aqua-green;
 
 // Used for text used in the context of bg-main-color
-@text-strong-color:              #17262d;
+@text-strong-color:              @mno-demo-brown;
 
 // Used for text used in the context of inverse bg-main-color
-@text-inverse-strong-color:      #ffffff;
+@text-inverse-strong-color:      @mno-demo-white;
 
 
 // Inverse colors
 //-------------------------------------------------------------
 // Background color used for dashboard side menu. top banners, inverse modals
-@bg-inverse-color:               #ffffff;
+@bg-inverse-color:               @mno-demo-brown;
 
 // Background color for elements displayed on top of inverse elements
-@bg-on-bg-inverse-color:         #cacfd6;
-
-// Background color used for elements on top of bg-inverse-color
-@bg-inverse-intense-color:       #17262d;
-
-// Text color used for the checked box of company profile
-@text-inverse-select-box-color:  #00e5f0;
-
-// Text color used for the companies list
-@text-inverse-link-color:        #a0acad;
-
-// Text color used on hover of a company
-@text-inverse-link-hover-color:  #a0acad;
-
-// Background color for elements hovered with inverse elements color
-@bg-inverse-link-hover:          #f1f1f1;
+@bg-on-bg-inverse-color:         @mno-demo-white;
 
 // Design elements (lines, borders) on top of bg-inverse-color
-@decorator-inverse-color:        #977bf0;
+@decorator-inverse-color:        @mno-demo-aqua-green;
 
 // Text used on top of bg-inverse-color such as inverse modals
-@text-inverse-color:             #17262d;
+@text-inverse-color:             @mno-demo-light-yellow;
 
 // Color used in small/isolated elements
 //-------------------------------------------------------------
-// used to reflect a positive action or point (e.g: tick icon)
-@elem-positive-color:            #d1e55c;
-
-// stronger version of elem-positive-color (barely used)
-@elem-positive-flash-color:      #47ff00;
-
-// used for regular design element - fits well with both main and inverse backgrounds
-@elem-cozy-color:                #977bf0;
+// Color used as a decoration on small icons or specific text
+@decorator-touch-color:          @mno-demo-strawberry;
 
 // Use this file to override Twitter Bootstrap variables or define own variables.
 /*-----------------------------------------------------------------------*/
@@ -126,19 +129,11 @@ html, body {
 /*-----------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------*/
-/*                       Twitter Bootstrap colors                        */
-/*-----------------------------------------------------------------------*/
-@brand-success:                  @elem-positive-color;
-@brand-warning:                  @decorator-alt-color;
-@brand-info:                     @text-inverse-color;
-@brand-danger:                   @text-inverse-color;
-@brand-primary:                  @text-inverse-color;
-
-/*-----------------------------------------------------------------------*/
 /*                          Fonts & Text                                 */
 /*-----------------------------------------------------------------------*/
 @font-family-sans-serif:             Arial, "Helvetica Neue", Helvetica, sans-serif;
 @font-family-base:                   @font-family-sans-serif;
+@font-path:                          '/dashboard/fonts';
 @small:                              11px;
 @normal:                             13px;
 
@@ -155,14 +150,14 @@ html, body {
 /*-----------------------------------------------------------------------*/
 /*                              Login Page                               */
 /*-----------------------------------------------------------------------*/
-@login-bg-img:                       "mno_enterprise/login-background.jpg";
-@login-bg-color:                     @bg-main-color;
-@login-box-grid-position:            { margin-top: 80px; .make-sm-column(4); .make-sm-column-offset(4); };
+@login-bg-img:                        "mno_enterprise/login-background.jpg";
+@login-bg-color:                      @bg-main-color;
+@login-box-grid-position:             { margin-top: 80px; .make-sm-column(4); .make-sm-column-offset(4); };
 
-@login-box-corners:                  0px;
-@login-box-title-color:              @decorator-main-color;
-@login-box-title:                    { text-transform: uppercase; };
-@login-box-title-display-box-arrow:  false;
+@login-box-corners:                   0px;
+@login-box-title-color:               @text-inverse-color;
+@login-box-title:                     { text-transform: uppercase; };
+@login-box-title-display-box-arrow:   false;
 
 @login-box-bg-color:                  @bg-inverse-color;
 @login-box-padding:                   20px;
@@ -171,6 +166,11 @@ html, body {
 @login-box-btn-login:                 { width: 100%; };
 
 @login-box-sso-intuit-logo:           "mno_enterprise/logo-intuit.png";
+@login-box-oauth-text-color:          #fff;
+@login-box-oauth-bg-color-facebook:   #3b5998;
+@login-box-oauth-bg-color-google:     #dd4b39;
+@login-box-oauth-bg-color-linkedin:   #0074C4;
+@login-box-oauth-bg-color-intuit:     #fff;
 
 /*-----------------------------------------------------------------------*/
 /*                           Dashboard Layout                            */
@@ -179,14 +179,14 @@ html, body {
 
 @dashboard-section-title-color:                 @text-strong-color;
 @dashboard-section-title-alignment:             center;
-@dashboard-section-title-display-subline:       false;
+@dashboard-section-title-display-subline:       true;
 
 // Side navbar menu
 //--------------------------------------
 @dashboard-side-menu-padding:                   30px 0px 0px 14px;
 @dashboard-side-menu-bg-color:                  @bg-inverse-color;
 
-@dashboard-side-menu-brand-logo-img:            "/dashboard/images/main-logo.png";
+@dashboard-side-menu-brand-logo-img:            "../images/main-logo.png";
 @dashboard-side-menu-brand-logo:                { background-size: 204px; width: 51px; margin-left: 5px; };
 @dashboard-side-menu-brand-logo-expanded:       { width: 201px; background-size: 100%; };
 
@@ -220,22 +220,21 @@ html, body {
 @dashboard-cpy-select-pic-width:                50px;
 @dashboard-cpy-select-bg-color:                 @bg-inverse-color;
 @dashboard-cpy-select-border-radius:            0 0 0 6px;
-@dashboard-cpy-select-border-color:             @text-inverse-link-color;
-
+@dashboard-cpy-select-border-color:             @text-inverse-color;
+@dashboard-cpy-select-list-border-color:        lighten(@bg-inverse-color, 10%);
 @dashboard-cpy-select-header-text-bold-color:   @text-inverse-color;
-@dashboard-cpy-select-header-text-color:        @text-inverse-link-color;
+@dashboard-cpy-select-header-text-color:        @text-inverse-color;
 @dashboard-cpy-select-header-text-size:         13px;
 
-@dashboard-cpy-select-link-icon-color:          @text-inverse-select-box-color;
+@dashboard-cpy-select-link-icon-color:          @decorator-touch-color;
 
-@dashboard-cpy-select-link-color:               @text-inverse-link-color;
-@dashboard-cpy-select-link-hover-color:         @text-inverse-link-hover-color;
-@dashboard-cpy-select-link-hover-bg-color:      @bg-inverse-link-hover;
-@dashboard-cpy-select-link-create-text-color:   @text-inverse-strong-color;
+@dashboard-cpy-select-link-color:               @text-inverse-strong-color;
+@dashboard-cpy-select-link-hover-color:         @text-strong-color;
+@dashboard-cpy-select-link-hover-bg-color:      @text-inverse-strong-color;
 
 // Loaders
 //--------------------------------------
-@dashboard-loader-color:                        @bg-inverse-color;
+@dashboard-loader-color:                        @text-strong-color;
 @dashboard-loader-icon:                         { .icon-fa(refresh); .fa-2x; .fa-spin; }; //pass a ruleset
 
 /*-----------------------------------------------------------------------*/
@@ -250,23 +249,23 @@ html, body {
 @dashboard-apps-tile-settings-color:            @dashboard-apps-tile-text-color;
 @dashboard-apps-tile-settings-bg-color:         @dashboard-apps-tile-bg-color;
 
-@dashboard-apps-tile-settings-hover-color:      @dashboard-apps-tile-bg-color;
-@dashboard-apps-tile-settings-hover-bg-color:   @dashboard-apps-tile-text-color;
+@dashboard-apps-tile-settings-hover-color:      @dashboard-apps-tile-text-color;
+@dashboard-apps-tile-settings-hover-bg-color:   @dashboard-apps-tile-bg-color;
 
 @dashboard-apps-tile-add-color:                 @dashboard-apps-tile-text-color;
-@dashboard-apps-tile-add-bg-color:              @dashboard-apps-tile-text-color;
+@dashboard-apps-tile-add-bg-color:              @dashboard-apps-tile-bg-color;
 
 /*-----------------------------------------------------------------------*/
 /*                      Dashboard > My account Section                   */
 /*-----------------------------------------------------------------------*/
-@dashboard-account-tabs-bg-color:                    @bg-inverse-color;
-@dashboard-account-tabs-text-color:                  @text-strong-color;
+@dashboard-account-tabs-bg-color:                    @bg-on-bg-inverse-color;
+@dashboard-account-tabs-text-color:                  @text-inverse-color;
 @dashboard-account-panel-header-bg-color:            @bg-inverse-color;
-@dashboard-account-panel-body-bg-color:              @bg-inverse-color;
-@dashboard-account-panel-header-text-color:          @text-strong-color;
+@dashboard-account-panel-header-text-color:          @text-inverse-color;
+@dashboard-account-panel-body-bg-color:              @bg-on-bg-inverse-color;
 @dashboard-account-panel-text-color:                 @text-strong-color;
-@dashboard-account-inline-text-color-checked:        @bg-inverse-color;
-@dashboard-account-inline-text-color-unchecked:      @elem-cozy-color;
+@dashboard-account-inline-text-color-checked:        @brand-success;
+@dashboard-account-inline-text-color-unchecked:      @decorator-inverse-color;
 
 /*-----------------------------------------------------------------------*/
 /*                      Dashboard > Company Section                      */
@@ -274,23 +273,25 @@ html, body {
 // Tab Heading
 //--------------------------------------
 @dashboard-cpy-tabs-bg-color:                    @decorator-main-color;
-@dashboard-cpy-tabs-text-color:                  @text-inverse-color;
+@dashboard-cpy-tabs-text-color:                  @text-strong-color;
 @dashboard-cpy-tabs-border-radius:               2px;
 
 @dashboard-cpy-tabs-subline-size:                0px;
 @dashboard-cpy-tabs-subline-color:               transparent;
 
-@dashboard-cpy-tabs-active-text-color:           @decorator-alt-color;
+@dashboard-cpy-tabs-active-text-color:           @decorator-main-color;
 @dashboard-cpy-tabs-active-bg-color:             @bg-inverse-color;
 
-@dashboard-cpy-tabs-hover-text-color:            @bg-inverse-color;
-@dashboard-cpy-tabs-hover-bg-color:              @decorator-alt-color;
+@dashboard-cpy-tabs-hover-text-color:            @decorator-main-color;
+@dashboard-cpy-tabs-hover-bg-color:              @bg-inverse-color;
 
 // Tab Content
 //--------------------------------------
 @dashboard-cpy-tabcontent-header-bg-color:       @bg-inverse-color;
 @dashboard-cpy-tabcontent-body-bg-color:         @bg-on-bg-inverse-color;
 @dashboard-cpy-tabcontent-bg-color:              @bg-inverse-color;
+@dashboard-cpy-tabcontent-text-color:            @text-inverse-strong-color;
+
 // Teams section
 //--------------------------------------
 @dashboard-cpy-teams-matrix-bg-color:            @bg-inverse-color;
@@ -316,17 +317,17 @@ html, body {
 @mno-dock-app-box-border:                       1px solid rgba(0, 0, 0, 0.15);
 
 @mno-dock-sub-menu-box-shadow:                  0 6px 12px rgba(0, 0, 0, 0.175);
-@mno-dock-sub-menu-bg-color:                    @text-strong-color;
+@mno-dock-sub-menu-bg-color:                    @bg-inverse-color;
 @mno-dock-sub-menu-hover:                       @decorator-main-color;
-@mno-dock-sub-menu-icon:                        @decorator-inverse-color;
-@mno-dock-sub-menu-text-color:                  white;
-@mno-dock-sub-menu-text-hover-color:            darken(white, 10%);
+@mno-dock-sub-menu-icon:                        @decorator-touch-color;
+@mno-dock-sub-menu-text-color:                  @text-inverse-color;
+@mno-dock-sub-menu-text-hover-color:            darken(@mno-dock-sub-menu-text-color, 10%);
 
 // Mobile dock
 @mno-dock-mobile-bg-color:                      @bg-on-bg-inverse-color;
 @mno-dock-mobile-button-color:                  @text-inverse-strong-color;
 @mno-dock-mobile-button-bg-color:               @decorator-inverse-color;
-@mno-dock-mobile-app-active-color:              lighten(@mno-dock-bg-color, 20%);
+@mno-dock-mobile-app-active-color:              lighten(@mno-dock-mobile-button-bg-color, 20%);
 @mno-dock-mobile-app-border-bottom:             1px solid darken(@mno-dock-bg-color, 10%);
 @mno-dock-mobile-add-app-color:                 @text-strong-color;
 @mno-dock-mobile-app-name-color:                @text-strong-color;
@@ -349,7 +350,7 @@ html, body {
 
 // Title
 @impac-dashboard-title-label-color:             @text-strong-color;
-@impac-dashboard-title-color:                   @elem-cozy-color;
+@impac-dashboard-title-color:                   @decorator-inverse-color;
 @impac-dashboard-source-color:                  @impac-dashboard-title-label-color;
 @impac-dashboard-buttons-border-radius:         4px;
 
@@ -361,15 +362,16 @@ html, body {
 // Widgets
 //--------------------------------------
 // Global
-@impac-widget-background-color:                 @bg-inverse-color;
-@impac-widget-text-color:                       @text-inverse-color;
-@impac-widget-text-color-light:                 lighten(@impac-widget-text-color,70%);
-@impac-widget-borders-color:                    lighten(@impac-widget-text-color-light,10%);
+@impac-widget-background-color:                 @bg-on-bg-inverse-color;
+@impac-widget-text-color:                       black;
+@impac-widget-text-color-light:                 @text-strong-color;
+@impac-widget-borders-color:                    lighten(@impac-widget-text-color, 80%);
 @impac-widget-link-color:                       @decorator-inverse-color;
+@impac-widget-top-buttons-color:                lighten(@impac-widget-text-color, 70%);
 
 // Title
-@impac-widget-title-text-color:                 darken(@impac-widget-text-color,5%);
-@impac-widget-title-bg:                         @impac-widget-background-color;
+@impac-widget-title-text-color:                 white;
+@impac-widget-title-bg:                         @bg-inverse-color;
 @impac-widget-title-border:                     solid 1px @impac-widget-borders-color;
 @impac-widget-title-text-transform:             uppercase;
 @impac-widget-title-text-size:                  12px;
@@ -377,7 +379,7 @@ html, body {
 
 // Content
 @impac-widget-content-border-radius:            0px 0px 5px 5px;
-@impac-widget-lines-container-max-height: 			210px;
+@impac-widget-lines-container-max-height:       210px;
 
 // Hist Mode Choser
 @impac-widget-hist-text-transform:              uppercase;
@@ -386,8 +388,8 @@ html, body {
 
 // Price
 @impac-widget-price-color:                      @impac-widget-text-color;
-@impac-widget-price-positive-color:             @elem-positive-color;
-@impac-widget-price-negative-color:             @elem-cozy-color;
+@impac-widget-price-positive-color:             @brand-success;
+@impac-widget-price-negative-color:             @brand-danger;
 @impac-widget-currency-color:                   @impac-widget-text-color-light;
 @impac-widget-legend-color:                     lighten(@impac-widget-text-color,30%);
 
@@ -407,19 +409,21 @@ html, body {
 /*-----------------------------------------------------------------------*/
 /*                 Mno Enterprise > Marketplace Section                  */
 /*-----------------------------------------------------------------------*/
-@dashboard-marketplace-search-text-color:             @bg-inverse-color;
-@dashboard-marketplace-search-border-color:           @bg-inverse-intense-color;
+@dashboard-marketplace-search-text-color:             @text-strong-color;
+@dashboard-marketplace-search-border-color:           @text-strong-color;
 
-@dashboard-marketplace-tile-bg-color:                 @bg-inverse-color;
+@dashboard-marketplace-tile-bg-color:                 @bg-on-bg-inverse-color;
 @dashboard-marketplace-tile-text-color:               @text-strong-color;
-@dashboard-marketplace-tile-img-border-color:         @dashboard-marketplace-tile-bg-color;
+@dashboard-marketplace-tile-img-border-color:         @decorator-main-color;
 
 @dashboard-marketplace-tile-hover-bg-color:           @decorator-main-color;
 @dashboard-marketplace-tile-hover-text-color:         @dashboard-marketplace-tile-text-color;
 @dashboard-marketplace-tile-hover-img-border-color:   darken(@decorator-main-color,10%);
 @dashboard-marketplace-tile-hover-arrow-color:        @text-strong-color;
 
-@dashboard-marketplace-show-header-text-color:        @bg-inverse-color;
+@dashboard-marketplace-show-header-text-color:        @text-strong-color;
+@dashboard-marketplace-show-sections-bg-color:        @bg-on-bg-inverse-color;
+@dashboard-marketplace-show-sections-text-color:      @text-strong-color;
 
 @dashboard-marketplace-app-card:                      { display: block; padding: 10px; height: 120px; margin-bottom: 10px; font-weight: 300; };
 
@@ -432,13 +436,18 @@ html, body {
 @table-cell-row-padding:               3px;
 
 @table-cell-header-text-size:          12px;
-@table-cell-header-text-color:         @bg-inverse-color;
-@table-cell-header-bg-color:           @bg-main-color;
+@table-cell-header-text-color:         @text-inverse-strong-color;
+@table-cell-header-bg-color:           lighten(@bg-inverse-color, 5%);
 @table-cell-header-additional-rule:    { text-transform: uppercase; };
 
 @table-cell-row-text-size:             13px;
-@table-cell-row-odd-bg-color:          fade(@bg-main-color,30%);
-@table-cell-row-even-bg-color:         fade(@bg-main-color,10%);
+@table-cell-row-odd-bg-color:          darken(@bg-main-color,4%);
+@table-cell-row-even-bg-color:         darken(@bg-main-color,0%);
+
+@table-inverse-cell-header-text-color: @text-inverse-strong-color;
+@table-inverse-cell-header-bg-color:   lighten(@bg-inverse-color, 5%);
+@table-inverse-cell-row-odd-bg-color:  darken(@bg-main-color,4%);
+@table-inverse-cell-row-even-bg-color: darken(@bg-main-color,0%);
 
 /*-----------------------------------------------------------------------*/
 /*                          Navbar Customization                         */
@@ -455,35 +464,38 @@ html, body {
 /*                          Form Customization                           */
 /*-----------------------------------------------------------------------*/
 @input-bg:                      @bg-on-bg-inverse-color;
-@input-color:                   @text-inverse-color;
+@input-color:                   @text-strong-color;
 @input-color-placeholder:       @input-color;
 @input-label-color:             @text-inverse-color;
+@deletion-sentence-color:       @brand-danger;
 
 /*-----------------------------------------------------------------------*/
-/*                         Buttons Customization                         */
+/*                                 Buttons                               */
 /*-----------------------------------------------------------------------*/
-
-// General
-@btn-font-weight:                500;
-
-// Warning
-@btn-warning-color:              #fff;
-
-// Success
-@btn-success-color:              #fff;
+@btn-danger-background:         @brand-danger;
 
 /*-----------------------------------------------------------------------*/
-/*                            Footer                                     */
+/*                          Reviews and comments                         */
 /*-----------------------------------------------------------------------*/
+@no-review-bg-panel-color:       darken(@bg-on-bg-inverse-color, 5%);
 
-@footer-bg:                      @bg-main-color;
+@comment-bg:                     @bg-main-color;
+@comment-text-color:             @text-strong-color;
+@comment-attributes-color:       @bg-inverse-color;
+
+@no-question-bg-panel-color:     darken(@bg-on-bg-inverse-color, 5%);
+@question-search-btn-bg:         @bg-inverse-color;
+@question-search-btn-color:      @text-inverse-color;
+@question-search-border:         1px solid @bg-inverse-color;
+@question-bg:                    @bg-on-bg-inverse-color;
+@question-ribbon-bg:             @bg-on-bg-inverse-color;
 
 
 
-.font(@size,@weight,@color) {
-  font-weight:@weight;
-  font-size:@size;
-  color:@color;
+.font(@size, @weight, @color) {
+  font-weight: @weight;
+  font-size: @size;
+  color: @color;
 }
 
 .icon-fa(@icon) {
@@ -857,6 +869,7 @@ dashboard-company-selectbox {
     border-left: 1px solid @dashboard-cpy-select-border-color;
     border-bottom: 1px solid @dashboard-cpy-select-border-color;
     z-index: 999;
+    overflow: hidden;
 
     @media (max-width: @screen-sm) {
       border-radius: 0;
@@ -901,37 +914,38 @@ dashboard-company-selectbox {
 
     // Section visible when change company is clicked
     .box-content {
-      border-top: solid 1px @dashboard-cpy-select-link-color;
-      .border-bottom-radius(5px);
+      border-top: solid 1px @dashboard-cpy-select-list-border-color;
+      overflow: hidden;
 
-      hr {
-        margin: 0;
-        border-top: 1px solid @dashboard-cpy-select-border-color;
+      // General look of the links
+      a {
+        line-height: 17px;
+        display: block;
+        padding: 4px 0 4px 20px;
+        outline: none;
       }
 
       // List of companies
       ul {
-        list-style: none;
         padding: 15px 20px 0 20px;
         max-height: 400px;
         min-width: 250px;
         overflow-y: auto;
 
         > li {
-          position: relative;
-          outline: none;
 
-          // Circle next to company name
-          // Indicate which company is currently viewed on dashboard
-          > a {
+          > a.company-link {
+            text-decoration: none;
             padding: 4px;
             display: flex;
 
             &:hover {
               background-color: @dashboard-cpy-select-link-hover-bg-color;
-              border-bottom-left-radius: 0px;
+              border-bottom-left-radius: 0;
             }
 
+            // Circle next to company name
+            // Indicate which company is currently viewed on dashboard
             > i {
               flex: 0 0 20px;
               width: 13px;
@@ -950,46 +964,28 @@ dashboard-company-selectbox {
         }
       }
 
-      // General look of the links
-      a {
+      .default-link {
         color: @dashboard-cpy-select-link-color;
-        line-height: 17px;
-        display: block;
-        padding: 4px 0 4px 20px;
+        padding: 10px 20px;
+        text-align: left;
+        border-top: 1px solid @dashboard-cpy-select-list-border-color;
 
-        &:hover {
-          text-decoration: none;
-          color: @dashboard-cpy-select-link-hover-color;
-          background-color: @dashboard-cpy-select-link-hover-bg-color;
-          border-bottom-left-radius: 5px;
+        .btn {
+          width: 100%;
+          padding: 3px;
         }
 
-        // Icon on the side of the link
+        // Icon on the left side of the link
         i {
           width: 20px;
           text-align: center;
           font-size: 11pt;
         }
-      }
 
-
-      .default-link {
-        padding: 10px 20px;
-        text-align: left;
-
-        .btn {
-          width: 100%;
-          margin-bottom: 10px;
-          padding: 3px;
-
-          a {
-            color: @dashboard-cpy-select-link-create-text-color;
-            padding: 2px;
-
-            &:hover {
-              background: transparent;
-            }
-          }
+        &:hover {
+          text-decoration: none;
+          color: @dashboard-cpy-select-link-hover-color;
+          background-color: @dashboard-cpy-select-link-hover-bg-color;
         }
       }
     }
@@ -1061,42 +1057,6 @@ dashboard-menu {
             border-bottom: solid 1px #111c21;
             padding:13px 0px;
           }
-        }
-      }
-    }
-
-    .navbar-nav {
-      &.navbar-right:last-child {
-        margin-right:10px;
-      }
-
-      li.active {
-        .navbar-arrow {
-          position:absolute;
-          margin-top:60px;
-          width: 0;
-          height: 0;
-          border-left: 27px solid transparent;
-          border-right: 27px solid transparent;
-          margin-left:50%-27px;
-          border-bottom: 20px solid @elem-cozy-color;
-        }
-      }
-
-      ul.nav.navbar-nav {
-        text-transform:uppercase;
-        a {
-          font-size:@normal;
-        }
-      }
-
-      ul.nav.navbar-nav.navbar-right {
-        button {
-          margin-top: ((@navbar-height - @line-height-computed) / 2) - 18;
-        }
-
-        a {
-          text-transform:none;
         }
       }
     }
@@ -1294,48 +1254,109 @@ mno-loader {
   position: relative;
 }
 
+mno-pagination {
+  display: block;
+  overflow: auto;
+
+  .pagination {
+    margin: 0;
+  }
+
+  .nb-items-col {
+    float: right;
+
+    .items-per-page-select {
+      display: inline;
+      width: 75px;
+
+      @media (max-width: @screen-xs-max) {
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
 mno-password {
   display: block;
 }
 
+average-star-rating, star-rating {
+  position: relative;
+  display: block;
+
+  ul.rating {
+    margin: 0;
+    padding: 0 !important;
+    display: inline-block;
+
+    li {
+      padding: 1px;
+      color: #ddd;
+      font-size: 20px;
+      text-shadow: .05em .05em #aaa;
+      list-style-type: none;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+
+      &.filled {
+        color: #fd0; //#21568b
+      }
+    }
+
+    &.readonly li.filled {
+      color: #666;
+    }
+  }
+
+  .average-rating-container {
+    display: inline-block;
+    position: relative;
+    height: 31px;
+    width: 103px;
+    overflow: hidden;
+
+    &.withrating {
+      margin-right: 37px;
+    }
+
+    .rating li {
+      cursor: inherit;
+    }
+
+    .background,
+    .foreground {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  .badge {
+    position: absolute;
+    top: 5px;
+    right: 0;
+  }
+}
+
 // Base style
 .accordion {
-  .panel-group > .panel {
+  .panel-group .panel {
     margin: 25px 0px;
   }
 
-  .panel-group > .panel,
-  .panel-group > .panel > .panel-heading {
-    background-color: @dashboard-account-panel-body-bg-color;
+  .panel-group .panel,
+  .panel-group .panel > .panel-heading {
+    background-color: @dashboard-account-panel-header-bg-color;
     border: none;
     box-shadow: none;
   }
 
-  label {
-    color: @dashboard-account-panel-text-color;
-  }
-
-  .form-control {
-    background-color: @input-bg;
-  }
-
-  .panel-group .panel .panel-body {
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-
-    p {
-      font-weight: 300;
-    }
-
-    ul > li {
-      font-weight: 300;
-    }
-  }
-
-  .panel-group .panel .panel-heading {
+  .panel-group .panel > .panel-heading {
     color: @dashboard-account-panel-header-text-color;
     padding: 0;
-    background-color: @dashboard-account-panel-header-bg-color;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 
@@ -1348,271 +1369,75 @@ mno-password {
       height: 54px;
       cursor: pointer;
 
-      &:hover {
+      &:hover, &:focus {
         text-decoration: none;
       }
     }
 
-    .panel-title a.btn.pull-right {
-      margin-top: 10px;
-      margin-right: 10px;
-    }
-
-    .panel-title span.pull-right {
+    .panel-title .fa.pull-right {
       margin-right: 20px;
       margin-top: 20px;
     }
   }
-}
 
-// Accordion Black background style
-.accordion.inverse {
-
-  .panel-group > .panel,
-  .panel-group > .panel > .panel-heading {
-    background-color: @bg-inverse-color;
+  .panel-group .panel-collapse > .panel-body {
+    background-color: @dashboard-account-panel-body-bg-color;
     border: none;
-    box-shadow: none;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
+    label {
+      color: @dashboard-account-panel-text-color;
+    }
+
+    p, ul > li {
+      font-weight: 300;
+    }
   }
-
-  .panel-group > .panel > .panel-heading > .panel-title .text-muted {
-    color: @text-inverse-color;
-    font-weight: 700;
-  }
-
-  .panel-group > .panel > .panel-collapse > .panel-body {
-    border-top: solid 1px black;
-  }
-
-  .panel-group > .panel > .panel-heading > .panel-title > .caret-up,
-  .panel-group > .panel > .panel-heading > .panel-title > .caret-down {
-    color: @text-inverse-color;
-  }
-}
-
-// Accordion Compact style
-.accordion.accordion-compact {
-  margin-top: 40px;
-
-  .panel-group .panel .panel-heading .panel-title > a {
-    line-height: 35px;
-    height: 35px;
-  }
-
-  .panel-group .panel .panel-heading .panel-title span.caret.pull-right {
-    margin-top: 17px;
-  }
-
-  .panel-group .panel {
-    margin: 11px 0px;
-  }
-}
-
-.btn-fluid-wrapper .btn {
-  width: 100%;
 }
 
 .btn {
-  &.float-right {
-    float:right;
-  }
-  &.btn-promo {
-    font-size:18px;
-    padding-left:30px;
-    padding-right:30px;
-  }
+  &.btn-link {
+    padding: 0 6px;
 
-  .subtitle {
-    font-size:@small;
-    font-weight:300;
-    width:100%;
-    display:block;
-    text-align:center;
-  }
+    &.btn-link-primary {
+      color: @brand-primary;
 
-  &.arrow,
-  &.arrow-right {
-    background-image: image-url('icons/icon-arrow-right.png');
-    background-repeat: no-repeat;
-    background-position: 96% 50%;
-  }
-
-  &.arrow-left {
-    background-image: image-url('icons/icon-arrow-left.png');
-    background-repeat: no-repeat;
-    background-position: 4% 50%;
-  }
-
-  &.btn-dark {
-    .font(16px, 300, @bg-main-color);
-    background-color: @bg-inverse-color;
-
-    &:hover {
-      color: @elem-cozy-color;
+      &:hover, &:focus {
+        color: darken(@brand-primary, 30%);
+      }
     }
-  }
 
-  &.btn-shaded {
-    background-color: @bg-inverse-color;
-    border: solid 1px @bg-inverse-intense-color;
-    color: @text-inverse-color;
-    font-weight: 400;
+    &.btn-link-info {
+      color: @brand-info;
 
-    &:hover {
-      color: lighten(@text-inverse-color,5%);
-      background-color: lighten(@bg-inverse-color,5%);
+      &:hover, &:focus {
+        color: darken(@brand-info, 30%);
+      }
     }
-  }
 
-  &.btn-whited {
-    background-color: lighten(#ccc,15%);
-    border: solid 1px #ccc;
-    color: #ccc;
-    font-weight: 400;
+    &.btn-link-warning {
+      color: @brand-warning;
 
-    &:hover {
-      color: darken(#ccc,20%);
-      background-color: #ccc;
+      &:hover, &:focus {
+        color: darken(@brand-warning, 30%);
+      }
+    }
+
+    &.btn-link-danger {
+      color: @brand-danger;
+
+      &:hover, &:focus {
+        color: darken(@brand-danger, 30%);
+      }
     }
   }
 }
 
-input.fluroblue[type=radio] {
-  width   : 18px;
-  margin  : 0;
-  padding : 0;
-  opacity : 0;
-}
-
-input.fluroblue[type=radio] + label{
-  display      : inline-block;
-  margin-left  : -12px;
-  padding-left : 25px;
-  background   : image-url('icons/radio-fluroblue.png') no-repeat 0 -18px;
-  line-height  : 18px;
-}
-
-input.fluroblue[type=radio]:checked + label{
-  background-position : 0 1px;
-}
-
-form label {
-  color: @input-label-color;
-}
-
-.input-group-addon.select select {
-  background-color: @input-bg;
-}
-
-//----------------------------------------
-// Styling for phone: select + input
-//----------------------------------------
-form .phone {
-  select.form-control {
-    width:30%;
-  }
-
-  input.form-control[type='text'] {
-    margin-left:23%;
-    margin-top:-34px;
-    width:77%;
-  }
-}
-
-form .select.fa {
-  margin: -28px 7% 0px 0px;
-  float: right;
-}
-
-//----------------------------------------
-// Styling for password checker
-//----------------------------------------
-form li.checked {
-  color: lighten(@decorator-inverse-color,30%);
-}
-
-form li.unchecked {
-  color: lighten(@text-strong-color,70%);
-}
-
-//----------------------------------------
-// Style for forms on inverse backgrounds
-//----------------------------------------
-form.inverse {
-  select {
-    background-color: @bg-inverse-color;
-    .font(16px, 300, @decorator-inverse-color);
-    border:solid 1px #111c21;
-
-    border-radius: 5px;
-    height:44px;
-    -webkit-appearance: none;
-    padding-left:15px;
-    width:100%;
-
-    // Placeholder
-    .placeholder(@decorator-inverse-color);
-  }
-
-  .select.fa {
-    .font(16px,300,@decorator-inverse-color);
-    margin: -28px 7% 0px 0px;
-    float: right;
-  }
-
-  .form-control {
-    // Placeholder
-    .placeholder(@decorator-inverse-color);
-  }
-}
 
 //------------------------------------
-// Dark forms styles
+// input-group-addon dropdown
 //------------------------------------
-form.dark {
-  input[type='text'], input[type='email'], textarea {
-    border-radius: 5px;
-    .font(16px, 300, @bg-main-color);
-    background-color: @bg-inverse-color;
-    border: solid 1px @bg-inverse-color;
-    line-height: 25px;
-    margin-bottom: 0px;
-    width: 100%;
-    min-height: 42px;
-    padding: 5px 5px 5px 15px;
-  }
-
-  label {
-    color: @bg-main-color;
-  }
-}
-
-.dark {
-  .bootstrap-select {
-    select {
-      .font(16px, 300, @bg-main-color);
-      background-color: @bg-inverse-color;
-    }
-
-    .dropdown-toggle {
-      height: 42px;
-    }
-
-    .dropdown-menu {
-      .font(16px, 300, @bg-main-color);
-      background-color: @bg-inverse-color;
-    }
-    .dropdown-menu > li > a {
-      .font(16px, 300, @bg-main-color);
-    }
-
-    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-      .font(16px, 300, @decorator-inverse-color);
-      background-color: @bg-inverse-color;
-    }
-  }
-}
-
 // Put a dropdown inside an input-group-addon
 .input-group-addon.select {
   padding:0px;
@@ -1622,6 +1447,7 @@ form.dark {
   select {
     height:100%;
     border:0px;
+    background-color: @input-bg;
   }
 }
 
@@ -1637,93 +1463,55 @@ input.ng-dirty.ng-invalid {
 // see templates/dashboard/organization/invoices.html
 // for an example
 //-----------------------------------------
-.table-cell .th-row {
-  margin-top: @table-cell-header-row-spacing;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-top: @table-cell-header-row-padding;
-  padding-bottom: @table-cell-header-row-padding;
-  color: @table-cell-header-text-color;
-  background-color: @table-cell-header-bg-color;
-  font-size: @table-cell-header-text-size;
-  line-height: (@table-cell-header-text-size + @table-cell-row-padding)*2;
-  @table-cell-header-additional-rule();
+.table-cell {
+  .th-row {
+    margin-top: @table-cell-header-row-spacing;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: @table-cell-header-row-padding;
+    padding-bottom: @table-cell-header-row-padding;
+    color: @table-cell-header-text-color;
+    background-color: @table-cell-header-bg-color;
+    font-size: @table-cell-header-text-size;
+    line-height: (@table-cell-header-text-size + @table-cell-row-padding)*2;
+    @table-cell-header-additional-rule();
+  }
+
+  .td-row {
+    margin-top: @table-cell-row-spacing;
+    margin-bottom: @table-cell-row-spacing;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: @table-cell-row-padding;
+    padding-bottom: @table-cell-row-padding;
+    font-size: @table-cell-row-text-size;
+    line-height: (@table-cell-row-text-size + @table-cell-row-padding)*2;
+
+    .cell {
+      // Add '...' at the end of text if too long for the cell
+      .ellipsis();
+    }
+
+    .cell > .cell-label {
+      font-weight: bold;
+    }
+
+    .cell > a > i {
+      font-size: 20px;
+    }
+
+    &:nth-child(odd) {
+      background-color: @table-cell-row-odd-bg-color;
+    }
+
+    &:nth-child(even) {
+      background-color: @table-cell-row-even-bg-color;
+    }
+  }
 }
 
-.table-cell .td-row {
-  margin-top: @table-cell-row-spacing;
-  margin-bottom: @table-cell-row-spacing;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-top: @table-cell-row-padding;
-  padding-bottom: @table-cell-row-padding;
-}
-
-.table-cell .td-row {
-  font-size: @table-cell-row-text-size;
-  line-height: (@table-cell-row-text-size + @table-cell-row-padding)*2;
-}
-
-.table-cell .td-row:nth-child(odd) {
-  background-color: @table-cell-row-odd-bg-color;
-}
-
-.table-cell .td-row:nth-child(even) {
-  background-color: @table-cell-row-even-bg-color;
-}
-
-.table-cell .td-row .cell {
-  // Add '...' at the end of text if too long for the cell
-  .ellipsis();
-}
-
-.table-cell .td-row .cell > .cell-label {
-  font-weight: bold;
-}
-
-.table-cell .td-row .cell > a > i {
-  font-size: 20px;
-}
 @media (max-width: @screen-sm) {
-  .table-cell .td-row .cell > a { padding-left: 0px; }
-}
-
-// Inverse Style
-.table-cell.inverse .th-row {
-  background-color: @bg-inverse-intense-color;
-  color: white;
-}
-
-.table-cell.inverse .td-row:nth-child(odd) {
-  background-color: lighten(@bg-inverse-color,3%);
-}
-
-.table-cell.inverse .td-row:nth-child(even) {
-  background-color: lighten(@bg-inverse-color,5%);
-}
-
-.table-cell .btn-link.btn-link-info {
-  color: @brand-info !important;
-
-  &:hover, &:focus {
-    color: darken(@brand-info, 30%) !important;
-  }
-}
-
-.table-cell .btn-link.btn-link-warning {
-  color: @brand-warning !important;
-
-  &:hover, &:focus {
-    color: darken(@brand-warning, 30%) !important;
-  }
-}
-
-.table-cell .btn-link.btn-link-danger {
-  color: @brand-danger !important;
-
-  &:hover, &:focus {
-    color: darken(@brand-danger, 30%) !important;
-  }
+  .table-cell .td-row .cell > a { padding-left: 0; }
 }
 
 // Table style in a well
@@ -1733,16 +1521,32 @@ input.ng-dirty.ng-invalid {
   margin-right: -15px;
 }
 
+// Inverse Style
+.table-cell.inverse {
+  .th-row {
+    color: @table-inverse-cell-header-text-color;
+    background-color: @table-inverse-cell-header-bg-color;
+  }
+
+  .td-row:nth-child(odd) {
+    background-color: @table-inverse-cell-row-odd-bg-color;
+  }
+
+  .td-row:nth-child(even) {
+    background-color: @table-inverse-cell-row-even-bg-color;
+  }
+}
+
 .ribbon-testimonial {
 
   .body {
-    background-color:@bg-main-color;
+    background-color: @bg-on-bg-inverse-color;
     border-radius: 5px;
-    padding:20px;
-    color:@text-strong-color;
-    font-weight:300;
-    font-size:16px;
-    font-style:italic;
+    padding: 20px;
+    color: @text-strong-color;
+    font-weight: 300;
+    font-size: 16px;
+    font-style: italic;
 
     .arrow {
       .rotate(45deg);
@@ -1750,41 +1554,32 @@ input.ng-dirty.ng-invalid {
       height: 0;
       border-top: 18px solid transparent;
       border-bottom: 18px solid transparent;
-      border-right:18px solid @decorator-main-color;
-      position:absolute;
-      right:28px;
-      margin-top:8px;
+      border-right: 18px solid @decorator-main-color;
+      position: absolute;
+      right: 28px;
+      margin-top: 8px;
     }
   }
 
   .from {
-    margin:7px 0px 0px 30px;
+    margin: 7px 0px 0px 30px;
+
     .name {
-      display:inline;
-      font-size:14px;
-      font-weight:700;
+      display: inline;
+      font-size: 14px;
+      font-weight: 700;
       color: @text-inverse-color;
     }
 
     .company {
-      display:inline;
-      font-size:14px;
-      font-weight:300;
+      display: inline;
+      font-size: 14px;
+      font-weight: 300;
       color: @decorator-inverse-color;
     }
-
   }
 }
 
-.ribbon-testimonial.ribbon-white {
-  .body {
-    background-color: white;
-  }
-
-  .arrow {
-    border-right:18px solid #ccc;
-  }
-}
 
 /*-----------------------------------------------------------------------*/
 /*                       Dashboard Section Title                         */
@@ -1795,14 +1590,11 @@ input.ng-dirty.ng-invalid {
 }
 
 .myspace .section-title:after when (@dashboard-section-title-alignment = center) and (@dashboard-section-title-display-subline = true){
-  .fa;
   display: block;
-  content: @fa-var-caret-up;
+  content: '';
   margin-top: 10px;
-  font-size: 24px;
   border-bottom: solid 1px @dashboard-section-title-color;
-  line-height: 8px;
-  max-width: 60%;
+  max-width: 45%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1813,7 +1605,6 @@ a.editable.editable-click {
   border: none;
 
   &:hover {
-    //color: @bluegray2;
     border-bottom: dashed 1px fadeout(@text-strong-color,60%);
   }
 }
@@ -2025,30 +1816,21 @@ form.editable-wrap .editable-controls input {
   .well {
     border: none;
     background-color: @dashboard-cpy-tabcontent-bg-color;
+
+    label, p {
+      color: @dashboard-cpy-tabcontent-text-color;
+    }
   }
 
   //-----------------------------------
   // Accordion Styling
   //-----------------------------------
   .panel-group .panel {
-    background-color: @dashboard-cpy-tabcontent-bg-color;
-    box-shadow: none;
-    border: none;
     margin: 0px 0px 25px 0px;
 
     .cc-icons i {
       display: inline-block;
     }
-  }
-
-  .panel-group .panel .panel-heading {
-    background-color: @dashboard-cpy-tabcontent-header-bg-color;
-    border: none;
-  }
-
-  .panel-group .panel-collapse > .panel-body {
-    background-color: @dashboard-cpy-tabcontent-body-bg-color;
-    border: none;
   }
 
   //-----------------------------------
@@ -2141,17 +1923,32 @@ form.editable-wrap .editable-controls input {
     color: @dashboard-marketplace-show-header-text-color;
   }
 
+  blockquote {
+    overflow-wrap: break-word;
+  }
+
   //-------------------------------
   // Content - General
   //-------------------------------
   .show-content .well {
-    background-color: white;
+    color: @dashboard-marketplace-show-sections-text-color;
+    background-color: @dashboard-marketplace-show-sections-bg-color;
     border: none;
     border-radius: 2px;
-  }
-  .show-content .btn.btn-promo {
-    padding-left: 0;
-    padding-right: 0;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    img {
+      .img-responsive;
+    }
+
+    .loading-icon {
+      font-size: 40px;
+      color: @dashboard-marketplace-show-header-text-color;
+      text-align: center;
+    }
   }
 
   //-------------------------------
@@ -2221,7 +2018,7 @@ form.editable-wrap .editable-controls input {
   //-------------------------------
   .show-content ul.key-benefits {
     list-style: none;
-    padding-left: 0px;
+    padding-left: 0;
     text-align: left;
     margin-top: 20px;
   }
@@ -2232,7 +2029,7 @@ form.editable-wrap .editable-controls input {
   }
 
   .show-content ul.key-benefits > li > .fa.fa-check {
-    color: @elem-positive-color;
+    color: @brand-success;
     margin-right: 5px;
   }
 
@@ -2240,11 +2037,166 @@ form.editable-wrap .editable-controls input {
   // Content - Testimonials
   //-------------------------------
   .show-content .ribbon-testimonial .body {
-    color: @dashboard-marketplace-tile-text-color;
+    color: @dashboard-marketplace-show-sections-text-color;
+    background-color: @dashboard-marketplace-show-sections-bg-color;
   }
 
   .show-content .ribbon-testimonial .from .name {
-    color: @bg-inverse-color;
+    color: @dashboard-marketplace-show-sections-text-color;
+  }
+
+  .nav.nav-tabs {
+    margin-bottom: 15px;
+  }
+
+  .filter-reviews {
+    width:auto;
+    display: inline;
+  }
+
+  .no-question-container {
+    padding: 20px 15px;
+    font-size: 16px;
+    background: @no-question-bg-panel-color;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+  }
+
+  .no-review-container {
+    padding: 20px 15px;
+    font-size: 16px;
+    background: @no-review-bg-panel-color;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+  }
+
+  #comments {
+    .add-review {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    blockquote {
+      margin-bottom: 0;
+    }
+
+    mno-pagination {
+      margin-bottom: 15px;
+    }
+
+    .comment {
+      float: right;
+      width: 85%;
+      background-color: @comment-bg;
+      margin-top: 5px;
+      padding: 5px 15px;
+    }
+  }
+
+  .questions {
+    margin-bottom: 15px;
+
+    .ribbon-question {
+      margin-top: 15px;
+      background-color: @question-ribbon-bg;
+      border-radius: 5px;
+      padding: 20px;
+
+      .question-body {
+        margin-bottom: 10px;
+      }
+
+      .question-title {
+        font-weight: bold;
+      }
+
+      .question-actions {
+        display: flex;
+        flex-flow: column;
+        align-items: flex-end;
+
+        @media (max-width: @screen-xs-max) {
+          flex-flow: row;
+        }
+
+        button:not(:last-child) {
+          margin-bottom: 5px;
+        }
+      }
+
+      .question-answer {
+        margin-bottom: 10px;
+      }
+
+      .question-attribute {
+        font-size: 1rem;
+        font-style: italic;
+      }
+    }
+
+    .questions-panel {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
+      input {
+        border-radius: 3px;
+        padding-left: 7px;
+        padding-right: 30px;
+        border: @question-search-border;
+        width: 250px;
+      }
+
+      form {
+        position: relative;
+      }
+
+      button.fa {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-color: @question-search-btn-bg;
+        color: @question-search-btn-color;
+        border: none;
+        width: 30px;
+      }
+
+      button {
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+.dashboard-marketplace-compare {
+
+  .marketplace-compare-table {
+    overflow-x: scroll;
+
+    th, td {
+      min-width: 200px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    img.media-object {
+      max-width: 120px;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+
+  .marketplace-compare-wrap {
+    margin-top: 20px;
+  }
+
+  .marketplace-compare-info {
+    overflow: auto;
   }
 }
 
@@ -2267,6 +2219,15 @@ form.editable-wrap .editable-controls input {
     color: black;
   }
 
+  .marketplace-nav {
+    min-height: 65px;
+  }
+
+  .marketplace-compare-action {
+    position: relative;
+    top: -15px;
+  }
+
   //-------------------------------
   // Marketplace list
   //-------------------------------
@@ -2278,6 +2239,7 @@ form.editable-wrap .editable-controls input {
   // App Card
   //-------------------------------
   .marketplace-app-card {
+    position: relative;
     background-color: @dashboard-marketplace-tile-bg-color;
     color: @dashboard-marketplace-tile-text-color;
     cursor: pointer;
@@ -2297,6 +2259,26 @@ form.editable-wrap .editable-controls input {
       img.media-object {
         border: solid 1px @dashboard-marketplace-tile-hover-img-border-color;
       }
+    }
+
+    .media {
+      margin-top: 0;
+    }
+  }
+
+  .marketplace-app-card-checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+
+    label {
+      width: 100%;
+      height: 100%;
+      //padding-left: 20px;
+      cursor: pointer;
     }
   }
 
@@ -2342,6 +2324,12 @@ form.editable-wrap .editable-controls input {
   button[type="submit"] {
     display: block;
     margin: auto;
+  }
+}
+
+.app-deletion-modal {
+  .deletion-sentence {
+    color: @brand-danger;
   }
 }
 
@@ -2401,6 +2389,12 @@ form.editable-wrap .editable-controls input {
       align-content: center;
       justify-content: space-around;
     }
+
+    .app-deletion {
+      .deletion-sentence {
+        color: @deletion-sentence-color;
+      }
+    }
   }
 }
 
@@ -2444,7 +2438,11 @@ form.editable-wrap .editable-controls input {
     max-width: 100%;
     overflow-x: auto;
 
+    p {
+      color: @dashboard-cpy-teams-matrix-text-color;
+    }
   }
+
   table.permission-matrix.resellers-permissions {
     thead > tr th {
       height: 28px;
@@ -2537,6 +2535,13 @@ form.editable-wrap .editable-controls input {
   .permission-matrix-wrapper .table-right thead > tr > th {
     font-size: 11px;
     font-weight: 400;
+  }
+}
+
+.create-review-modal {
+  textarea.form-control {
+    max-width: 100%;
+    background-color: white;
   }
 }
 
