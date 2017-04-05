@@ -13,3 +13,5 @@ dock:
   enabled: true
 developer:
   enabled: true
+marketplace:
+  enabled: true

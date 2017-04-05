@@ -44,6 +44,9 @@ angular.module 'mnoEnterpriseAngular'
         appLink:
           url: '/apps/myob'
           text: '>> Check this app on Maestrano marketplace'
+    widgetSettings:
+      tagging:
+        enableFilterTags: true
 
   ImpacThemingProvider.configure(options)
 )
