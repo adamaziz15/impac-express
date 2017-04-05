@@ -4,7 +4,7 @@
 
 "impac-angular@git+https://git@github.com/fgourichon/impac-angular.git#staging_tracking_tags":
   version "1.4.8"
-  resolved "git+https://git@github.com/fgourichon/impac-angular.git#da5ab5ac38d91ac91d663ae6be2f41989a550226"
+  resolved "git+https://git@github.com/fgourichon/impac-angular.git#18764c898699e4273c255b42a183f30e6acdbf2d"
 
 "mno-enterprise-angular@git+https://git@github.com/maestrano/mno-enterprise-angular.git#1.0":
   version "1.0.0"
