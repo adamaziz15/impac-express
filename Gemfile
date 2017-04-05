@@ -4,7 +4,7 @@ gem 'rails', '~> 4.2.6'
 
 # Maestrano Enterprise Engine
 # Edge mnoe
-gem 'mno-enterprise', git: 'https://github.com/maestrano/mno-enterprise.git', branch: 'master'
+gem 'mno-enterprise', git: 'https://github.com/maestrano/mno-enterprise.git', branch: '3.2'
 # gem 'mno-enterprise', path: '../mno-enterprise'
 # gem 'mno-enterprise', '~> 3.0'
 
