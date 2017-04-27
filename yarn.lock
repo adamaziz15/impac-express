@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"impac-angular@git+https://git@github.com/cesar-tonnoir/impac-angular.git#staging/1.4.10":
-  version "1.4.10"
-  resolved "git+https://git@github.com/cesar-tonnoir/impac-angular.git#aadb0adc1e8c782b8c8f7179cbb65d1c9b1931f5"
+"impac-angular@git+https://git@github.com/maestrano/impac-angular.git#release/1.4.11":
+  version "1.4.11"
+  resolved "git+https://git@github.com/maestrano/impac-angular.git#bb74e06e19ffe4e0a7ec1fda829b5909a4acb53e"
 
 "mno-enterprise-angular@git+https://git@github.com/maestrano/mno-enterprise-angular.git#1.0":
   version "1.0.0"
