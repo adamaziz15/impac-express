@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/maestrano/mno-enterprise.git
-  revision: cf10dc9079409e70866b7de868e7a7aaa74818eb
-  branch: 3.2
+  revision: e211a86258067e32f57aaefcce0f6f58bec0351b
   specs:
     mno-enterprise (3.1.3)
       mno-enterprise-api (= 3.1.3)
@@ -133,7 +132,7 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
-    faraday (0.11.0)
+    faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.10.1)
       faraday (>= 0.7.4, < 1.0)
@@ -157,9 +156,9 @@ GEM
       activesupport (>= 3.0.0, <= 4.3.0)
       faraday (>= 0.8, < 1.0)
       multi_json (~> 1.7)
-    html2haml (2.1.0)
+    html2haml (2.2.0)
       erubis (~> 2.7.0)
-      haml (~> 4.0)
+      haml (>= 4.0, < 6)
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
     http (0.9.8)
@@ -205,9 +204,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
-    money (6.8.2)
+    money (6.9.0)
       i18n (>= 0.6.4, < 0.9)
-      sixarm_ruby_unaccent (>= 1.1.1, < 2)
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
@@ -266,8 +264,9 @@ GEM
     rake (12.0.0)
     redcarpet (3.4.0)
     ref (2.0.0)
-    responders (2.3.0)
-      railties (>= 4.2.0, < 5.1)
+    responders (2.4.0)
+      actionpack (>= 4.2.0, < 5.3)
+      railties (>= 4.2.0, < 5.3)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -294,7 +293,7 @@ GEM
     rubocop-rspec (1.7.0)
       rubocop (>= 0.42.0)
     ruby-progressbar (1.8.1)
-    ruby_parser (3.8.4)
+    ruby_parser (3.9.0)
       sexp_processor (~> 4.1)
     sanitize (4.4.0)
       crass (~> 1.0.2)
@@ -307,7 +306,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sexp_processor (4.8.0)
+    sexp_processor (4.9.0)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
     simplecov (0.12.0)
@@ -315,7 +314,6 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    sixarm_ruby_unaccent (1.1.1)
     sparkpost (0.1.4)
       http (= 0.9.8)
     spring (2.0.0)
@@ -337,7 +335,7 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.5)
     tilt (2.0.6)
-    ttfunk (1.5.0)
+    ttfunk (1.5.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.2)
@@ -374,4 +372,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
 
 BUNDLED WITH
-   1.14.5
+   1.14.6
