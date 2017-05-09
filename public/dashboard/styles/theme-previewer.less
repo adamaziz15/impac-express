@@ -49,6 +49,18 @@ html, body {
 .top-buffer-9 { margin-top: 9*@top-buffer-height; }
 .top-buffer-10 { margin-top: 10*@top-buffer-height; }
 
+@bottom-buffer-height: @grid-gutter-width/2;
+.bottom-buffer-1 { margin-bottom: 1*@bottom-buffer-height; }
+.bottom-buffer-2 { margin-bottom: 2*@bottom-buffer-height; }
+.bottom-buffer-3 { margin-bottom: 3*@bottom-buffer-height; }
+.bottom-buffer-4 { margin-bottom: 4*@bottom-buffer-height; }
+.bottom-buffer-5 { margin-bottom: 5*@bottom-buffer-height; }
+.bottom-buffer-6 { margin-bottom: 6*@bottom-buffer-height; }
+.bottom-buffer-7 { margin-bottom: 7*@bottom-buffer-height; }
+.bottom-buffer-8 { margin-bottom: 8*@bottom-buffer-height; }
+.bottom-buffer-9 { margin-bottom: 9*@bottom-buffer-height; }
+.bottom-buffer-10 { margin-bottom: 10*@bottom-buffer-height; }
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your less files automatically
@@ -242,12 +254,13 @@ html, body {
 @dashboard-cpy-select-border-radius:            0 0 0 6px;
 @dashboard-cpy-select-border-color:             @text-inverse-color;
 @dashboard-cpy-select-list-border-color:        lighten(@bg-inverse-color, 10%);
-@dashboard-cpy-select-header-text-bold-color:   @text-inverse-color;
-@dashboard-cpy-select-header-text-color:        @text-inverse-color;
+
+@dashboard-cpy-select-header-title-color:       @text-inverse-color;
+@dashboard-cpy-select-header-company-color:     @decorator-inverse-color;
 @dashboard-cpy-select-header-text-size:         13px;
 
+@dashboard-cpy-select-link-text-color:          @link-color;
 @dashboard-cpy-select-link-icon-color:          @decorator-touch-color;
-@dashboard-cpy-select-link-create-text-color:   @text-inverse-strong-color;
 
 @dashboard-cpy-select-link-color:               @text-inverse-strong-color;
 @dashboard-cpy-select-link-hover-color:         @text-strong-color;
@@ -513,10 +526,10 @@ html, body {
 
 
 
-.font(@size,@weight,@color) {
-  font-weight:@weight;
-  font-size:@size;
-  color:@color;
+.font(@size, @weight, @color) {
+  font-weight: @weight;
+  font-size: @size;
+  color: @color;
 }
 
 .icon-fa(@icon) {
@@ -546,10 +559,10 @@ html, body {
 
 @menu-left-width: 80px;
 
-#layout-loading {
+.layout-loading {
   position: absolute;
-  top: 0px;
-  bottom: 0px;
+  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
   background-color: @dashboard-bg-color;
@@ -571,17 +584,23 @@ html, body {
 #dashboard {
   .container {
     position: relative;
-  }
+    padding-top: 110px;
 
-  @media (max-width: @screen-xs-max) {
-    padding-top: 40px;
+    .analytics {
+      padding-top: 0;
+    }
   }
 
   /* Fix the container width if the screen is sm+ */
   @media screen and (min-width: @screen-sm-min) {
     margin-left: @menu-left-width;
     .container {
+      padding-top: 70px;
       width: @container-sm - @menu-left-width;
+
+      .analytics {
+        padding-top: 0;
+      }
     }
   }
 
@@ -589,7 +608,12 @@ html, body {
   @media screen and (min-width: @screen-md-min) {
     margin-left: @menu-left-width;
     .container {
+      padding-top: 40px;
       width: @container-md - @menu-left-width;
+
+      .analytics {
+        padding-top: 10px;
+      }
     }
   }
 
@@ -875,16 +899,6 @@ ul.dock > li.prev img.app-logo {
   }
 }
 
-
-dashboard-language-selectbox {
-  display: block;
-
-  .selector-line {
-    display: inline-block;
-    margin: 5px auto;
-  }
-}
-
 dashboard-company-selectbox {
   /*-----------------------------------------------------------------------*/
   /*                       Company Select Box                              */
@@ -894,12 +908,12 @@ dashboard-company-selectbox {
     right: 0;
     width: @dashboard-cpy-select-width;
     background-color: @dashboard-cpy-select-bg-color;
-    color: @dashboard-cpy-select-header-text-color;
     font-size: @dashboard-cpy-select-header-text-size;
     border-radius: @dashboard-cpy-select-border-radius;
     border-left: 1px solid @dashboard-cpy-select-border-color;
     border-bottom: 1px solid @dashboard-cpy-select-border-color;
     z-index: 999;
+    overflow: hidden;
 
     @media (max-width: @screen-sm) {
       border-radius: 0;
@@ -925,16 +939,18 @@ dashboard-company-selectbox {
         width: ~'calc(100% -' (2 * @dashboard-cpy-select-pic-width) ~')';
         text-align: left;
 
+        .name {
+          font-weight: bold;
+          color: @dashboard-cpy-select-header-title-color;
+        }
+
         .company {
           width: 100%;
           display: block;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-        }
-        .name {
-          font-weight: bold;
-          color: @dashboard-cpy-select-header-text-bold-color;
+          color: @dashboard-cpy-select-header-company-color;
         }
       }
       .expand-menu {
@@ -944,37 +960,39 @@ dashboard-company-selectbox {
 
     // Section visible when change company is clicked
     .box-content {
-      border-top: solid 1px @dashboard-cpy-select-link-color;
-      .border-bottom-radius(5px);
+      border-top: solid 1px @dashboard-cpy-select-list-border-color;
+      overflow: hidden;
 
-      hr {
-        margin: 0;
-        border-top: 1px solid @dashboard-cpy-select-border-color;
+      // General look of the links
+      a {
+        line-height: 17px;
+        display: block;
+        padding: 4px 0 4px 20px;
+        outline: none;
       }
 
       // List of companies
       ul {
-        list-style: none;
         padding: 15px 20px 0 20px;
         max-height: 400px;
         min-width: 250px;
         overflow-y: auto;
 
         > li {
-          position: relative;
-          outline: none;
 
-          // Circle next to company name
-          // Indicate which company is currently viewed on dashboard
-          > a {
+          > a.company-link {
+            text-decoration: none;
             padding: 4px;
             display: flex;
+            color: @dashboard-cpy-select-link-text-color;
 
             &:hover {
               background-color: @dashboard-cpy-select-link-hover-bg-color;
-              border-bottom-left-radius: 0px;
+              border-bottom-left-radius: 0;
             }
 
+            // Circle next to company name
+            // Indicate which company is currently viewed on dashboard
             > i {
               flex: 0 0 20px;
               width: 13px;
@@ -993,46 +1011,28 @@ dashboard-company-selectbox {
         }
       }
 
-      // General look of the links
-      a {
+      .default-link {
         color: @dashboard-cpy-select-link-color;
-        line-height: 17px;
-        display: block;
-        padding: 4px 0 4px 20px;
+        padding: 10px 20px;
+        text-align: left;
+        border-top: 1px solid @dashboard-cpy-select-list-border-color;
 
-        &:hover {
-          text-decoration: none;
-          color: @dashboard-cpy-select-link-hover-color;
-          background-color: @dashboard-cpy-select-link-hover-bg-color;
-          border-bottom-left-radius: 5px;
+        .btn {
+          width: 100%;
+          padding: 3px;
         }
 
-        // Icon on the side of the link
+        // Icon on the left side of the link
         i {
           width: 20px;
           text-align: center;
           font-size: 11pt;
         }
-      }
 
-
-      .default-link {
-        padding: 10px 20px;
-        text-align: left;
-
-        .btn {
-          width: 100%;
-          margin-bottom: 10px;
-          padding: 3px;
-
-          a {
-            color: @dashboard-cpy-select-link-create-text-color;
-            padding: 2px;
-
-            &:hover {
-              background: transparent;
-            }
-          }
+        &:hover {
+          text-decoration: none;
+          color: @dashboard-cpy-select-link-hover-color;
+          background-color: @dashboard-cpy-select-link-hover-bg-color;
         }
       }
     }
@@ -1046,6 +1046,16 @@ dashboard-company-selectbox {
       border-top: 1px solid @dashboard-cpy-select-border-color;
       top: ~'calc(1px + ' @navbar-height ~')';  // Add top border
     }
+  }
+}
+
+
+dashboard-language-selectbox {
+  display: block;
+
+  .selector-line {
+    display: inline-block;
+    margin: 5px auto;
   }
 }
 
@@ -1094,42 +1104,6 @@ dashboard-menu {
             border-bottom: solid 1px #111c21;
             padding:13px 0px;
           }
-        }
-      }
-    }
-
-    .navbar-nav {
-      &.navbar-right:last-child {
-        margin-right:10px;
-      }
-
-      li.active {
-        .navbar-arrow {
-          position:absolute;
-          margin-top:60px;
-          width: 0;
-          height: 0;
-          border-left: 27px solid transparent;
-          border-right: 27px solid transparent;
-          margin-left:50%-27px;
-          border-bottom: 20px solid @elem-cozy-color;
-        }
-      }
-
-      ul.nav.navbar-nav {
-        text-transform:uppercase;
-        a {
-          font-size:@normal;
-        }
-      }
-
-      ul.nav.navbar-nav.navbar-right {
-        button {
-          margin-top: ((@navbar-height - @line-height-computed) / 2) - 18;
-        }
-
-        a {
-          text-transform:none;
         }
       }
     }
@@ -1276,8 +1250,26 @@ dashboard-menu {
   }
 }
 
+mno-audit-events-list {
+  .table > thead > tr {
+    color: @table-cell-header-text-color;
+    background-color: @table-cell-header-bg-color;
+  }
+
+  .table-striped > tbody > tr {
+    &:nth-of-type(even) {
+      background-color: @table-cell-row-even-bg-color
+    }
+
+    &:nth-of-type(odd) {
+      background-color: @table-cell-row-odd-bg-color
+    }
+  }
+}
+
 mno-impersonation-bar {
   #impersonate-bar {
+    color: @text-inverse-strong-color;
     background-color: @bg-inverse-color;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -1327,48 +1319,109 @@ mno-loader {
   position: relative;
 }
 
+mno-pagination {
+  display: block;
+  overflow: auto;
+
+  .pagination {
+    margin: 0;
+  }
+
+  .nb-items-col {
+    float: right;
+
+    .items-per-page-select {
+      display: inline;
+      width: 75px;
+
+      @media (max-width: @screen-xs-max) {
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
 mno-password {
   display: block;
 }
 
+average-star-rating, star-rating {
+  position: relative;
+  display: block;
+
+  ul.rating {
+    margin: 0;
+    padding: 0 !important;
+    display: inline-block;
+
+    li {
+      padding: 1px;
+      color: #ddd;
+      font-size: 20px;
+      text-shadow: .05em .05em #aaa;
+      list-style-type: none;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+
+      &.filled {
+        color: #fd0; //#21568b
+      }
+    }
+
+    &.readonly li.filled {
+      color: #666;
+    }
+  }
+
+  .average-rating-container {
+    display: inline-block;
+    position: relative;
+    height: 31px;
+    width: 103px;
+    overflow: hidden;
+
+    &.withrating {
+      margin-right: 37px;
+    }
+
+    .rating li {
+      cursor: inherit;
+    }
+
+    .background,
+    .foreground {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  .badge {
+    position: absolute;
+    top: 5px;
+    right: 0;
+  }
+}
+
 // Base style
 .accordion {
-  .panel-group > .panel {
+  .panel-group .panel {
     margin: 25px 0px;
   }
 
-  .panel-group > .panel,
-  .panel-group > .panel > .panel-heading {
-    background-color: @dashboard-account-panel-body-bg-color;
+  .panel-group .panel,
+  .panel-group .panel > .panel-heading {
+    background-color: @dashboard-account-panel-header-bg-color;
     border: none;
     box-shadow: none;
   }
 
-  label {
-    color: @dashboard-account-panel-text-color;
-  }
-
-  .form-control {
-    background-color: @input-bg;
-  }
-
-  .panel-group .panel .panel-body {
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-
-    p {
-      font-weight: 300;
-    }
-
-    ul > li {
-      font-weight: 300;
-    }
-  }
-
-  .panel-group .panel .panel-heading {
+  .panel-group .panel > .panel-heading {
     color: @dashboard-account-panel-header-text-color;
     padding: 0;
-    background-color: @dashboard-account-panel-header-bg-color;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 
@@ -1381,271 +1434,75 @@ mno-password {
       height: 54px;
       cursor: pointer;
 
-      &:hover {
+      &:hover, &:focus {
         text-decoration: none;
       }
     }
 
-    .panel-title a.btn.pull-right {
-      margin-top: 10px;
-      margin-right: 10px;
-    }
-
-    .panel-title span.pull-right {
+    .panel-title .fa.pull-right {
       margin-right: 20px;
       margin-top: 20px;
     }
   }
-}
 
-// Accordion Black background style
-.accordion.inverse {
-
-  .panel-group > .panel,
-  .panel-group > .panel > .panel-heading {
-    background-color: @bg-inverse-color;
+  .panel-group .panel-collapse > .panel-body {
+    background-color: @dashboard-account-panel-body-bg-color;
     border: none;
-    box-shadow: none;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
+    label {
+      color: @dashboard-account-panel-text-color;
+    }
+
+    p, ul > li {
+      font-weight: 300;
+    }
   }
-
-  .panel-group > .panel > .panel-heading > .panel-title .text-muted {
-    color: @text-inverse-color;
-    font-weight: 700;
-  }
-
-  .panel-group > .panel > .panel-collapse > .panel-body {
-    border-top: solid 1px black;
-  }
-
-  .panel-group > .panel > .panel-heading > .panel-title > .caret-up,
-  .panel-group > .panel > .panel-heading > .panel-title > .caret-down {
-    color: @text-inverse-color;
-  }
-}
-
-// Accordion Compact style
-.accordion.accordion-compact {
-  margin-top: 40px;
-
-  .panel-group .panel .panel-heading .panel-title > a {
-    line-height: 35px;
-    height: 35px;
-  }
-
-  .panel-group .panel .panel-heading .panel-title span.caret.pull-right {
-    margin-top: 17px;
-  }
-
-  .panel-group .panel {
-    margin: 11px 0px;
-  }
-}
-
-.btn-fluid-wrapper .btn {
-  width: 100%;
 }
 
 .btn {
-  &.float-right {
-    float:right;
-  }
-  &.btn-promo {
-    font-size:18px;
-    padding-left:30px;
-    padding-right:30px;
-  }
+  &.btn-link {
+    padding: 0 6px;
 
-  .subtitle {
-    font-size:@small;
-    font-weight:300;
-    width:100%;
-    display:block;
-    text-align:center;
-  }
+    &.btn-link-primary {
+      color: @brand-primary;
 
-  &.arrow,
-  &.arrow-right {
-    background-image: image-url('icons/icon-arrow-right.png');
-    background-repeat: no-repeat;
-    background-position: 96% 50%;
-  }
-
-  &.arrow-left {
-    background-image: image-url('icons/icon-arrow-left.png');
-    background-repeat: no-repeat;
-    background-position: 4% 50%;
-  }
-
-  &.btn-dark {
-    .font(16px, 300, @bg-main-color);
-    background-color: @bg-inverse-color;
-
-    &:hover {
-      color: @elem-cozy-color;
+      &:hover, &:focus {
+        color: darken(@brand-primary, 30%);
+      }
     }
-  }
 
-  &.btn-shaded {
-    background-color: @bg-inverse-color;
-    border: solid 1px @bg-inverse-intense-color;
-    color: @text-inverse-color;
-    font-weight: 400;
+    &.btn-link-info {
+      color: @brand-info;
 
-    &:hover {
-      color: lighten(@text-inverse-color,5%);
-      background-color: lighten(@bg-inverse-color,5%);
+      &:hover, &:focus {
+        color: darken(@brand-info, 30%);
+      }
     }
-  }
 
-  &.btn-whited {
-    background-color: lighten(#ccc,15%);
-    border: solid 1px #ccc;
-    color: #ccc;
-    font-weight: 400;
+    &.btn-link-warning {
+      color: @brand-warning;
 
-    &:hover {
-      color: darken(#ccc,20%);
-      background-color: #ccc;
+      &:hover, &:focus {
+        color: darken(@brand-warning, 30%);
+      }
+    }
+
+    &.btn-link-danger {
+      color: @brand-danger;
+
+      &:hover, &:focus {
+        color: darken(@brand-danger, 30%);
+      }
     }
   }
 }
 
-input.fluroblue[type=radio] {
-  width   : 18px;
-  margin  : 0;
-  padding : 0;
-  opacity : 0;
-}
-
-input.fluroblue[type=radio] + label{
-  display      : inline-block;
-  margin-left  : -12px;
-  padding-left : 25px;
-  background   : image-url('icons/radio-fluroblue.png') no-repeat 0 -18px;
-  line-height  : 18px;
-}
-
-input.fluroblue[type=radio]:checked + label{
-  background-position : 0 1px;
-}
-
-form label {
-  color: @input-label-color;
-}
-
-.input-group-addon.select select {
-  background-color: @input-bg;
-}
-
-//----------------------------------------
-// Styling for phone: select + input
-//----------------------------------------
-form .phone {
-  select.form-control {
-    width:30%;
-  }
-
-  input.form-control[type='text'] {
-    margin-left:23%;
-    margin-top:-34px;
-    width:77%;
-  }
-}
-
-form .select.fa {
-  margin: -28px 7% 0px 0px;
-  float: right;
-}
-
-//----------------------------------------
-// Styling for password checker
-//----------------------------------------
-form li.checked {
-  color: lighten(@decorator-inverse-color,30%);
-}
-
-form li.unchecked {
-  color: lighten(@text-strong-color,70%);
-}
-
-//----------------------------------------
-// Style for forms on inverse backgrounds
-//----------------------------------------
-form.inverse {
-  select {
-    background-color: @bg-inverse-color;
-    .font(16px, 300, @decorator-inverse-color);
-    border:solid 1px #111c21;
-
-    border-radius: 5px;
-    height:44px;
-    -webkit-appearance: none;
-    padding-left:15px;
-    width:100%;
-
-    // Placeholder
-    .placeholder(@decorator-inverse-color);
-  }
-
-  .select.fa {
-    .font(16px,300,@decorator-inverse-color);
-    margin: -28px 7% 0px 0px;
-    float: right;
-  }
-
-  .form-control {
-    // Placeholder
-    .placeholder(@decorator-inverse-color);
-  }
-}
 
 //------------------------------------
-// Dark forms styles
+// input-group-addon dropdown
 //------------------------------------
-form.dark {
-  input[type='text'], input[type='email'], textarea {
-    border-radius: 5px;
-    .font(16px, 300, @bg-main-color);
-    background-color: @bg-inverse-color;
-    border: solid 1px @bg-inverse-color;
-    line-height: 25px;
-    margin-bottom: 0px;
-    width: 100%;
-    min-height: 42px;
-    padding: 5px 5px 5px 15px;
-  }
-
-  label {
-    color: @bg-main-color;
-  }
-}
-
-.dark {
-  .bootstrap-select {
-    select {
-      .font(16px, 300, @bg-main-color);
-      background-color: @bg-inverse-color;
-    }
-
-    .dropdown-toggle {
-      height: 42px;
-    }
-
-    .dropdown-menu {
-      .font(16px, 300, @bg-main-color);
-      background-color: @bg-inverse-color;
-    }
-    .dropdown-menu > li > a {
-      .font(16px, 300, @bg-main-color);
-    }
-
-    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-      .font(16px, 300, @decorator-inverse-color);
-      background-color: @bg-inverse-color;
-    }
-  }
-}
-
 // Put a dropdown inside an input-group-addon
 .input-group-addon.select {
   padding:0px;
@@ -1655,6 +1512,7 @@ form.dark {
   select {
     height:100%;
     border:0px;
+    background-color: @input-bg;
   }
 }
 
@@ -1670,93 +1528,55 @@ input.ng-dirty.ng-invalid {
 // see templates/dashboard/organization/invoices.html
 // for an example
 //-----------------------------------------
-.table-cell .th-row {
-  margin-top: @table-cell-header-row-spacing;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-top: @table-cell-header-row-padding;
-  padding-bottom: @table-cell-header-row-padding;
-  color: @table-cell-header-text-color;
-  background-color: @table-cell-header-bg-color;
-  font-size: @table-cell-header-text-size;
-  line-height: (@table-cell-header-text-size + @table-cell-row-padding)*2;
-  @table-cell-header-additional-rule();
+.table-cell {
+  .th-row {
+    margin-top: @table-cell-header-row-spacing;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: @table-cell-header-row-padding;
+    padding-bottom: @table-cell-header-row-padding;
+    color: @table-cell-header-text-color;
+    background-color: @table-cell-header-bg-color;
+    font-size: @table-cell-header-text-size;
+    line-height: (@table-cell-header-text-size + @table-cell-row-padding)*2;
+    @table-cell-header-additional-rule();
+  }
+
+  .td-row {
+    margin-top: @table-cell-row-spacing;
+    margin-bottom: @table-cell-row-spacing;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: @table-cell-row-padding;
+    padding-bottom: @table-cell-row-padding;
+    font-size: @table-cell-row-text-size;
+    line-height: (@table-cell-row-text-size + @table-cell-row-padding)*2;
+
+    .cell {
+      // Add '...' at the end of text if too long for the cell
+      .ellipsis();
+    }
+
+    .cell > .cell-label {
+      font-weight: bold;
+    }
+
+    .cell > a > i {
+      font-size: 20px;
+    }
+
+    &:nth-child(odd) {
+      background-color: @table-cell-row-odd-bg-color;
+    }
+
+    &:nth-child(even) {
+      background-color: @table-cell-row-even-bg-color;
+    }
+  }
 }
 
-.table-cell .td-row {
-  margin-top: @table-cell-row-spacing;
-  margin-bottom: @table-cell-row-spacing;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-top: @table-cell-row-padding;
-  padding-bottom: @table-cell-row-padding;
-}
-
-.table-cell .td-row {
-  font-size: @table-cell-row-text-size;
-  line-height: (@table-cell-row-text-size + @table-cell-row-padding)*2;
-}
-
-.table-cell .td-row:nth-child(odd) {
-  background-color: @table-cell-row-odd-bg-color;
-}
-
-.table-cell .td-row:nth-child(even) {
-  background-color: @table-cell-row-even-bg-color;
-}
-
-.table-cell .td-row .cell {
-  // Add '...' at the end of text if too long for the cell
-  .ellipsis();
-}
-
-.table-cell .td-row .cell > .cell-label {
-  font-weight: bold;
-}
-
-.table-cell .td-row .cell > a > i {
-  font-size: 20px;
-}
 @media (max-width: @screen-sm) {
-  .table-cell .td-row .cell > a { padding-left: 0px; }
-}
-
-// Inverse Style
-.table-cell.inverse .th-row {
-  background-color: @bg-inverse-intense-color;
-  color: white;
-}
-
-.table-cell.inverse .td-row:nth-child(odd) {
-  background-color: lighten(@bg-inverse-color,3%);
-}
-
-.table-cell.inverse .td-row:nth-child(even) {
-  background-color: lighten(@bg-inverse-color,5%);
-}
-
-.table-cell .btn-link.btn-link-info {
-  color: @brand-info !important;
-
-  &:hover, &:focus {
-    color: darken(@brand-info, 30%) !important;
-  }
-}
-
-.table-cell .btn-link.btn-link-warning {
-  color: @brand-warning !important;
-
-  &:hover, &:focus {
-    color: darken(@brand-warning, 30%) !important;
-  }
-}
-
-.table-cell .btn-link.btn-link-danger {
-  color: @brand-danger !important;
-
-  &:hover, &:focus {
-    color: darken(@brand-danger, 30%) !important;
-  }
+  .table-cell .td-row .cell > a { padding-left: 0; }
 }
 
 // Table style in a well
@@ -1766,16 +1586,32 @@ input.ng-dirty.ng-invalid {
   margin-right: -15px;
 }
 
+// Inverse Style
+.table-cell.inverse {
+  .th-row {
+    color: @table-inverse-cell-header-text-color;
+    background-color: @table-inverse-cell-header-bg-color;
+  }
+
+  .td-row:nth-child(odd) {
+    background-color: @table-inverse-cell-row-odd-bg-color;
+  }
+
+  .td-row:nth-child(even) {
+    background-color: @table-inverse-cell-row-even-bg-color;
+  }
+}
+
 .ribbon-testimonial {
 
   .body {
-    background-color:@bg-main-color;
+    background-color: @bg-on-bg-inverse-color;
     border-radius: 5px;
-    padding:20px;
-    color:@text-strong-color;
-    font-weight:300;
-    font-size:16px;
-    font-style:italic;
+    padding: 20px;
+    color: @text-strong-color;
+    font-weight: 300;
+    font-size: 16px;
+    font-style: italic;
 
     .arrow {
       .rotate(45deg);
@@ -1783,41 +1619,32 @@ input.ng-dirty.ng-invalid {
       height: 0;
       border-top: 18px solid transparent;
       border-bottom: 18px solid transparent;
-      border-right:18px solid @decorator-main-color;
-      position:absolute;
-      right:28px;
-      margin-top:8px;
+      border-right: 18px solid @decorator-main-color;
+      position: absolute;
+      right: 28px;
+      margin-top: 8px;
     }
   }
 
   .from {
-    margin:7px 0px 0px 30px;
+    margin: 7px 0px 0px 30px;
+
     .name {
-      display:inline;
-      font-size:14px;
-      font-weight:700;
+      display: inline;
+      font-size: 14px;
+      font-weight: 700;
       color: @text-inverse-color;
     }
 
     .company {
-      display:inline;
-      font-size:14px;
-      font-weight:300;
+      display: inline;
+      font-size: 14px;
+      font-weight: 300;
       color: @decorator-inverse-color;
     }
-
   }
 }
 
-.ribbon-testimonial.ribbon-white {
-  .body {
-    background-color: white;
-  }
-
-  .arrow {
-    border-right:18px solid #ccc;
-  }
-}
 
 /*-----------------------------------------------------------------------*/
 /*                       Dashboard Section Title                         */
@@ -1828,14 +1655,11 @@ input.ng-dirty.ng-invalid {
 }
 
 .myspace .section-title:after when (@dashboard-section-title-alignment = center) and (@dashboard-section-title-display-subline = true){
-  .fa;
   display: block;
-  content: @fa-var-caret-up;
+  content: '';
   margin-top: 10px;
-  font-size: 24px;
   border-bottom: solid 1px @dashboard-section-title-color;
-  line-height: 8px;
-  max-width: 60%;
+  max-width: 45%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1846,7 +1670,6 @@ a.editable.editable-click {
   border: none;
 
   &:hover {
-    //color: @bluegray2;
     border-bottom: dashed 1px fadeout(@text-strong-color,60%);
   }
 }
@@ -1885,173 +1708,6 @@ form.editable-wrap .editable-controls input {
   .row:not(:first-child) {
     margin-top: 15px;
   }
-}
-
-.dashboard-organization {
-
-  //-----------------------------------
-  // Tabs Styling
-  //-----------------------------------
-  ul.nav.nav-tabs {
-    border-bottom: none;
-  }
-
-  // Tab Header Wrapper Styling
-  ul.nav.nav-tabs > li {
-    margin-right: 5px;
-    padding-bottom: 5px;
-    background-color: transparent;
-    border-bottom: solid 5px transparent;
-    padding: 0px;
-    cursor: pointer;
-  }
-  ul.nav.nav-tabs > li.active when (@dashboard-cpy-tabs-subline-size > 0) {
-    border-bottom: solid 4px @dashboard-cpy-tabs-active-bg-color;
-  }
-
-  // Tab Header Styling
-  ul.nav.nav-tabs > li > a {
-    padding: 20px 40px;
-    border: none;
-    color: @dashboard-cpy-tabs-text-color;
-    background-color: @dashboard-cpy-tabs-bg-color;
-    .border-top-radius(@dashboard-cpy-tabs-border-radius);
-    .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
-
-
-  }
-  ul.nav.nav-tabs > li > a:hover {
-    background-color: @dashboard-cpy-tabs-hover-bg-color;
-    color: @dashboard-cpy-tabs-hover-text-color;
-  }
-  ul.nav.nav-tabs > li.active > a,
-  ul.nav.nav-tabs > li.active > a:hover,
-  ul.nav.nav-tabs > li.active > a:focus {
-    padding-bottom: 20px;
-    background-color: @dashboard-cpy-tabs-active-bg-color;
-    color: @dashboard-cpy-tabs-active-text-color;
-
-    & when (@dashboard-cpy-tabs-subline-size = 0) {
-      .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
-    }
-  }
-
-  // Tab Content Styling
-  .tab-content {
-    border-top: solid @dashboard-cpy-tabs-subline-size @dashboard-cpy-tabs-subline-color;
-    padding-top: 20px;
-  }
-
-  .tab-content .tab-pane {
-    background-color: transparent;
-  }
-
-  @media(max-width: 720px) {
-    ul.nav.nav-tabs > li {
-      width:100%;
-
-      &.active {
-        border-bottom: solid 5px transparent;
-        a {
-          background-color: @dashboard-cpy-tabs-active-bg-color;
-          color: white;
-        }
-      }
-    }
-  }
-
-  //-----------------------------------
-  // Well Styling
-  //-----------------------------------
-  .well {
-    border: none;
-    background-color: @dashboard-cpy-tabcontent-bg-color;
-  }
-
-  //-----------------------------------
-  // Accordion Styling
-  //-----------------------------------
-  .panel-group .panel {
-    background-color: @dashboard-cpy-tabcontent-bg-color;
-    box-shadow: none;
-    border: none;
-    margin: 0px 0px 25px 0px;
-
-    .cc-icons i {
-      display: inline-block;
-    }
-  }
-
-  .panel-group .panel .panel-heading {
-    background-color: @dashboard-cpy-tabcontent-header-bg-color;
-    border: none;
-  }
-
-  .panel-group .panel-collapse > .panel-body {
-    background-color: @dashboard-cpy-tabcontent-body-bg-color;
-    border: none;
-  }
-
-  //-----------------------------------
-  // CC Form
-  //-----------------------------------
-  .cc-header small div {
-    display: inline-block;
-    vertical-align: top;
-
-    i {
-      display: inline-block;
-      zoom: 0.40;
-      vertical-align: top;
-    }
-    img {
-      max-height: 30px;
-      vertical-align: top;
-    }
-  }
-
-  .cc-header-eft {
-    font-size: 13px;
-    line-height: 29px;
-    color: #777777;
-    float: right;
-  }
-}
-
-//-----------------------------------
-// User Edition Modal
-//-----------------------------------
-.modal.member-edit .role-management {
-  text-align: center;
-}
-
-.modal.member-edit .role-management .fa {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.modal.member-edit .role-management p {
-  font-weight: 300;
-}
-
-//-----------------------------------
-// Team Member Add Modal
-//-----------------------------------
-.team-member-add-modal table {
-  margin: auto;
-  font-weight: 300;
-}
-.team-member-add-modal table td {
-  border: none;
-  padding: 8px;
-}
-
-.team-member-add-modal table tr td:first-child {
-  text-align: right;
-}
-
-.team-member-add-modal table tr td:last-child {
-  text-align: left;
 }
 
 #dashboard-apps-list {
@@ -2146,6 +1802,164 @@ form.editable-wrap .editable-controls input {
   }
 }
 
+.dashboard-organization {
+
+  //-----------------------------------
+  // Tabs Styling
+  //-----------------------------------
+  ul.nav.nav-tabs {
+    border-bottom: none;
+  }
+
+  // Tab Header Wrapper Styling
+  ul.nav.nav-tabs > li {
+    margin-right: 5px;
+    padding-bottom: 5px;
+    background-color: transparent;
+    border-bottom: solid 5px transparent;
+    padding: 0px;
+    cursor: pointer;
+  }
+  ul.nav.nav-tabs > li.active when (@dashboard-cpy-tabs-subline-size > 0) {
+    border-bottom: solid 4px @dashboard-cpy-tabs-active-bg-color;
+  }
+
+  // Tab Header Styling
+  ul.nav.nav-tabs > li > a {
+    padding: 20px 40px;
+    border: none;
+    color: @dashboard-cpy-tabs-text-color;
+    background-color: @dashboard-cpy-tabs-bg-color;
+    .border-top-radius(@dashboard-cpy-tabs-border-radius);
+    .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
+
+
+  }
+  ul.nav.nav-tabs > li > a:hover {
+    background-color: @dashboard-cpy-tabs-hover-bg-color;
+    color: @dashboard-cpy-tabs-hover-text-color;
+  }
+  ul.nav.nav-tabs > li.active > a,
+  ul.nav.nav-tabs > li.active > a:hover,
+  ul.nav.nav-tabs > li.active > a:focus {
+    padding-bottom: 20px;
+    background-color: @dashboard-cpy-tabs-active-bg-color;
+    color: @dashboard-cpy-tabs-active-text-color;
+
+    & when (@dashboard-cpy-tabs-subline-size = 0) {
+      .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
+    }
+  }
+
+  // Tab Content Styling
+  .tab-content {
+    border-top: solid @dashboard-cpy-tabs-subline-size @dashboard-cpy-tabs-subline-color;
+    padding-top: 20px;
+  }
+
+  .tab-content .tab-pane {
+    background-color: transparent;
+  }
+
+  @media(max-width: 720px) {
+    ul.nav.nav-tabs > li {
+      width:100%;
+
+      &.active {
+        border-bottom: solid 5px transparent;
+        a {
+          background-color: @dashboard-cpy-tabs-active-bg-color;
+          color: white;
+        }
+      }
+    }
+  }
+
+  //-----------------------------------
+  // Well Styling
+  //-----------------------------------
+  .well {
+    border: none;
+    background-color: @dashboard-cpy-tabcontent-bg-color;
+
+    label, p {
+      color: @dashboard-cpy-tabcontent-text-color;
+    }
+  }
+
+  //-----------------------------------
+  // Accordion Styling
+  //-----------------------------------
+  .panel-group .panel {
+    margin: 0px 0px 25px 0px;
+
+    .cc-icons i {
+      display: inline-block;
+    }
+  }
+
+  //-----------------------------------
+  // CC Form
+  //-----------------------------------
+  .cc-header small div {
+    display: inline-block;
+    vertical-align: top;
+
+    i {
+      display: inline-block;
+      zoom: 0.40;
+      vertical-align: top;
+    }
+    img {
+      max-height: 30px;
+      vertical-align: top;
+    }
+  }
+
+  .cc-header-eft {
+    font-size: 13px;
+    line-height: 29px;
+    color: #777777;
+    float: right;
+  }
+}
+
+//-----------------------------------
+// User Edition Modal
+//-----------------------------------
+.modal.member-edit .role-management {
+  text-align: center;
+}
+
+.modal.member-edit .role-management .fa {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.modal.member-edit .role-management p {
+  font-weight: 300;
+}
+
+//-----------------------------------
+// Team Member Add Modal
+//-----------------------------------
+.team-member-add-modal table {
+  margin: auto;
+  font-weight: 300;
+}
+.team-member-add-modal table td {
+  border: none;
+  padding: 8px;
+}
+
+.team-member-add-modal table tr td:first-child {
+  text-align: right;
+}
+
+.team-member-add-modal table tr td:last-child {
+  text-align: left;
+}
+
 #impac {
   impac-dashboard.with-dock {
     @media(min-width: @screen-md-min) {
@@ -2174,17 +1988,32 @@ form.editable-wrap .editable-controls input {
     color: @dashboard-marketplace-show-header-text-color;
   }
 
+  blockquote {
+    overflow-wrap: break-word;
+  }
+
   //-------------------------------
   // Content - General
   //-------------------------------
   .show-content .well {
-    background-color: white;
+    color: @dashboard-marketplace-show-sections-text-color;
+    background-color: @dashboard-marketplace-show-sections-bg-color;
     border: none;
     border-radius: 2px;
-  }
-  .show-content .btn.btn-promo {
-    padding-left: 0;
-    padding-right: 0;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    img {
+      .img-responsive;
+    }
+
+    .loading-icon {
+      font-size: 40px;
+      color: @dashboard-marketplace-show-header-text-color;
+      text-align: center;
+    }
   }
 
   //-------------------------------
@@ -2254,7 +2083,7 @@ form.editable-wrap .editable-controls input {
   //-------------------------------
   .show-content ul.key-benefits {
     list-style: none;
-    padding-left: 0px;
+    padding-left: 0;
     text-align: left;
     margin-top: 20px;
   }
@@ -2265,7 +2094,7 @@ form.editable-wrap .editable-controls input {
   }
 
   .show-content ul.key-benefits > li > .fa.fa-check {
-    color: @elem-positive-color;
+    color: @brand-success;
     margin-right: 5px;
   }
 
@@ -2273,11 +2102,166 @@ form.editable-wrap .editable-controls input {
   // Content - Testimonials
   //-------------------------------
   .show-content .ribbon-testimonial .body {
-    color: @dashboard-marketplace-tile-text-color;
+    color: @dashboard-marketplace-show-sections-text-color;
+    background-color: @dashboard-marketplace-show-sections-bg-color;
   }
 
   .show-content .ribbon-testimonial .from .name {
-    color: @bg-inverse-color;
+    color: @dashboard-marketplace-show-sections-text-color;
+  }
+
+  .nav.nav-tabs {
+    margin-bottom: 15px;
+  }
+
+  .filter-reviews {
+    width:auto;
+    display: inline;
+  }
+
+  .no-question-container {
+    padding: 20px 15px;
+    font-size: 16px;
+    background: @no-question-bg-panel-color;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+  }
+
+  .no-review-container {
+    padding: 20px 15px;
+    font-size: 16px;
+    background: @no-review-bg-panel-color;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+  }
+
+  #comments {
+    .add-review {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    blockquote {
+      margin-bottom: 0;
+    }
+
+    mno-pagination {
+      margin-bottom: 15px;
+    }
+
+    .comment {
+      float: right;
+      width: 85%;
+      background-color: @comment-bg;
+      margin-top: 5px;
+      padding: 5px 15px;
+    }
+  }
+
+  .questions {
+    margin-bottom: 15px;
+
+    .ribbon-question {
+      margin-top: 15px;
+      background-color: @question-ribbon-bg;
+      border-radius: 5px;
+      padding: 20px;
+
+      .question-body {
+        margin-bottom: 10px;
+      }
+
+      .question-title {
+        font-weight: bold;
+      }
+
+      .question-actions {
+        display: flex;
+        flex-flow: column;
+        align-items: flex-end;
+
+        @media (max-width: @screen-xs-max) {
+          flex-flow: row;
+        }
+
+        button:not(:last-child) {
+          margin-bottom: 5px;
+        }
+      }
+
+      .question-answer {
+        margin-bottom: 10px;
+      }
+
+      .question-attribute {
+        font-size: 1rem;
+        font-style: italic;
+      }
+    }
+
+    .questions-panel {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
+      input {
+        border-radius: 3px;
+        padding-left: 7px;
+        padding-right: 30px;
+        border: @question-search-border;
+        width: 250px;
+      }
+
+      form {
+        position: relative;
+      }
+
+      button.fa {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-color: @question-search-btn-bg;
+        color: @question-search-btn-color;
+        border: none;
+        width: 30px;
+      }
+
+      button {
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+.dashboard-marketplace-compare {
+
+  .marketplace-compare-table {
+    overflow-x: scroll;
+
+    th, td {
+      min-width: 200px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    img.media-object {
+      max-width: 120px;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+
+  .marketplace-compare-wrap {
+    margin-top: 20px;
+  }
+
+  .marketplace-compare-info {
+    overflow: auto;
   }
 }
 
@@ -2300,6 +2284,15 @@ form.editable-wrap .editable-controls input {
     color: black;
   }
 
+  .marketplace-nav {
+    min-height: 65px;
+  }
+
+  .marketplace-compare-action {
+    position: relative;
+    top: -15px;
+  }
+
   //-------------------------------
   // Marketplace list
   //-------------------------------
@@ -2311,6 +2304,7 @@ form.editable-wrap .editable-controls input {
   // App Card
   //-------------------------------
   .marketplace-app-card {
+    position: relative;
     background-color: @dashboard-marketplace-tile-bg-color;
     color: @dashboard-marketplace-tile-text-color;
     cursor: pointer;
@@ -2330,6 +2324,26 @@ form.editable-wrap .editable-controls input {
       img.media-object {
         border: solid 1px @dashboard-marketplace-tile-hover-img-border-color;
       }
+    }
+
+    .media {
+      margin-top: 0;
+    }
+  }
+
+  .marketplace-app-card-checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+
+    label {
+      width: 100%;
+      height: 100%;
+      //padding-left: 20px;
+      cursor: pointer;
     }
   }
 
@@ -2362,6 +2376,105 @@ form.editable-wrap .editable-controls input {
   }
   .marketplace-app-card:hover .arrow {
     visibility: visible;
+  }
+}
+
+#app-connect-modal {
+
+  select {
+    display: block;
+    margin: auto;
+  }
+
+  button[type="submit"] {
+    display: block;
+    margin: auto;
+  }
+}
+
+.app-deletion-modal {
+  .deletion-sentence {
+    color: @brand-danger;
+  }
+}
+
+//=======================================
+// Settings Modals
+//=======================================
+#app-settings-modal {
+
+  .modal-body {
+    padding: 5px;
+
+    div.app-name {
+      border: 0px;
+
+      .fa {
+        margin-left: 5px;
+      }
+    }
+
+    h4, .title {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .sentence-check {
+      width: 100%;
+    }
+
+    .buttons {
+      width: 100%;
+      text-align: right;
+      padding-top: 20px;
+    }
+
+    .label {
+      font-size: 100%;
+      text-transform: capitalize;
+      padding: 6px 12px;
+
+      &.updating, &.upgrading, &.provisioning {
+        background-color: @mno-dock-settings-app-upgrading;
+      }
+      &.running, &.starting, &.restarting {
+        background-color: @mno-dock-settings-app-running;
+      }
+      &.terminating, &.terminated {
+        background-color: @mno-dock-settings-app-terminating;
+      }
+      &.neutral {
+        background-color: @mno-dock-settings-app-neutral;
+      }
+    }
+
+    .centered-buttons {
+      display: flex;
+      align-content: center;
+      justify-content: space-around;
+    }
+
+    .app-deletion {
+      .deletion-sentence {
+        color: @deletion-sentence-color;
+      }
+    }
+  }
+}
+
+.dashboard-organization {
+  // credit card icons display modes
+  //---------------------------------
+
+  [class^="mnoe-icon-cc-icons-mno-cc-"].disabled,
+  [class*="mnoe-icon-cc-icons-mno-cc-"].disabled {
+    opacity: 0.4;
+  }
+
+  [class^="mnoe-icon-cc-icons-mno-cc-"].enabled,
+  [class*="mnoe-icon-cc-icons-mno-cc-"].enabled {
+    opacity: 1;
   }
 }
 
@@ -2405,7 +2518,11 @@ form.editable-wrap .editable-controls input {
     max-width: 100%;
     overflow-x: auto;
 
+    p {
+      color: @dashboard-cpy-teams-matrix-text-color;
+    }
   }
+
   table.permission-matrix.resellers-permissions {
     thead > tr th {
       height: 28px;
@@ -2501,75 +2618,10 @@ form.editable-wrap .editable-controls input {
   }
 }
 
-#app-connect-modal {
-
-  select {
-    display: block;
-    margin: auto;
-  }
-
-  button[type="submit"] {
-    display: block;
-    margin: auto;
-  }
-}
-
-//=======================================
-// Settings Modals
-//=======================================
-#app-settings-modal {
-
-  .modal-body {
-    padding: 5px;
-
-    div.app-name {
-      border: 0px;
-
-      .fa {
-        margin-left: 5px;
-      }
-    }
-
-    h4, .title {
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .sentence-check {
-      width: 100%;
-    }
-
-    .buttons {
-      width: 100%;
-      text-align: right;
-      padding-top: 20px;
-    }
-
-    .label {
-      font-size: 100%;
-      text-transform: capitalize;
-      padding: 6px 12px;
-
-      &.updating, &.upgrading, &.provisioning {
-        background-color: @mno-dock-settings-app-upgrading;
-      }
-      &.running, &.starting, &.restarting {
-        background-color: @mno-dock-settings-app-running;
-      }
-      &.terminating, &.terminated {
-        background-color: @mno-dock-settings-app-terminating;
-      }
-      &.neutral {
-        background-color: @mno-dock-settings-app-neutral;
-      }
-    }
-
-    .centered-buttons {
-      display: flex;
-      align-content: center;
-      justify-content: space-around;
-    }
+.create-review-modal {
+  textarea.form-control {
+    max-width: 100%;
+    background-color: white;
   }
 }
 
