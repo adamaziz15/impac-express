@@ -213,6 +213,11 @@ html, body {
 @dashboard-section-title-alignment:             center;
 @dashboard-section-title-display-subline:       true;
 
+// User without organisation
+//--------------------------------------
+@without-organisation-well-bg:                  @bg-inverse-color;
+@without-organisation-text-color:               @text-inverse-color;
+
 // Side navbar menu
 //--------------------------------------
 @dashboard-side-menu-padding:                   30px 0px 0px 14px;
@@ -1343,6 +1348,17 @@ mno-pagination {
 
 mno-password {
   display: block;
+}
+
+mno-without-organisation {
+  .well {
+    background-color: @without-organisation-well-bg;
+    color: @without-organisation-text-color;
+
+    h2 {
+      margin-top: 0;
+    }
+  }
 }
 
 average-star-rating, star-rating {
