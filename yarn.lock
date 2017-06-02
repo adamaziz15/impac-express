@@ -3,8 +3,8 @@
 
 
 "impac-angular@git+https://git@github.com/maestrano/impac-angular.git#staging/cash-widgets":
-  version "1.5.0"
-  resolved "git+https://git@github.com/maestrano/impac-angular.git#9cb989635430a93123ae3d5ea4f897975abb3606"
+  version "1.5.1"
+  resolved "git+https://git@github.com/maestrano/impac-angular.git#58eb4a75e83a5c6cc1b4d4d79ebf0c70fa809564"
 
 "mno-enterprise-angular@git+https://git@github.com/maestrano/mno-enterprise-angular.git#master":
   version "1.0.0"

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/maestrano/mno-enterprise.git
-  revision: 36f19d566d6ff3d1a3e156a54ef40b60121595aa
+  revision: a3c78dc9e6a35a6a6c4f32f9f474f3e5e023bec9
   specs:
     mno-enterprise (3.1.3)
       mno-enterprise-api (= 3.1.3)
@@ -125,7 +125,7 @@ GEM
     domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
-    excon (0.55.0)
+    excon (0.56.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
@@ -173,7 +173,7 @@ GEM
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    i18n (0.8.1)
+    i18n (0.8.4)
     i18n_data (0.7.0)
     jbuilder (2.2.16)
       activesupport (>= 3.0.0, < 5)
@@ -215,7 +215,7 @@ GEM
       rails (>= 3.1)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
-    nokogumbo (1.4.11)
+    nokogumbo (1.4.12)
       nokogiri
     omniauth (1.3.2)
       hashie (>= 1.2, < 4)
