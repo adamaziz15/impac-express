@@ -42,6 +42,7 @@ angular.module 'mnoEnterpriseAngular'
     dhbConfig:
       showDhbHeading: true
       dhbHeadingText: ''
+      multiCompany: true
     dhbSubMenuConfig:
       myobMessage:
         appLink:
