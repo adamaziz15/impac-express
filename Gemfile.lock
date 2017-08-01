@@ -1,22 +1,22 @@
 GIT
   remote: https://github.com/maestrano/mno-enterprise.git
-  revision: 29bca55e4667ba06883783beaf51ff59c6dbfb67
+  revision: e40d7a26adcf1a051d30175ec276b9678c6732c2
   ref: feature/dashboard-designer
   specs:
-    mno-enterprise (3.1.3)
-      mno-enterprise-api (= 3.1.3)
-      mno-enterprise-core (= 3.1.3)
-      mno-enterprise-frontend (= 3.1.3)
-    mno-enterprise-api (3.1.3)
+    mno-enterprise (3.3.1)
+      mno-enterprise-api (= 3.3.1)
+      mno-enterprise-core (= 3.3.1)
+      mno-enterprise-frontend (= 3.3.1)
+    mno-enterprise-api (3.3.1)
       coffee-rails (~> 4.1)
       credit_card_validations (~> 3.4.0)
       haml (~> 4.0)
       health_check (~> 2.4)
       httparty (~> 0.13.7)
       jbuilder (~> 2.2.16)
-      mno-enterprise-core (= 3.1.3)
+      mno-enterprise-core (= 3.3.1)
       sprockets-rails (~> 2.3)
-    mno-enterprise-core (3.1.3)
+    mno-enterprise-core (3.3.1)
       cancancan (~> 1.10)
       config (~> 1.0, < 1.3)
       countries (~> 0.11.3)
@@ -35,12 +35,12 @@ GIT
       rails (~> 4.2, >= 4.2.0)
       redcarpet (~> 3.3, >= 3.3.3)
       sanitize (~> 4.0)
-    mno-enterprise-frontend (3.1.3)
+    mno-enterprise-frontend (3.3.1)
       haml-rails (~> 0.9)
       jquery-rails (~> 4.0)
       less-rails (~> 2.7)
-      mno-enterprise-api (= 3.1.3)
-      mno-enterprise-core (= 3.1.3)
+      mno-enterprise-api (= 3.3.1)
+      mno-enterprise-core (= 3.3.1)
       ngannotate-rails (~> 1.0)
       rack-rewrite
       therubyracer (~> 0.12)
