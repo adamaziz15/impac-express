@@ -15,3 +15,6 @@ developer:
   enabled: true
 marketplace:
   enabled: true
+admin_panel:
+  dashboard_templates:
+    enabled: true
