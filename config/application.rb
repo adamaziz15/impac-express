@@ -65,7 +65,7 @@ module ImpacExpress
       allow do
         allowed_headers = ['X-Requested-With', 'X-Prototype-Version', 'Accept', 'Content-Type', 'x-xsrf-token', 'Authorization', 'Origin']
 
-        origins 'localhost:7001'
+        origins 'localhost:7001', 'localhost:7003'
 
         resource '/mnoe/jpi/v1/current_user',
           headers: allowed_headers,
@@ -80,6 +80,10 @@ module ImpacExpress
           methods: [:post, :put, :delete, :options]
 
         resource '/mnoe/jpi/v1/impac/*',
+          headers: allowed_headers,
+          methods: [:get, :post, :put, :delete, :options]
+
+        resource '/mnoe/jpi/v1/admin/dashboard_templates',
           headers: allowed_headers,
           methods: [:get, :post, :put, :delete, :options]
       end
