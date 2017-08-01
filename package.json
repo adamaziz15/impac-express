@@ -2,7 +2,7 @@
   "name": "impac-express",
   "private": true,
   "dependencies": {
-    "impac-angular": "git+https://git@github.com/cesar-tonnoir/impac-angular.git#staging",
+    "impac-angular": "git+https://git@github.com/maestrano/impac-angular.git#staging",
     "mno-enterprise-angular": "git+https://git@github.com/maestrano/mno-enterprise-angular.git"
   }
 }

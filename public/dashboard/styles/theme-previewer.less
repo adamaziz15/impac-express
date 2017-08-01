@@ -1368,6 +1368,16 @@ mno-audit-events-list {
   }
 }
 
+mno-inline-message {
+  .mno-inline-checked {
+    color: @dashboard-account-inline-text-color-checked;
+  }
+
+  .mno-inline-unchecked {
+    color: @dashboard-account-inline-text-color-unchecked;
+  }
+}
+
 mno-impersonation-bar {
   #impersonate-bar {
     color: @text-inverse-strong-color;
@@ -1378,16 +1388,6 @@ mno-impersonation-bar {
     @media (max-width: @screen-xs-max) {
       padding-top: 40px;
     }
-  }
-}
-
-mno-inline-message {
-  .mno-inline-checked {
-    color: @dashboard-account-inline-text-color-checked;
-  }
-
-  .mno-inline-unchecked {
-    color: @dashboard-account-inline-text-color-unchecked;
   }
 }
 
@@ -1442,6 +1442,10 @@ mno-pagination {
   }
 }
 
+mno-password {
+  display: block;
+}
+
 mno-without-organisation {
   .well {
     background-color: @without-organisation-well-bg;
@@ -1451,10 +1455,6 @@ mno-without-organisation {
       margin-top: 0;
     }
   }
-}
-
-mno-password {
-  display: block;
 }
 
 average-star-rating, star-rating {
@@ -1816,12 +1816,6 @@ form.editable-wrap .editable-controls input {
   padding-left: 5px;
 }
 
-#account {
-  .row:not(:first-child) {
-    margin-top: 15px;
-  }
-}
-
 #dashboard-apps-list {
   .app-dashboard {
     min-height: 280px;
@@ -1914,12 +1908,9 @@ form.editable-wrap .editable-controls input {
   }
 }
 
-#impac {
-  impac-dashboard.with-dock {
-    @media(min-width: @screen-md-min) {
-      display: block;
-      .top-buffer-4;
-    }
+#account {
+  .row:not(:first-child) {
+    margin-top: 15px;
   }
 }
 
@@ -2079,6 +2070,15 @@ form.editable-wrap .editable-controls input {
 
 .team-member-add-modal table tr td:last-child {
   text-align: left;
+}
+
+#impac {
+  impac-dashboard.with-dock {
+    @media(min-width: @screen-md-min) {
+      display: block;
+      .top-buffer-4;
+    }
+  }
 }
 
 //-------------------------------
@@ -3005,5 +3005,51 @@ form.editable-wrap .editable-controls input {
 
 // Use this file to declare your custom fonts
 // See https://github.com/maestrano/mno-enterprise#adding-a-custom-font
+
+
+.mnoe-icon {
+  background-image: url('../images/sprites/mnoe-sprites.png');
+}
+
+.mnoe-icon-cc-icons-mno-cc-amex {
+  background-position: -0px -0px;
+  width: 46px;
+  height: 30px;
+}
+.mnoe-icon-cc-icons-mno-cc-jcb {
+  background-position: -0px -30px;
+  width: 46px;
+  height: 30px;
+}
+.mnoe-icon-cc-icons-mno-cc-mastercard {
+  background-position: -0px -60px;
+  width: 46px;
+  height: 30px;
+}
+.mnoe-icon-cc-icons-mno-cc-visa {
+  background-position: -0px -90px;
+  width: 46px;
+  height: 30px;
+}
+.mnoe-icon-cpy-logo-siteseal {
+  background-position: -0px -120px;
+  width: 131px;
+  height: 32px;
+}
+.mnoe-icon-cc-icons-mno-cc-lock {
+  background-position: -0px -152px;
+  width: 35px;
+  height: 46px;
+}
+.mnoe-icon-cpy-logo-cba {
+  background-position: -0px -198px;
+  width: 94px;
+  height: 70px;
+}
+.mnoe-icon-cpy-logo-eway {
+  background-position: -0px -268px;
+  width: 140px;
+  height: 70px;
+}
 
 // endinjector
