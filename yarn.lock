@@ -9,3 +9,7 @@
 "mno-enterprise-angular@git+https://git@github.com/maestrano/mno-enterprise-angular.git":
   version "1.1.0"
   resolved "git+https://git@github.com/maestrano/mno-enterprise-angular.git#4fd4c179f5ca315bcf32e25c2cdbfe85102a0ae1"
+
+"mnoe-admin-panel@git+https://git@github.com/cesar-tonnoir/mnoe-admin-panel.git#feature/dashboard-designer":
+  version "1.0.0-rc.3"
+  resolved "git+https://git@github.com/cesar-tonnoir/mnoe-admin-panel.git#3349f753966290862563ad666984246453e85073"

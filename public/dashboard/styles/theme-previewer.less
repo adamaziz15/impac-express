@@ -619,6 +619,75 @@ html, body {
   overflow: hidden;
 }
 
+@menu-left-width: 80px;
+
+.layout-loading {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: @dashboard-bg-color;
+  z-index: 1000;
+  padding-top: 50px;
+
+  &.ng-hide {
+    transition: all linear 1s;
+    opacity: 0;
+  }
+
+  .layout-loading-text {
+    display: inline-block;
+    padding-top: 15px;
+    color: @dashboard-loader-color;
+  }
+}
+
+#dashboard {
+  .container {
+    position: relative;
+    padding-top: 110px;
+
+    .analytics {
+      padding-top: 0;
+    }
+  }
+
+  /* Fix the container width if the screen is sm+ */
+  @media screen and (min-width: @screen-sm-min) {
+    margin-left: @menu-left-width;
+    .container {
+      padding-top: 70px;
+      width: @container-sm - @menu-left-width;
+
+      .analytics {
+        padding-top: 0;
+      }
+    }
+  }
+
+  /* Fix the container width if the screen is md+ */
+  @media screen and (min-width: @screen-md-min) {
+    margin-left: @menu-left-width;
+    .container {
+      padding-top: 40px;
+      width: @container-md - @menu-left-width;
+
+      .analytics {
+        padding-top: 10px;
+      }
+    }
+  }
+
+  /* Fix the container width if the screen is lg+ */
+  @media screen and (min-width: @screen-lg-min) {
+    margin-left: @menu-left-width;
+    .container {
+      width: @container-lg - @menu-left-width;
+    }
+  }
+}
+
 #app-dock-container {
   position: absolute;
   left: 0;
@@ -1373,6 +1442,10 @@ mno-pagination {
   }
 }
 
+mno-password {
+  display: block;
+}
+
 mno-without-organisation {
   .well {
     background-color: @without-organisation-well-bg;
@@ -1743,79 +1816,6 @@ form.editable-wrap .editable-controls input {
   padding-left: 5px;
 }
 
-mno-password {
-  display: block;
-}
-
-@menu-left-width: 80px;
-
-.layout-loading {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: @dashboard-bg-color;
-  z-index: 1000;
-  padding-top: 50px;
-
-  &.ng-hide {
-    transition: all linear 1s;
-    opacity: 0;
-  }
-
-  .layout-loading-text {
-    display: inline-block;
-    padding-top: 15px;
-    color: @dashboard-loader-color;
-  }
-}
-
-#dashboard {
-  .container {
-    position: relative;
-    padding-top: 110px;
-
-    .analytics {
-      padding-top: 0;
-    }
-  }
-
-  /* Fix the container width if the screen is sm+ */
-  @media screen and (min-width: @screen-sm-min) {
-    margin-left: @menu-left-width;
-    .container {
-      padding-top: 70px;
-      width: @container-sm - @menu-left-width;
-
-      .analytics {
-        padding-top: 0;
-      }
-    }
-  }
-
-  /* Fix the container width if the screen is md+ */
-  @media screen and (min-width: @screen-md-min) {
-    margin-left: @menu-left-width;
-    .container {
-      padding-top: 40px;
-      width: @container-md - @menu-left-width;
-
-      .analytics {
-        padding-top: 10px;
-      }
-    }
-  }
-
-  /* Fix the container width if the screen is lg+ */
-  @media screen and (min-width: @screen-lg-min) {
-    margin-left: @menu-left-width;
-    .container {
-      width: @container-lg - @menu-left-width;
-    }
-  }
-}
-
 #account {
   .row:not(:first-child) {
     margin-top: 15px;
@@ -1910,15 +1910,6 @@ mno-password {
       &:hover {
         color: @brand-warning;
       }
-    }
-  }
-}
-
-#impac {
-  impac-dashboard.with-dock {
-    @media(min-width: @screen-md-min) {
-      display: block;
-      .top-buffer-4;
     }
   }
 }
@@ -2081,250 +2072,12 @@ mno-password {
   text-align: left;
 }
 
-
-#onboarding {
-  header.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: @onboarding-header-height;
-    background: @onboarding-header-background-color;
-    color: @onboarding-header-font-color;
-
-    @media (max-width: @screen-xs-max) {
-      .name {
-        display: none;
-      }
+#impac {
+  impac-dashboard.with-dock {
+    @media(min-width: @screen-md-min) {
+      display: block;
+      .top-buffer-4;
     }
-
-    .logo {
-      height: 40px;
-      margin-left: 10px;
-    }
-
-    .avatar {
-      .img-circle;
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-  }
-
-  .sub-header {
-    .z-depth(3);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: @onboarding-subheader-height;
-    background: @onboarding-subheader-background-color;
-    color: @onboarding-subheader-font-color;
-    margin-bottom: 20px;
-
-    .breadcrumb-item {
-      text-decoration: none;
-
-      // Deactivate the link
-      pointer-events: none;
-
-      .badge {
-        color: @onboarding-breadcrumb-badge-color;
-        background-color: @onboarding-breadcrumb-badge-bg;
-      }
-
-      &.active {
-        .badge {
-          color: @onboarding-breadcrumb-badge-color-active;
-          background: @onboarding-breadcrumb-badge-bg-active;
-        }
-      }
-
-      .title {
-        color: @onboarding-breadcrumb-link-color;
-
-        @media (max-width: @screen-xs-max) {
-          display: none;
-        }
-
-        &:hover, &:focus {
-          font-weight: 400;
-        }
-      }
-    }
-  }
-
-  .content-panel {
-    .z-depth(6);
-    border-radius: @onboarding-content-panel-border-radius;
-    padding: 20px;
-    margin-bottom: 30px;
-    background-color: @onboarding-content-panel-bg;
-    color: @onboarding-content-panel-color;
-
-    h1 {
-      margin-top: 0;
-    }
-  }
-
-  .next-button {
-    .top-buffer-2;
-    font-size: larger;
-  }
-}
-
-#step1 {
-
-}
-
-#step2 {
-  .apps-container {
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-    justify-content: flex-start;
-
-    #apps-widget, #data-shared {
-      flex: 1;
-    }
-
-    #apps-widget {
-      #widget-header-bar {
-        position: relative;
-        display: flex;
-        justify-content: space-around;
-
-        #app-search, #app-category {
-          width: 45%;
-          flex: 1;
-        }
-
-        #app-category {
-          margin-left: 5%;
-        }
-      }
-
-      .app-tile {
-        position: relative;
-        max-width: 112px;
-        margin: 10px;
-        float: left;
-
-        .app-info-modal {
-          position: absolute;
-          top: 0;
-          right: 3px;
-          z-index: 10;
-          width: 14px;
-          color: @onboarding-app-selector-info;
-        }
-
-        .app-icon {
-          outline: none;
-          position: relative;
-
-          .app-logo {
-            width: 100%;
-          }
-
-          .checked {
-            position: absolute;
-            border-radius: 6px;
-            background-color: @onboarding-app-selector-check-color;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-
-            // Center the tick
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-        }
-
-        .app-title {
-          color: @onboarding-app-selector-title;
-          text-align: center;
-          margin-top: 5px;
-          .ellipsis;
-        }
-      }
-    }
-
-    #data-shared {
-      max-width: 50%;
-
-      @media (max-width: @screen-sm-max) {
-        display: none;
-      }
-
-      .table-data-shared {
-        table-layout: fixed;
-        text-align: center;
-        margin: 5px 5px 0 10px;
-
-        .fa-check {
-          color: @onboarding-app-entities-checked;
-        }
-
-        .fa-times {
-          color: @onboarding-app-entities-unchecked;
-        }
-
-        .th-app {
-          text-align: center;
-
-          .header-logo {
-            width: 60px;
-          }
-
-          .app-title {
-            margin-top: 5px;
-            .ellipsis;
-          }
-        }
-      }
-    }
-  }
-
-  .onboarding-footer {
-    margin-top: 15px;
-  }
-}
-
-#step3 {
-
-  .apps-loader {
-    color: @onboarding-fetching-apps-loader-color;
-  }
-
-  .apps-wrapper {
-    .top-buffer-1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-
-    .app-card {
-      .top-buffer-1;
-      text-align: center;
-      background-color: @onboarding-app-card-bg-color;
-      color: @onboarding-app-card-text-color;
-      padding: @onboarding-app-card-padding;
-      .z-depth(3);
-      width: 220px;
-
-      h4 {
-        margin-top: 5px;
-      }
-
-      mno-app-install-btn {
-        display: block;
-        .top-buffer-1;
-      }
-    }
-  }
-
-  .next-button-wrapper {
-    width: 100%;
-    float: left;
   }
 }
 
@@ -2735,6 +2488,253 @@ mno-password {
   }
   .marketplace-app-card:hover .arrow {
     visibility: visible;
+  }
+}
+
+
+#onboarding {
+  header.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: @onboarding-header-height;
+    background: @onboarding-header-background-color;
+    color: @onboarding-header-font-color;
+
+    @media (max-width: @screen-xs-max) {
+      .name {
+        display: none;
+      }
+    }
+
+    .logo {
+      height: 40px;
+      margin-left: 10px;
+    }
+
+    .avatar {
+      .img-circle;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+
+  .sub-header {
+    .z-depth(3);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: @onboarding-subheader-height;
+    background: @onboarding-subheader-background-color;
+    color: @onboarding-subheader-font-color;
+    margin-bottom: 20px;
+
+    .breadcrumb-item {
+      text-decoration: none;
+
+      // Deactivate the link
+      pointer-events: none;
+
+      .badge {
+        color: @onboarding-breadcrumb-badge-color;
+        background-color: @onboarding-breadcrumb-badge-bg;
+      }
+
+      &.active {
+        .badge {
+          color: @onboarding-breadcrumb-badge-color-active;
+          background: @onboarding-breadcrumb-badge-bg-active;
+        }
+      }
+
+      .title {
+        color: @onboarding-breadcrumb-link-color;
+
+        @media (max-width: @screen-xs-max) {
+          display: none;
+        }
+
+        &:hover, &:focus {
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .content-panel {
+    .z-depth(6);
+    border-radius: @onboarding-content-panel-border-radius;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: @onboarding-content-panel-bg;
+    color: @onboarding-content-panel-color;
+
+    h1 {
+      margin-top: 0;
+    }
+  }
+
+  .next-button {
+    .top-buffer-2;
+    font-size: larger;
+  }
+}
+
+#step1 {
+
+}
+
+#step2 {
+  .apps-container {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: flex-start;
+
+    #apps-widget, #data-shared {
+      flex: 1;
+    }
+
+    #apps-widget {
+      #widget-header-bar {
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+
+        #app-search, #app-category {
+          width: 45%;
+          flex: 1;
+        }
+
+        #app-category {
+          margin-left: 5%;
+        }
+      }
+
+      .app-tile {
+        position: relative;
+        max-width: 112px;
+        margin: 10px;
+        float: left;
+
+        .app-info-modal {
+          position: absolute;
+          top: 0;
+          right: 3px;
+          z-index: 10;
+          width: 14px;
+          color: @onboarding-app-selector-info;
+        }
+
+        .app-icon {
+          outline: none;
+          position: relative;
+
+          .app-logo {
+            width: 100%;
+          }
+
+          .checked {
+            position: absolute;
+            border-radius: 6px;
+            background-color: @onboarding-app-selector-check-color;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+
+            // Center the tick
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        .app-title {
+          color: @onboarding-app-selector-title;
+          text-align: center;
+          margin-top: 5px;
+          .ellipsis;
+        }
+      }
+    }
+
+    #data-shared {
+      max-width: 50%;
+
+      @media (max-width: @screen-sm-max) {
+        display: none;
+      }
+
+      .table-data-shared {
+        table-layout: fixed;
+        text-align: center;
+        margin: 5px 5px 0 10px;
+
+        .fa-check {
+          color: @onboarding-app-entities-checked;
+        }
+
+        .fa-times {
+          color: @onboarding-app-entities-unchecked;
+        }
+
+        .th-app {
+          text-align: center;
+
+          .header-logo {
+            width: 60px;
+          }
+
+          .app-title {
+            margin-top: 5px;
+            .ellipsis;
+          }
+        }
+      }
+    }
+  }
+
+  .onboarding-footer {
+    margin-top: 15px;
+  }
+}
+
+#step3 {
+
+  .apps-loader {
+    color: @onboarding-fetching-apps-loader-color;
+  }
+
+  .apps-wrapper {
+    .top-buffer-1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .app-card {
+      .top-buffer-1;
+      text-align: center;
+      background-color: @onboarding-app-card-bg-color;
+      color: @onboarding-app-card-text-color;
+      padding: @onboarding-app-card-padding;
+      .z-depth(3);
+      width: 220px;
+
+      h4 {
+        margin-top: 5px;
+      }
+
+      mno-app-install-btn {
+        display: block;
+        .top-buffer-1;
+      }
+    }
+  }
+
+  .next-button-wrapper {
+    width: 100%;
+    float: left;
   }
 }
 
