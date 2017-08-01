@@ -48,6 +48,8 @@ angular.module 'mnoEnterpriseAngular'
         appLink:
           url: '/apps/myob'
           text: '>> Check this app on Maestrano marketplace'
+    dhbSettings:
+      createFromTemplateEnabled: true
     widgetSettings:
       tagging:
         enableFilterTags: true
