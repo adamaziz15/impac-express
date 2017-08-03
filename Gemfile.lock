@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/maestrano/mno-enterprise.git
-  revision: e40d7a26adcf1a051d30175ec276b9678c6732c2
+  revision: fac840f0219fe226eca9d81eac201d79f6fb351b
   ref: feature/dashboard-designer
   specs:
     mno-enterprise (3.3.1)
@@ -126,7 +126,7 @@ GEM
     domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
-    excon (0.57.1)
+    excon (0.58.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)

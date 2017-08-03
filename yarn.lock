@@ -12,4 +12,4 @@
 
 "mnoe-admin-panel@git+https://git@github.com/cesar-tonnoir/mnoe-admin-panel.git#feature/dashboard-designer":
   version "1.0.0-rc.3"
-  resolved "git+https://git@github.com/cesar-tonnoir/mnoe-admin-panel.git#3349f753966290862563ad666984246453e85073"
+  resolved "git+https://git@github.com/cesar-tonnoir/mnoe-admin-panel.git#8276e8e76548c55c577f370e620215a85ac9e6e1"
