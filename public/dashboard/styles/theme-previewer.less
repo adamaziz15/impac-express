@@ -215,6 +215,10 @@ html, body {
 @onboarding-header-height: 60px;
 @onboarding-header-background-color: @bg-inverse-color;
 @onboarding-header-font-color: @text-inverse-color;
+@onboarding-header-menu-text: @text-inverse-color;
+@onboarding-header-menu-text-hover: @text-strong-color;
+@onboarding-header-bg-menu: @bg-inverse-color;
+@onboarding-header-bg-menu-hover: @bg-on-bg-inverse-color;
 @onboarding-subheader-height: 50px;
 @onboarding-subheader-background-color: @decorator-main-color;
 @onboarding-subheader-font-color: @text-strong-color;
@@ -588,37 +592,6 @@ html, body {
 
 
 
-.font(@size, @weight, @color) {
-  font-weight: @weight;
-  font-size: @size;
-  color: @color;
-}
-
-.icon-fa(@icon) {
-  .fa;
-  @fa-icon-variable: "fa-var-@{icon}";
-  &:before { content: @@fa-icon-variable; }
-}
-
-.size(@width; @height) {
-  width: @width;
-  height: @height;
-}
-
-.square(@size) {
-  .size(@size; @size);
-}
-
-.rgba(@color, @alpha) {
-  background-color: rgba(red(@color), green(@color), blue(@color), @alpha);
-}
-
-.ellipsis() {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 @menu-left-width: 80px;
 
 .layout-loading {
@@ -688,12 +661,48 @@ html, body {
   }
 }
 
+.font(@size, @weight, @color) {
+  font-weight: @weight;
+  font-size: @size;
+  color: @color;
+}
+
+.icon-fa(@icon) {
+  .fa;
+  @fa-icon-variable: "fa-var-@{icon}";
+  &:before { content: @@fa-icon-variable; }
+}
+
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
+
+.square(@size) {
+  .size(@size; @size);
+}
+
+.rgba(@color, @alpha) {
+  background-color: rgba(red(@color), green(@color), blue(@color), @alpha);
+}
+
+.ellipsis() {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 #app-dock-container {
   position: absolute;
   left: 0;
   top: 0;
   right: 0;
   text-align: center;
+  
+  .top-right-corner {
+    line-height: 0;
+    margin-right: -10px;
+  }
 }
 
 ul.dock {
@@ -1117,6 +1126,16 @@ dashboard-company-selectbox {
   }
 }
 
+
+dashboard-language-selectbox {
+  display: block;
+
+  .selector-line {
+    display: inline-block;
+    margin: 5px auto;
+  }
+}
+
 dashboard-menu {
   /*-----------------------------------------------------------------------*/
   /*                         Mobile menu                                   */
@@ -1305,16 +1324,6 @@ dashboard-menu {
     .dashboard-button.active i.dhb-icon-logout {
       @dashboard-side-menu-btn-logout-active();
     }
-  }
-}
-
-
-dashboard-language-selectbox {
-  display: block;
-
-  .selector-line {
-    display: inline-block;
-    margin: 5px auto;
   }
 }
 
@@ -1515,6 +1524,989 @@ average-star-rating, star-rating {
     position: absolute;
     top: 5px;
     right: 0;
+  }
+}
+
+#account {
+  .row:not(:first-child) {
+    margin-top: 15px;
+  }
+}
+
+#dashboard-apps-list {
+  .app-dashboard {
+    min-height: 280px;
+    max-width: 225px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    background-color: @dashboard-apps-tile-bg-color;
+    text-align: center;
+    padding: 30px 0px;
+    padding-bottom: 0px;
+    margin-top: 15px;
+
+    .btn-change-plan {
+      margin-top:50px;
+    }
+
+    .title {
+      .font(14px,normal,@dashboard-apps-tile-text-color);
+      margin-top:10px;
+      margin-bottom:10px;
+    }
+
+    .app-line {
+      .font(12px,normal,@text-inverse-color);
+    }
+
+    img.app-logo {
+      border-radius: 5px;
+      .square(85px);
+      border: solid @dashboard-apps-tile-logo-border-size @dashboard-apps-tile-logo-border-color;
+    }
+
+    .connector-logo {
+      margin-top: 3px;
+      margin-bottom: 3px;
+      cursor: pointer;
+    }
+
+    .office365-connector-logo {
+      height: 32px;
+      padding: 2px;
+    }
+
+    .tutorial {
+      display:block;
+      margin-top: 7px;
+    }
+
+    // App Tile Settings (top right)
+    a.options {
+      line-height: 19px;
+      .square(20px);
+      border-radius: 20px;
+      color: @dashboard-apps-tile-settings-color;
+      background-color: @dashboard-apps-tile-settings-bg-color;
+      float:right;
+      margin: -25px 5px 0px 0px;
+    }
+
+    a.options:hover {
+      color: @dashboard-apps-tile-settings-hover-color;
+      background-color: @dashboard-apps-tile-settings-hover-bg-color;
+    }
+    a.options i {
+      margin-top: 3px;
+    }
+
+    .app-custom-info {
+      position: relative;
+      top: -10px;
+      z-index: 999;
+    }
+
+    // Add application tile (tile with + button)
+    &.add-app {
+      padding:15px 0px;
+      font-size:140px;
+      color: @dashboard-apps-tile-add-color;
+      background-color: @dashboard-apps-tile-add-bg-color;
+    }
+
+    &.add-app a {
+      color: @dashboard-bg-color;
+
+      &:hover {
+        color: @brand-warning;
+      }
+    }
+  }
+}
+
+.dashboard-organization {
+
+  //-----------------------------------
+  // Tabs Styling
+  //-----------------------------------
+  ul.nav.nav-tabs {
+    border-bottom: none;
+  }
+
+  // Tab Header Wrapper Styling
+  ul.nav.nav-tabs > li {
+    margin-right: 5px;
+    padding-bottom: 5px;
+    background-color: transparent;
+    border-bottom: solid 5px transparent;
+    padding: 0px;
+    cursor: pointer;
+  }
+  ul.nav.nav-tabs > li.active when (@dashboard-cpy-tabs-subline-size > 0) {
+    border-bottom: solid 4px @dashboard-cpy-tabs-active-bg-color;
+  }
+
+  // Tab Header Styling
+  ul.nav.nav-tabs > li > a {
+    padding: 20px 40px;
+    border: none;
+    color: @dashboard-cpy-tabs-text-color;
+    background-color: @dashboard-cpy-tabs-bg-color;
+    .border-top-radius(@dashboard-cpy-tabs-border-radius);
+    .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
+
+
+  }
+  ul.nav.nav-tabs > li > a:hover {
+    background-color: @dashboard-cpy-tabs-hover-bg-color;
+    color: @dashboard-cpy-tabs-hover-text-color;
+  }
+  ul.nav.nav-tabs > li.active > a,
+  ul.nav.nav-tabs > li.active > a:hover,
+  ul.nav.nav-tabs > li.active > a:focus {
+    padding-bottom: 20px;
+    background-color: @dashboard-cpy-tabs-active-bg-color;
+    color: @dashboard-cpy-tabs-active-text-color;
+
+    & when (@dashboard-cpy-tabs-subline-size = 0) {
+      .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
+    }
+  }
+
+  // Tab Content Styling
+  .tab-content {
+    border-top: solid @dashboard-cpy-tabs-subline-size @dashboard-cpy-tabs-subline-color;
+    padding-top: 20px;
+  }
+
+  .tab-content .tab-pane {
+    background-color: transparent;
+  }
+
+  @media(max-width: 720px) {
+    ul.nav.nav-tabs > li {
+      width:100%;
+
+      &.active {
+        border-bottom: solid 5px transparent;
+        a {
+          background-color: @dashboard-cpy-tabs-active-bg-color;
+          color: white;
+        }
+      }
+    }
+  }
+
+  //-----------------------------------
+  // Well Styling
+  //-----------------------------------
+  .well {
+    border: none;
+    background-color: @dashboard-cpy-tabcontent-bg-color;
+
+    label, p {
+      color: @dashboard-cpy-tabcontent-text-color;
+    }
+  }
+
+  //-----------------------------------
+  // Accordion Styling
+  //-----------------------------------
+  .panel-group .panel {
+    margin: 0px 0px 25px 0px;
+
+    .cc-icons i {
+      display: inline-block;
+    }
+  }
+
+  //-----------------------------------
+  // CC Form
+  //-----------------------------------
+  .cc-header small div {
+    display: inline-block;
+    vertical-align: top;
+
+    i {
+      display: inline-block;
+      zoom: 0.40;
+      vertical-align: top;
+    }
+    img {
+      max-height: 30px;
+      vertical-align: top;
+    }
+  }
+
+  .cc-header-eft {
+    font-size: 13px;
+    line-height: 29px;
+    color: #777777;
+    float: right;
+  }
+}
+
+//-----------------------------------
+// Invite Members Modal
+//-----------------------------------
+#invite-members-modal {
+  ul.roles-list {
+    list-style-type: none;
+  }
+}
+
+//-----------------------------------
+// User Edition Modal
+//-----------------------------------
+.modal.member-edit .role-management {
+  text-align: center;
+}
+
+.modal.member-edit .role-management .fa {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.modal.member-edit .role-management p {
+  font-weight: 300;
+}
+
+//-----------------------------------
+// Team Member Add Modal
+//-----------------------------------
+.team-member-add-modal table {
+  margin: auto;
+  font-weight: 300;
+}
+.team-member-add-modal table td {
+  border: none;
+  padding: 8px;
+}
+
+.team-member-add-modal table tr td:first-child {
+  text-align: right;
+}
+
+.team-member-add-modal table tr td:last-child {
+  text-align: left;
+}
+
+#impac {
+  impac-dashboard.with-dock {
+    @media(min-width: @screen-md-min) {
+      display: block;
+      .top-buffer-4;
+    }
+  }
+}
+
+//-------------------------------
+// Show View
+//-------------------------------
+.dashboard-marketplace-app {
+
+  //-------------------------------
+  // Header
+  //-------------------------------
+  .show-header .media-object {
+    max-width: 80px;
+    border-radius: 5px;
+    border: solid 1px darken(@bg-main-color, 5%);
+  }
+
+  .show-header .media-body h2 {
+    line-height: 80px;
+    color: @dashboard-marketplace-show-header-text-color;
+  }
+
+  .show-header .links {
+    padding-top: 5px;
+  }
+
+  blockquote {
+    overflow-wrap: break-word;
+  }
+
+  //-------------------------------
+  // Content - General
+  //-------------------------------
+  .show-content .well {
+    color: @dashboard-marketplace-show-sections-text-color;
+    background-color: @dashboard-marketplace-show-sections-bg-color;
+    border: none;
+    border-radius: 2px;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    img {
+      .img-responsive;
+    }
+
+    .loading-icon {
+      font-size: 40px;
+      color: @dashboard-marketplace-show-header-text-color;
+      text-align: center;
+    }
+  }
+
+  //-------------------------------
+  // Content - Carousel
+  //-------------------------------
+  .show-content .carousel img {
+    max-height: 300px;
+    margin: auto;
+  }
+
+  .show-content .carousel .carousel-inner {
+    text-align: center;
+  }
+
+  .show-content .carousel .carousel-control {
+    background: transparent;
+    cursor: pointer;
+    max-height: 300px;
+  }
+
+  .show-content .carousel .carousel-indicators {
+    visibility: hidden;
+  }
+
+  .show-content .carousel .carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+    margin-left: 0px;
+  }
+
+  //-------------------------------
+  // Content
+  // Height of columns in desktop
+  //-------------------------------
+  @media (min-width: @screen-md-min) {
+    .show-content .carousel { height: 340px; }
+    .show-content .well-details { height: 340px; }
+  }
+
+  .show-content .message {
+    text-align: left;
+    background-color: rgb(244, 248, 249);
+    padding: 10px 10px;
+    border-radius: 4px;
+    border: solid 1px #e9f0f3;
+  }
+
+  //-------------------------------
+  // Content - Features
+  //-------------------------------
+  .show-content ul.app-features {
+    list-style: none;
+    padding-left: 0px;
+    text-align: left;
+    margin-top: 20px;
+  }
+
+  .show-content ul.app-features li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .show-content ul.app-features li > img {
+    margin-right: 5px;
+  }
+
+  //-------------------------------
+  // Content - Benefits
+  //-------------------------------
+  .show-content ul.key-benefits {
+    list-style: none;
+    padding-left: 0;
+    text-align: left;
+    margin-top: 20px;
+  }
+
+  .show-content ul.key-benefits > li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .show-content ul.key-benefits > li > .fa.fa-check {
+    color: @brand-success;
+    margin-right: 5px;
+  }
+
+  //-------------------------------
+  // Content - Testimonials
+  //-------------------------------
+  .show-content .ribbon-testimonial .body {
+    color: @dashboard-marketplace-show-sections-text-color;
+    background-color: @dashboard-marketplace-show-sections-bg-color;
+  }
+
+  .show-content .ribbon-testimonial .from .name {
+    color: @dashboard-marketplace-show-sections-text-color;
+  }
+
+  .nav.nav-tabs {
+    margin-bottom: 15px;
+  }
+
+  .filter-reviews {
+    width:auto;
+    display: inline;
+  }
+
+  .no-question-container {
+    padding: 20px 15px;
+    font-size: 16px;
+    background: @no-question-bg-panel-color;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+  }
+
+  .no-review-container {
+    padding: 20px 15px;
+    font-size: 16px;
+    background: @no-review-bg-panel-color;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+  }
+
+  #comments {
+    .add-review {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    blockquote {
+      margin-bottom: 15px;
+    }
+
+    mno-pagination {
+      margin-bottom: 15px;
+    }
+
+    .comments-show {
+      margin-left: 5px;
+    }
+
+    .comment {
+      float: right;
+      width: 85%;
+      background-color: @comment-bg;
+      padding: 5px 15px;
+    }
+
+    .clearfix:last-child {
+      margin-bottom: 5px;
+    }
+  }
+
+  .questions {
+    margin-bottom: 15px;
+
+    .ribbon-question {
+      margin-top: 15px;
+      background-color: @question-ribbon-bg;
+      border-radius: 5px;
+      padding: 20px;
+
+      .question-body {
+        margin-bottom: 10px;
+      }
+
+      .question-title {
+        font-weight: bold;
+      }
+
+      .question-actions {
+        display: flex;
+        flex-flow: column;
+        align-items: flex-end;
+
+        @media (max-width: @screen-xs-max) {
+          flex-flow: row;
+        }
+
+        button:not(:last-child) {
+          margin-bottom: 5px;
+        }
+      }
+
+      .question-answer {
+        margin-bottom: 10px;
+      }
+
+      .question-attribute {
+        font-size: 1rem;
+        font-style: italic;
+      }
+    }
+
+    .questions-panel {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
+      input {
+        border-radius: 3px;
+        padding-left: 7px;
+        padding-right: 30px;
+        border: @question-search-border;
+        width: 250px;
+      }
+
+      form {
+        position: relative;
+      }
+
+      button.fa {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-color: @question-search-btn-bg;
+        color: @question-search-btn-color;
+        border: none;
+        width: 30px;
+      }
+
+      button {
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+.dashboard-marketplace-compare {
+
+  .marketplace-compare-table {
+    overflow-x: scroll;
+
+    th, td {
+      min-width: 200px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    img.media-object {
+      max-width: 120px;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+
+  .marketplace-compare-wrap {
+    margin-top: 20px;
+  }
+
+  .marketplace-compare-info {
+    overflow: auto;
+  }
+}
+
+.dashboard-marketplace {
+
+  .marketplace-nav input, select {
+    color: @dashboard-marketplace-search-text-color;
+    border: solid 1px @dashboard-marketplace-search-border-color;
+    background: transparent;
+    box-shadow: none;
+    height: 35px;
+
+    // Placeholder
+    .placeholder(@dashboard-marketplace-search-text-color);
+  }
+
+  // Fix Windows (Chrome/FF/IE) bug on dropdown options colors
+  // when parent "select" color is set to white
+  .marketplace-nav select option {
+    color: black;
+  }
+
+  .marketplace-nav {
+    min-height: 65px;
+  }
+
+  .marketplace-compare-action {
+    position: relative;
+    top: -15px;
+  }
+
+  //-------------------------------
+  // Marketplace list
+  //-------------------------------
+  .marketplace-list {
+    margin-top: 20px;
+  }
+
+  //-------------------------------
+  // App Card
+  //-------------------------------
+  .marketplace-app-card {
+    position: relative;
+    background-color: @dashboard-marketplace-tile-bg-color;
+    color: @dashboard-marketplace-tile-text-color;
+    cursor: pointer;
+    @dashboard-marketplace-app-card();
+
+    img.media-object {
+      max-width: 100px;
+      border: solid 1px @dashboard-marketplace-tile-img-border-color;
+      border-radius: 5px;
+    }
+
+    &:hover {
+      text-decoration: none;
+      color: @dashboard-marketplace-tile-hover-text-color;
+      background-color: @dashboard-marketplace-tile-hover-bg-color;
+
+      img.media-object {
+        border: solid 1px @dashboard-marketplace-tile-hover-img-border-color;
+      }
+    }
+
+    .media {
+      margin-top: 0;
+    }
+  }
+
+  .marketplace-app-card-checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+
+    label {
+      width: 100%;
+      height: 100%;
+      //padding-left: 20px;
+      cursor: pointer;
+    }
+  }
+
+  // Application logo
+  .marketplace-app-card img.media-object {
+    max-width: 100px;
+    border: solid 1px @dashboard-marketplace-tile-img-border-color;
+    border-radius: 5px;
+  }
+  .marketplace-app-card:hover img.media-object {
+    border: solid 1px darken(@dashboard-marketplace-tile-hover-img-border-color,5%);
+  }
+
+  // Application Description
+  .marketplace-app-card .media-body {
+    padding-right: 10px;
+    color: @dashboard-marketplace-tile-text-color;
+  }
+  .marketplace-app-card:hover .media-body {
+    color: @dashboard-marketplace-tile-hover-text-color;
+  }
+
+  // App tile arrow right
+  .marketplace-app-card .arrow {
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    color: @dashboard-marketplace-tile-hover-arrow-color;
+    visibility: hidden;
+  }
+  .marketplace-app-card:hover .arrow {
+    visibility: visible;
+  }
+}
+
+
+#onboarding {
+  header.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: @onboarding-header-height;
+    background: @onboarding-header-background-color;
+    color: @onboarding-header-font-color;
+
+    @media (max-width: @screen-xs-max) {
+      .name {
+        display: none;
+      }
+    }
+    
+    .onboarding-menu {
+      padding-right: 10px;
+
+      .default-link {
+        color: @onboarding-header-menu-text;
+        background: @onboarding-header-bg-menu;
+        padding: 10px 20px;
+
+        i {
+          width: 20px;
+        }
+
+        &:hover {
+          text-decoration: none;
+          color: @onboarding-header-menu-text-hover;
+          background-color: @onboarding-header-bg-menu-hover;
+        }
+      }
+      
+      .box-content {
+        padding-top: 5px;
+        position: absolute;
+        margin-right: 10px;
+        width: 100%;
+        overflow: hidden;
+        border-bottom-left-radius: 1em;
+
+        a {
+          display: block;
+        }  
+      }
+    }
+
+    .logo {
+      height: 40px;
+      margin-left: 10px;
+    }
+
+    .avatar {
+      .img-circle;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+
+  .sub-header {
+    .z-depth(3);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: @onboarding-subheader-height;
+    background: @onboarding-subheader-background-color;
+    color: @onboarding-subheader-font-color;
+    margin-bottom: 20px;
+
+    .breadcrumb-item {
+      text-decoration: none;
+
+      // Deactivate the link
+      pointer-events: none;
+
+      .badge {
+        color: @onboarding-breadcrumb-badge-color;
+        background-color: @onboarding-breadcrumb-badge-bg;
+      }
+
+      &.active {
+        .badge {
+          color: @onboarding-breadcrumb-badge-color-active;
+          background: @onboarding-breadcrumb-badge-bg-active;
+        }
+      }
+
+      .title {
+        color: @onboarding-breadcrumb-link-color;
+
+        @media (max-width: @screen-xs-max) {
+          display: none;
+        }
+
+        &:hover, &:focus {
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .content-panel {
+    .z-depth(6);
+    border-radius: @onboarding-content-panel-border-radius;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: @onboarding-content-panel-bg;
+    color: @onboarding-content-panel-color;
+
+    h1 {
+      margin-top: 0;
+    }
+  }
+
+  .next-button {
+    .top-buffer-2;
+    font-size: larger;
+  }
+}
+
+#step1 {
+
+}
+
+#step2 {
+  .apps-container {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: flex-start;
+    padding: 1em;
+
+    #data-shared {
+      margin-left: 0.5em;
+      flex: 1;
+      padding: 0.5em;
+    }
+
+    #apps-widget {
+      flex: 1;
+      padding: 0.5em;
+    }
+
+    #apps-widget {
+      #widget-header-bar {
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+
+        #app-search, #app-category {
+          width: 45%;
+          flex: 1;
+        }
+
+        #app-category {
+          margin-left: 5%;
+        }
+      }
+
+      .app-tile {
+        position: relative;
+        max-width: 108px;
+        margin: 10px;
+        float: left;
+
+        .app-info-modal {
+          position: absolute;
+          top: 0;
+          right: 3px;
+          z-index: 10;
+          width: 14px;
+          color: @onboarding-app-selector-info;
+        }
+
+        .app-icon {
+          outline: none;
+          position: relative;
+
+          .app-logo {
+            width: 100%;
+          }
+
+          .checked {
+            position: absolute;
+            border-radius: 6px;
+            background-color: @onboarding-app-selector-check-color;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+
+            // Center the tick
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        .app-title {
+          color: @onboarding-app-selector-title;
+          text-align: center;
+          margin-top: 5px;
+          .ellipsis;
+        }
+      }
+    }
+
+    #data-shared {
+      max-width: 50%;
+
+      @media (max-width: @screen-sm-max) {
+        display: none;
+      }
+
+      .table-data-shared {
+        table-layout: fixed;
+        text-align: center;
+        margin: 5px 5px 0 10px;
+
+        .fa-check {
+          color: @onboarding-app-entities-checked;
+        }
+
+        .fa-times {
+          color: @onboarding-app-entities-unchecked;
+        }
+
+        .th-app {
+          text-align: center;
+
+          .header-logo {
+            width: 60px;
+          }
+
+          .app-title {
+            margin-top: 5px;
+            .ellipsis;
+          }
+        }
+      }
+    }
+  }
+
+  .onboarding-footer {
+    margin-top: 15px;
+  }
+}
+
+#step3 {
+
+  .apps-loader {
+    color: @onboarding-fetching-apps-loader-color;
+  }
+
+  .apps-wrapper {
+    .top-buffer-1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .app-card {
+      .top-buffer-1;
+      text-align: center;
+      background-color: @onboarding-app-card-bg-color;
+      color: @onboarding-app-card-text-color;
+      padding: @onboarding-app-card-padding;
+      .z-depth(3);
+      width: 220px;
+
+      h4 {
+        margin-top: 5px;
+      }
+
+      mno-app-install-btn {
+        display: block;
+        .top-buffer-1;
+      }
+    }
+  }
+
+  .next-button-wrapper {
+    width: 100%;
+    float: left;
   }
 }
 
@@ -1814,928 +2806,6 @@ form.editable-wrap .editable-controls input {
   color: @text-strong-color;
   margin-top: -10px;
   padding-left: 5px;
-}
-
-#account {
-  .row:not(:first-child) {
-    margin-top: 15px;
-  }
-}
-
-#dashboard-apps-list {
-  .app-dashboard {
-    min-height: 280px;
-    max-width: 225px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 5px;
-    background-color: @dashboard-apps-tile-bg-color;
-    text-align: center;
-    padding: 30px 0px;
-    padding-bottom: 0px;
-    margin-top: 15px;
-
-    .btn-change-plan {
-      margin-top:50px;
-    }
-
-    .title {
-      .font(14px,normal,@dashboard-apps-tile-text-color);
-      margin-top:10px;
-      margin-bottom:10px;
-    }
-
-    .app-line {
-      .font(12px,normal,@text-inverse-color);
-    }
-
-    img.app-logo {
-      border-radius: 5px;
-      .square(85px);
-      border: solid @dashboard-apps-tile-logo-border-size @dashboard-apps-tile-logo-border-color;
-    }
-
-    .connector-logo {
-      margin-top: 3px;
-      margin-bottom: 3px;
-      cursor: pointer;
-    }
-
-    .office365-connector-logo {
-      height: 32px;
-      padding: 2px;
-    }
-
-    .tutorial {
-      display:block;
-      margin-top: 7px;
-    }
-
-    // App Tile Settings (top right)
-    a.options {
-      line-height: 19px;
-      .square(20px);
-      border-radius: 20px;
-      color: @dashboard-apps-tile-settings-color;
-      background-color: @dashboard-apps-tile-settings-bg-color;
-      float:right;
-      margin: -25px 5px 0px 0px;
-    }
-
-    a.options:hover {
-      color: @dashboard-apps-tile-settings-hover-color;
-      background-color: @dashboard-apps-tile-settings-hover-bg-color;
-    }
-    a.options i {
-      margin-top: 3px;
-    }
-
-    .app-custom-info {
-      position: relative;
-      top: -10px;
-      z-index: 999;
-    }
-
-    // Add application tile (tile with + button)
-    &.add-app {
-      padding:15px 0px;
-      font-size:140px;
-      color: @dashboard-apps-tile-add-color;
-      background-color: @dashboard-apps-tile-add-bg-color;
-    }
-
-    &.add-app a {
-      color: @dashboard-bg-color;
-
-      &:hover {
-        color: @brand-warning;
-      }
-    }
-  }
-}
-
-.dashboard-organization {
-
-  //-----------------------------------
-  // Tabs Styling
-  //-----------------------------------
-  ul.nav.nav-tabs {
-    border-bottom: none;
-  }
-
-  // Tab Header Wrapper Styling
-  ul.nav.nav-tabs > li {
-    margin-right: 5px;
-    padding-bottom: 5px;
-    background-color: transparent;
-    border-bottom: solid 5px transparent;
-    padding: 0px;
-    cursor: pointer;
-  }
-  ul.nav.nav-tabs > li.active when (@dashboard-cpy-tabs-subline-size > 0) {
-    border-bottom: solid 4px @dashboard-cpy-tabs-active-bg-color;
-  }
-
-  // Tab Header Styling
-  ul.nav.nav-tabs > li > a {
-    padding: 20px 40px;
-    border: none;
-    color: @dashboard-cpy-tabs-text-color;
-    background-color: @dashboard-cpy-tabs-bg-color;
-    .border-top-radius(@dashboard-cpy-tabs-border-radius);
-    .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
-
-
-  }
-  ul.nav.nav-tabs > li > a:hover {
-    background-color: @dashboard-cpy-tabs-hover-bg-color;
-    color: @dashboard-cpy-tabs-hover-text-color;
-  }
-  ul.nav.nav-tabs > li.active > a,
-  ul.nav.nav-tabs > li.active > a:hover,
-  ul.nav.nav-tabs > li.active > a:focus {
-    padding-bottom: 20px;
-    background-color: @dashboard-cpy-tabs-active-bg-color;
-    color: @dashboard-cpy-tabs-active-text-color;
-
-    & when (@dashboard-cpy-tabs-subline-size = 0) {
-      .border-bottom-radius(@dashboard-cpy-tabs-border-radius);
-    }
-  }
-
-  // Tab Content Styling
-  .tab-content {
-    border-top: solid @dashboard-cpy-tabs-subline-size @dashboard-cpy-tabs-subline-color;
-    padding-top: 20px;
-  }
-
-  .tab-content .tab-pane {
-    background-color: transparent;
-  }
-
-  @media(max-width: 720px) {
-    ul.nav.nav-tabs > li {
-      width:100%;
-
-      &.active {
-        border-bottom: solid 5px transparent;
-        a {
-          background-color: @dashboard-cpy-tabs-active-bg-color;
-          color: white;
-        }
-      }
-    }
-  }
-
-  //-----------------------------------
-  // Well Styling
-  //-----------------------------------
-  .well {
-    border: none;
-    background-color: @dashboard-cpy-tabcontent-bg-color;
-
-    label, p {
-      color: @dashboard-cpy-tabcontent-text-color;
-    }
-  }
-
-  //-----------------------------------
-  // Accordion Styling
-  //-----------------------------------
-  .panel-group .panel {
-    margin: 0px 0px 25px 0px;
-
-    .cc-icons i {
-      display: inline-block;
-    }
-  }
-
-  //-----------------------------------
-  // CC Form
-  //-----------------------------------
-  .cc-header small div {
-    display: inline-block;
-    vertical-align: top;
-
-    i {
-      display: inline-block;
-      zoom: 0.40;
-      vertical-align: top;
-    }
-    img {
-      max-height: 30px;
-      vertical-align: top;
-    }
-  }
-
-  .cc-header-eft {
-    font-size: 13px;
-    line-height: 29px;
-    color: #777777;
-    float: right;
-  }
-}
-
-//-----------------------------------
-// User Edition Modal
-//-----------------------------------
-.modal.member-edit .role-management {
-  text-align: center;
-}
-
-.modal.member-edit .role-management .fa {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.modal.member-edit .role-management p {
-  font-weight: 300;
-}
-
-//-----------------------------------
-// Team Member Add Modal
-//-----------------------------------
-.team-member-add-modal table {
-  margin: auto;
-  font-weight: 300;
-}
-.team-member-add-modal table td {
-  border: none;
-  padding: 8px;
-}
-
-.team-member-add-modal table tr td:first-child {
-  text-align: right;
-}
-
-.team-member-add-modal table tr td:last-child {
-  text-align: left;
-}
-
-#impac {
-  impac-dashboard.with-dock {
-    @media(min-width: @screen-md-min) {
-      display: block;
-      .top-buffer-4;
-    }
-  }
-}
-
-//-------------------------------
-// Show View
-//-------------------------------
-.dashboard-marketplace-app {
-
-  //-------------------------------
-  // Header
-  //-------------------------------
-  .show-header .media-object {
-    max-width: 80px;
-    border-radius: 5px;
-    border: solid 1px darken(@bg-main-color, 5%);
-  }
-
-  .show-header .media-body h2 {
-    line-height: 80px;
-    color: @dashboard-marketplace-show-header-text-color;
-  }
-
-  blockquote {
-    overflow-wrap: break-word;
-  }
-
-  //-------------------------------
-  // Content - General
-  //-------------------------------
-  .show-content .well {
-    color: @dashboard-marketplace-show-sections-text-color;
-    background-color: @dashboard-marketplace-show-sections-bg-color;
-    border: none;
-    border-radius: 2px;
-
-    h2 {
-      margin-top: 0;
-    }
-
-    img {
-      .img-responsive;
-    }
-
-    .loading-icon {
-      font-size: 40px;
-      color: @dashboard-marketplace-show-header-text-color;
-      text-align: center;
-    }
-  }
-
-  //-------------------------------
-  // Content - Carousel
-  //-------------------------------
-  .show-content .carousel img {
-    max-height: 300px;
-    margin: auto;
-  }
-
-  .show-content .carousel .carousel-inner {
-    text-align: center;
-  }
-
-  .show-content .carousel .carousel-control {
-    background: transparent;
-    cursor: pointer;
-    max-height: 300px;
-  }
-
-  .show-content .carousel .carousel-indicators {
-    visibility: hidden;
-  }
-
-  .show-content .carousel .carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
-    margin-left: 0px;
-  }
-
-  //-------------------------------
-  // Content
-  // Height of columns in desktop
-  //-------------------------------
-  @media (min-width: @screen-md-min) {
-    .show-content .carousel { height: 340px; }
-    .show-content .well-details { height: 340px; }
-  }
-
-  .show-content .message {
-    text-align: left;
-    background-color: rgb(244, 248, 249);
-    padding: 10px 10px;
-    border-radius: 4px;
-    border: solid 1px #e9f0f3;
-  }
-
-  //-------------------------------
-  // Content - Features
-  //-------------------------------
-  .show-content ul.app-features {
-    list-style: none;
-    padding-left: 0px;
-    text-align: left;
-    margin-top: 20px;
-  }
-
-  .show-content ul.app-features li {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-
-  .show-content ul.app-features li > img {
-    margin-right: 5px;
-  }
-
-  //-------------------------------
-  // Content - Benefits
-  //-------------------------------
-  .show-content ul.key-benefits {
-    list-style: none;
-    padding-left: 0;
-    text-align: left;
-    margin-top: 20px;
-  }
-
-  .show-content ul.key-benefits > li {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-
-  .show-content ul.key-benefits > li > .fa.fa-check {
-    color: @brand-success;
-    margin-right: 5px;
-  }
-
-  //-------------------------------
-  // Content - Testimonials
-  //-------------------------------
-  .show-content .ribbon-testimonial .body {
-    color: @dashboard-marketplace-show-sections-text-color;
-    background-color: @dashboard-marketplace-show-sections-bg-color;
-  }
-
-  .show-content .ribbon-testimonial .from .name {
-    color: @dashboard-marketplace-show-sections-text-color;
-  }
-
-  .nav.nav-tabs {
-    margin-bottom: 15px;
-  }
-
-  .filter-reviews {
-    width:auto;
-    display: inline;
-  }
-
-  .no-question-container {
-    padding: 20px 15px;
-    font-size: 16px;
-    background: @no-question-bg-panel-color;
-    text-align: center;
-    display: block;
-    margin-top: 30px;
-  }
-
-  .no-review-container {
-    padding: 20px 15px;
-    font-size: 16px;
-    background: @no-review-bg-panel-color;
-    text-align: center;
-    display: block;
-    margin-top: 30px;
-  }
-
-  #comments {
-    .add-review {
-      text-align: left;
-      margin-bottom: 15px;
-    }
-
-    blockquote {
-      margin-bottom: 0;
-    }
-
-    mno-pagination {
-      margin-bottom: 15px;
-    }
-
-    .comment {
-      float: right;
-      width: 85%;
-      background-color: @comment-bg;
-      margin-top: 5px;
-      padding: 5px 15px;
-    }
-  }
-
-  .questions {
-    margin-bottom: 15px;
-
-    .ribbon-question {
-      margin-top: 15px;
-      background-color: @question-ribbon-bg;
-      border-radius: 5px;
-      padding: 20px;
-
-      .question-body {
-        margin-bottom: 10px;
-      }
-
-      .question-title {
-        font-weight: bold;
-      }
-
-      .question-actions {
-        display: flex;
-        flex-flow: column;
-        align-items: flex-end;
-
-        @media (max-width: @screen-xs-max) {
-          flex-flow: row;
-        }
-
-        button:not(:last-child) {
-          margin-bottom: 5px;
-        }
-      }
-
-      .question-answer {
-        margin-bottom: 10px;
-      }
-
-      .question-attribute {
-        font-size: 1rem;
-        font-style: italic;
-      }
-    }
-
-    .questions-panel {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: center;
-
-      input {
-        border-radius: 3px;
-        padding-left: 7px;
-        padding-right: 30px;
-        border: @question-search-border;
-        width: 250px;
-      }
-
-      form {
-        position: relative;
-      }
-
-      button.fa {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        background-color: @question-search-btn-bg;
-        color: @question-search-btn-color;
-        border: none;
-        width: 30px;
-      }
-
-      button {
-        margin-left: 20px;
-      }
-    }
-  }
-}
-
-.dashboard-marketplace-compare {
-
-  .marketplace-compare-table {
-    overflow-x: scroll;
-
-    th, td {
-      min-width: 200px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    img.media-object {
-      max-width: 120px;
-      height: auto;
-      margin: 0 auto;
-    }
-  }
-
-  .marketplace-compare-wrap {
-    margin-top: 20px;
-  }
-
-  .marketplace-compare-info {
-    overflow: auto;
-  }
-}
-
-.dashboard-marketplace {
-
-  .marketplace-nav input, select {
-    color: @dashboard-marketplace-search-text-color;
-    border: solid 1px @dashboard-marketplace-search-border-color;
-    background: transparent;
-    box-shadow: none;
-    height: 35px;
-
-    // Placeholder
-    .placeholder(@dashboard-marketplace-search-text-color);
-  }
-
-  // Fix Windows (Chrome/FF/IE) bug on dropdown options colors
-  // when parent "select" color is set to white
-  .marketplace-nav select option {
-    color: black;
-  }
-
-  .marketplace-nav {
-    min-height: 65px;
-  }
-
-  .marketplace-compare-action {
-    position: relative;
-    top: -15px;
-  }
-
-  //-------------------------------
-  // Marketplace list
-  //-------------------------------
-  .marketplace-list {
-    margin-top: 20px;
-  }
-
-  //-------------------------------
-  // App Card
-  //-------------------------------
-  .marketplace-app-card {
-    position: relative;
-    background-color: @dashboard-marketplace-tile-bg-color;
-    color: @dashboard-marketplace-tile-text-color;
-    cursor: pointer;
-    @dashboard-marketplace-app-card();
-
-    img.media-object {
-      max-width: 100px;
-      border: solid 1px @dashboard-marketplace-tile-img-border-color;
-      border-radius: 5px;
-    }
-
-    &:hover {
-      text-decoration: none;
-      color: @dashboard-marketplace-tile-hover-text-color;
-      background-color: @dashboard-marketplace-tile-hover-bg-color;
-
-      img.media-object {
-        border: solid 1px @dashboard-marketplace-tile-hover-img-border-color;
-      }
-    }
-
-    .media {
-      margin-top: 0;
-    }
-  }
-
-  .marketplace-app-card-checkbox {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
-
-    label {
-      width: 100%;
-      height: 100%;
-      //padding-left: 20px;
-      cursor: pointer;
-    }
-  }
-
-  // Application logo
-  .marketplace-app-card img.media-object {
-    max-width: 100px;
-    border: solid 1px @dashboard-marketplace-tile-img-border-color;
-    border-radius: 5px;
-  }
-  .marketplace-app-card:hover img.media-object {
-    border: solid 1px darken(@dashboard-marketplace-tile-hover-img-border-color,5%);
-  }
-
-  // Application Description
-  .marketplace-app-card .media-body {
-    padding-right: 10px;
-    color: @dashboard-marketplace-tile-text-color;
-  }
-  .marketplace-app-card:hover .media-body {
-    color: @dashboard-marketplace-tile-hover-text-color;
-  }
-
-  // App tile arrow right
-  .marketplace-app-card .arrow {
-    position: absolute;
-    right: 20px;
-    top: 50px;
-    color: @dashboard-marketplace-tile-hover-arrow-color;
-    visibility: hidden;
-  }
-  .marketplace-app-card:hover .arrow {
-    visibility: visible;
-  }
-}
-
-
-#onboarding {
-  header.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: @onboarding-header-height;
-    background: @onboarding-header-background-color;
-    color: @onboarding-header-font-color;
-
-    @media (max-width: @screen-xs-max) {
-      .name {
-        display: none;
-      }
-    }
-
-    .logo {
-      height: 40px;
-      margin-left: 10px;
-    }
-
-    .avatar {
-      .img-circle;
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-  }
-
-  .sub-header {
-    .z-depth(3);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: @onboarding-subheader-height;
-    background: @onboarding-subheader-background-color;
-    color: @onboarding-subheader-font-color;
-    margin-bottom: 20px;
-
-    .breadcrumb-item {
-      text-decoration: none;
-
-      // Deactivate the link
-      pointer-events: none;
-
-      .badge {
-        color: @onboarding-breadcrumb-badge-color;
-        background-color: @onboarding-breadcrumb-badge-bg;
-      }
-
-      &.active {
-        .badge {
-          color: @onboarding-breadcrumb-badge-color-active;
-          background: @onboarding-breadcrumb-badge-bg-active;
-        }
-      }
-
-      .title {
-        color: @onboarding-breadcrumb-link-color;
-
-        @media (max-width: @screen-xs-max) {
-          display: none;
-        }
-
-        &:hover, &:focus {
-          font-weight: 400;
-        }
-      }
-    }
-  }
-
-  .content-panel {
-    .z-depth(6);
-    border-radius: @onboarding-content-panel-border-radius;
-    padding: 20px;
-    margin-bottom: 30px;
-    background-color: @onboarding-content-panel-bg;
-    color: @onboarding-content-panel-color;
-
-    h1 {
-      margin-top: 0;
-    }
-  }
-
-  .next-button {
-    .top-buffer-2;
-    font-size: larger;
-  }
-}
-
-#step1 {
-
-}
-
-#step2 {
-  .apps-container {
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-    justify-content: flex-start;
-
-    #apps-widget, #data-shared {
-      flex: 1;
-    }
-
-    #apps-widget {
-      #widget-header-bar {
-        position: relative;
-        display: flex;
-        justify-content: space-around;
-
-        #app-search, #app-category {
-          width: 45%;
-          flex: 1;
-        }
-
-        #app-category {
-          margin-left: 5%;
-        }
-      }
-
-      .app-tile {
-        position: relative;
-        max-width: 112px;
-        margin: 10px;
-        float: left;
-
-        .app-info-modal {
-          position: absolute;
-          top: 0;
-          right: 3px;
-          z-index: 10;
-          width: 14px;
-          color: @onboarding-app-selector-info;
-        }
-
-        .app-icon {
-          outline: none;
-          position: relative;
-
-          .app-logo {
-            width: 100%;
-          }
-
-          .checked {
-            position: absolute;
-            border-radius: 6px;
-            background-color: @onboarding-app-selector-check-color;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-
-            // Center the tick
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-        }
-
-        .app-title {
-          color: @onboarding-app-selector-title;
-          text-align: center;
-          margin-top: 5px;
-          .ellipsis;
-        }
-      }
-    }
-
-    #data-shared {
-      max-width: 50%;
-
-      @media (max-width: @screen-sm-max) {
-        display: none;
-      }
-
-      .table-data-shared {
-        table-layout: fixed;
-        text-align: center;
-        margin: 5px 5px 0 10px;
-
-        .fa-check {
-          color: @onboarding-app-entities-checked;
-        }
-
-        .fa-times {
-          color: @onboarding-app-entities-unchecked;
-        }
-
-        .th-app {
-          text-align: center;
-
-          .header-logo {
-            width: 60px;
-          }
-
-          .app-title {
-            margin-top: 5px;
-            .ellipsis;
-          }
-        }
-      }
-    }
-  }
-
-  .onboarding-footer {
-    margin-top: 15px;
-  }
-}
-
-#step3 {
-
-  .apps-loader {
-    color: @onboarding-fetching-apps-loader-color;
-  }
-
-  .apps-wrapper {
-    .top-buffer-1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-
-    .app-card {
-      .top-buffer-1;
-      text-align: center;
-      background-color: @onboarding-app-card-bg-color;
-      color: @onboarding-app-card-text-color;
-      padding: @onboarding-app-card-padding;
-      .z-depth(3);
-      width: 220px;
-
-      h4 {
-        margin-top: 5px;
-      }
-
-      mno-app-install-btn {
-        display: block;
-        .top-buffer-1;
-      }
-    }
-  }
-
-  .next-button-wrapper {
-    width: 100%;
-    float: left;
-  }
 }
 
 #app-connect-modal {

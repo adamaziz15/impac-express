@@ -2,14 +2,14 @@
 # yarn lockfile v1
 
 
-"impac-angular@git+https://git@github.com/maestrano/impac-angular.git#staging":
-  version "1.5.4"
-  resolved "git+https://git@github.com/maestrano/impac-angular.git#201a1c6744a383e1b79b26c6883f9de600c30093"
+"impac-angular@git+https://git@github.com/cesar-tonnoir/impac-angular.git#feature/demo-data":
+  version "1.6.0"
+  resolved "git+https://git@github.com/cesar-tonnoir/impac-angular.git#bd6f88e797c6a32a1a136fb0014fb9c90e7729ef"
 
-"mno-enterprise-angular@git+https://git@github.com/maestrano/mno-enterprise-angular.git":
-  version "1.1.0"
-  resolved "git+https://git@github.com/maestrano/mno-enterprise-angular.git#4fd4c179f5ca315bcf32e25c2cdbfe85102a0ae1"
+"mno-enterprise-angular@git+https://git@github.com/maestrano/mno-enterprise-angular.git#0d7a05cd1093897f2d8da6151fefdf1e382e535c":
+  version "1.1.1"
+  resolved "git+https://git@github.com/maestrano/mno-enterprise-angular.git#0d7a05cd1093897f2d8da6151fefdf1e382e535c"
 
 "mnoe-admin-panel@git+https://git@github.com/cesar-tonnoir/mnoe-admin-panel.git#feature/dashboard-designer":
-  version "1.0.0-rc.3"
-  resolved "git+https://git@github.com/cesar-tonnoir/mnoe-admin-panel.git#8276e8e76548c55c577f370e620215a85ac9e6e1"
+  version "1.0.3"
+  resolved "git+https://git@github.com/cesar-tonnoir/mnoe-admin-panel.git#55e0702feede8a1ca29dce090dec4a36cf89459d"

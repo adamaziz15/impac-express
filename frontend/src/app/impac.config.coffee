@@ -52,7 +52,7 @@ angular.module 'mnoEnterpriseAngular'
       createFromTemplateEnabled: true
     widgetSettings:
       tagging:
-        enableFilterTags: true
+        enabled: true
 
   ImpacThemingProvider.configure(options)
 )
