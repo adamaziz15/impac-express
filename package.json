@@ -2,8 +2,8 @@
   "name": "impac-express",
   "private": true,
   "dependencies": {
-    "impac-angular": "git+https://git@github.com/maestrano/impac-angular.git#1.6.0",
-    "mno-enterprise-angular": "git+https://git@github.com/maestrano/mno-enterprise-angular.git#0d7a05cd1093897f2d8da6151fefdf1e382e535c",
-    "mnoe-admin-panel": "git+https://git@github.com/maestrano/mnoe-admin-panel.git#63e5c0a37cfb0749cf5751f31b78abd1be5fa703"
+    "impac-angular": "git+https://git@github.com/maestrano/impac-angular.git#staging",
+    "mno-enterprise-angular": "git+https://git@github.com/cesar-tonnoir/mno-enterprise-angular.git#staging",
+    "mnoe-admin-panel": "git+https://git@github.com/maestrano/mnoe-admin-panel.git#1.0.x"
   }
 }
