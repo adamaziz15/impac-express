@@ -4,7 +4,7 @@
 
 "impac-angular@git+https://git@github.com/maestrano/impac-angular.git#staging":
   version "1.6.1"
-  resolved "git+https://git@github.com/maestrano/impac-angular.git#0b4689fdced1f8d84a966d25c3d5b13bbc531bbd"
+  resolved "git+https://git@github.com/maestrano/impac-angular.git#77979758acf1abffadd79460544d8c06c1f35566"
 
 "mno-enterprise-angular@git+https://git@github.com/cesar-tonnoir/mno-enterprise-angular.git#staging":
   version "1.1.2"
