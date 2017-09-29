@@ -1141,6 +1141,16 @@ dashboard-company-selectbox {
   }
 }
 
+
+dashboard-language-selectbox {
+  display: block;
+
+  .selector-line {
+    display: inline-block;
+    margin: 5px auto;
+  }
+}
+
 dashboard-menu {
   /*-----------------------------------------------------------------------*/
   /*                         Mobile menu                                   */
@@ -1329,16 +1339,6 @@ dashboard-menu {
     .dashboard-button.active i.dhb-icon-logout {
       @dashboard-side-menu-btn-logout-active();
     }
-  }
-}
-
-
-dashboard-language-selectbox {
-  display: block;
-
-  .selector-line {
-    display: inline-block;
-    margin: 5px auto;
   }
 }
 
@@ -3062,13 +3062,6 @@ form.editable-wrap .editable-controls input {
   }
 }
 
-.create-review-modal {
-  textarea.form-control {
-    max-width: 100%;
-    background-color: white;
-  }
-}
-
 #app-info {
   ul {
     margin: 0;
@@ -3085,6 +3078,13 @@ form.editable-wrap .editable-controls input {
   mno-app-features {
     float: right;
     width: 250px;
+  }
+}
+
+.create-review-modal {
+  textarea.form-control {
+    max-width: 100%;
+    background-color: white;
   }
 }
 
