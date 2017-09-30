@@ -707,6 +707,156 @@ body {
   }
 }
 
+dashboard-company-selectbox {
+  /*-----------------------------------------------------------------------*/
+  /*                       Company Select Box                              */
+  /*-----------------------------------------------------------------------*/
+  .company-select-box {
+    position: absolute;
+    right: 0;
+    width: @dashboard-cpy-select-width;
+    background-color: @dashboard-cpy-select-bg-color;
+    font-size: @dashboard-cpy-select-header-text-size;
+    border-radius: @dashboard-cpy-select-border-radius;
+    border-left: 1px solid @dashboard-cpy-select-border-color;
+    border-bottom: 1px solid @dashboard-cpy-select-border-color;
+    z-index: 999;
+    overflow: hidden;
+
+    @media (max-width: @screen-sm) {
+      border-radius: 0;
+    }
+
+    // Section always visible
+    .box-header {
+      cursor: pointer;
+      text-align: right;
+      outline: none;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+
+      img {
+        border-radius: 50%;
+        height: @dashboard-cpy-select-pic-width;
+        width: @dashboard-cpy-select-pic-width;
+      }
+
+      .title {
+        margin: 0 10px;
+        width: ~'calc(100% -' (2 * @dashboard-cpy-select-pic-width) ~')';
+        text-align: left;
+
+        .name {
+          font-weight: bold;
+          color: @dashboard-cpy-select-header-title-color;
+        }
+
+        .company {
+          width: 100%;
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: @dashboard-cpy-select-header-company-color;
+        }
+      }
+      .expand-menu {
+        margin-left: auto;
+      }
+    }
+
+    // Section visible when change company is clicked
+    .box-content {
+      border-top: solid 1px @dashboard-cpy-select-list-border-color;
+      overflow: hidden;
+
+      // General look of the links
+      a {
+        line-height: 17px;
+        display: block;
+        padding: 4px 0 4px 20px;
+        outline: none;
+      }
+
+      // List of companies
+      ul {
+        padding: 15px 20px 0 20px;
+        max-height: 400px;
+        min-width: 250px;
+        overflow-y: auto;
+
+        > li {
+
+          > a.company-link {
+            text-decoration: none;
+            padding: 4px;
+            display: flex;
+            color: @dashboard-cpy-select-link-text-color;
+
+            &:hover {
+              background-color: @dashboard-cpy-select-link-hover-bg-color;
+              border-bottom-left-radius: 0;
+            }
+
+            // Circle next to company name
+            // Indicate which company is currently viewed on dashboard
+            > i {
+              flex: 0 0 20px;
+              width: 13px;
+              padding: 2px 0;
+              display: inline-flex;
+              text-align: center;
+              color: @dashboard-cpy-select-link-icon-color;
+            }
+
+            > span {
+              text-align: left;
+              display: inline-flex;
+              flex: 1 1 auto;
+            }
+          }
+        }
+      }
+
+      .default-link {
+        color: @dashboard-cpy-select-link-color;
+        padding: 10px 20px;
+        text-align: left;
+        border-top: 1px solid @dashboard-cpy-select-list-border-color;
+
+        .btn {
+          width: 100%;
+          padding: 3px;
+        }
+
+        // Icon on the left side of the link
+        i {
+          width: 20px;
+          text-align: center;
+          font-size: 11pt;
+        }
+
+        &:hover {
+          text-decoration: none;
+          color: @dashboard-cpy-select-link-hover-color;
+          background-color: @dashboard-cpy-select-link-hover-bg-color;
+        }
+      }
+    }
+  }
+
+  @media (max-width: @screen-sm) {
+    .company-select-box {
+      width: 100%;
+      position: fixed;
+      border-left: none;
+      border-top: 1px solid @dashboard-cpy-select-border-color;
+      top: ~'calc(1px + ' @navbar-height ~')';  // Add top border
+    }
+  }
+}
+
 #app-dock-container {
   position: absolute;
   left: 0;
@@ -987,156 +1137,6 @@ ul.dock > li.prev img.app-logo {
 
     .add-app {
       color: @mno-dock-mobile-add-app-color;
-    }
-  }
-}
-
-dashboard-company-selectbox {
-  /*-----------------------------------------------------------------------*/
-  /*                       Company Select Box                              */
-  /*-----------------------------------------------------------------------*/
-  .company-select-box {
-    position: absolute;
-    right: 0;
-    width: @dashboard-cpy-select-width;
-    background-color: @dashboard-cpy-select-bg-color;
-    font-size: @dashboard-cpy-select-header-text-size;
-    border-radius: @dashboard-cpy-select-border-radius;
-    border-left: 1px solid @dashboard-cpy-select-border-color;
-    border-bottom: 1px solid @dashboard-cpy-select-border-color;
-    z-index: 999;
-    overflow: hidden;
-
-    @media (max-width: @screen-sm) {
-      border-radius: 0;
-    }
-
-    // Section always visible
-    .box-header {
-      cursor: pointer;
-      text-align: right;
-      outline: none;
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-
-      img {
-        border-radius: 50%;
-        height: @dashboard-cpy-select-pic-width;
-        width: @dashboard-cpy-select-pic-width;
-      }
-
-      .title {
-        margin: 0 10px;
-        width: ~'calc(100% -' (2 * @dashboard-cpy-select-pic-width) ~')';
-        text-align: left;
-
-        .name {
-          font-weight: bold;
-          color: @dashboard-cpy-select-header-title-color;
-        }
-
-        .company {
-          width: 100%;
-          display: block;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          color: @dashboard-cpy-select-header-company-color;
-        }
-      }
-      .expand-menu {
-        margin-left: auto;
-      }
-    }
-
-    // Section visible when change company is clicked
-    .box-content {
-      border-top: solid 1px @dashboard-cpy-select-list-border-color;
-      overflow: hidden;
-
-      // General look of the links
-      a {
-        line-height: 17px;
-        display: block;
-        padding: 4px 0 4px 20px;
-        outline: none;
-      }
-
-      // List of companies
-      ul {
-        padding: 15px 20px 0 20px;
-        max-height: 400px;
-        min-width: 250px;
-        overflow-y: auto;
-
-        > li {
-
-          > a.company-link {
-            text-decoration: none;
-            padding: 4px;
-            display: flex;
-            color: @dashboard-cpy-select-link-text-color;
-
-            &:hover {
-              background-color: @dashboard-cpy-select-link-hover-bg-color;
-              border-bottom-left-radius: 0;
-            }
-
-            // Circle next to company name
-            // Indicate which company is currently viewed on dashboard
-            > i {
-              flex: 0 0 20px;
-              width: 13px;
-              padding: 2px 0;
-              display: inline-flex;
-              text-align: center;
-              color: @dashboard-cpy-select-link-icon-color;
-            }
-
-            > span {
-              text-align: left;
-              display: inline-flex;
-              flex: 1 1 auto;
-            }
-          }
-        }
-      }
-
-      .default-link {
-        color: @dashboard-cpy-select-link-color;
-        padding: 10px 20px;
-        text-align: left;
-        border-top: 1px solid @dashboard-cpy-select-list-border-color;
-
-        .btn {
-          width: 100%;
-          padding: 3px;
-        }
-
-        // Icon on the left side of the link
-        i {
-          width: 20px;
-          text-align: center;
-          font-size: 11pt;
-        }
-
-        &:hover {
-          text-decoration: none;
-          color: @dashboard-cpy-select-link-hover-color;
-          background-color: @dashboard-cpy-select-link-hover-bg-color;
-        }
-      }
-    }
-  }
-
-  @media (max-width: @screen-sm) {
-    .company-select-box {
-      width: 100%;
-      position: fixed;
-      border-left: none;
-      border-top: 1px solid @dashboard-cpy-select-border-color;
-      top: ~'calc(1px + ' @navbar-height ~')';  // Add top border
     }
   }
 }
@@ -1846,98 +1846,6 @@ form.editable-wrap .editable-controls input {
   }
 }
 
-#dashboard-apps-list {
-  .app-dashboard {
-    min-height: 280px;
-    max-width: 225px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 5px;
-    background-color: @dashboard-apps-tile-bg-color;
-    text-align: center;
-    padding: 30px 0px;
-    padding-bottom: 0px;
-    margin-top: 15px;
-
-    .btn-change-plan {
-      margin-top:50px;
-    }
-
-    .title {
-      .font(14px,normal,@dashboard-apps-tile-text-color);
-      margin-top:10px;
-      margin-bottom:10px;
-    }
-
-    .app-line {
-      .font(12px,normal,@text-inverse-color);
-    }
-
-    img.app-logo {
-      border-radius: 5px;
-      .square(85px);
-      border: solid @dashboard-apps-tile-logo-border-size @dashboard-apps-tile-logo-border-color;
-    }
-
-    .connector-logo {
-      margin-top: 3px;
-      margin-bottom: 3px;
-      cursor: pointer;
-    }
-
-    .office365-connector-logo {
-      height: 32px;
-      padding: 2px;
-    }
-
-    .tutorial {
-      display:block;
-      margin-top: 7px;
-    }
-
-    // App Tile Settings (top right)
-    a.options {
-      line-height: 19px;
-      .square(20px);
-      border-radius: 20px;
-      color: @dashboard-apps-tile-settings-color;
-      background-color: @dashboard-apps-tile-settings-bg-color;
-      float:right;
-      margin: -25px 5px 0px 0px;
-    }
-
-    a.options:hover {
-      color: @dashboard-apps-tile-settings-hover-color;
-      background-color: @dashboard-apps-tile-settings-hover-bg-color;
-    }
-    a.options i {
-      margin-top: 3px;
-    }
-
-    .app-custom-info {
-      position: relative;
-      top: -10px;
-      z-index: 999;
-    }
-
-    // Add application tile (tile with + button)
-    &.add-app {
-      padding:15px 0px;
-      font-size:140px;
-      color: @dashboard-apps-tile-add-color;
-      background-color: @dashboard-apps-tile-add-bg-color;
-    }
-
-    &.add-app a {
-      color: @dashboard-bg-color;
-
-      &:hover {
-        color: @brand-warning;
-      }
-    }
-  }
-}
-
 .dashboard-organization {
 
   //-----------------------------------
@@ -2103,6 +2011,98 @@ form.editable-wrap .editable-controls input {
 
 .team-member-add-modal table tr td:last-child {
   text-align: left;
+}
+
+#dashboard-apps-list {
+  .app-dashboard {
+    min-height: 280px;
+    max-width: 225px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    background-color: @dashboard-apps-tile-bg-color;
+    text-align: center;
+    padding: 30px 0px;
+    padding-bottom: 0px;
+    margin-top: 15px;
+
+    .btn-change-plan {
+      margin-top:50px;
+    }
+
+    .title {
+      .font(14px,normal,@dashboard-apps-tile-text-color);
+      margin-top:10px;
+      margin-bottom:10px;
+    }
+
+    .app-line {
+      .font(12px,normal,@text-inverse-color);
+    }
+
+    img.app-logo {
+      border-radius: 5px;
+      .square(85px);
+      border: solid @dashboard-apps-tile-logo-border-size @dashboard-apps-tile-logo-border-color;
+    }
+
+    .connector-logo {
+      margin-top: 3px;
+      margin-bottom: 3px;
+      cursor: pointer;
+    }
+
+    .office365-connector-logo {
+      height: 32px;
+      padding: 2px;
+    }
+
+    .tutorial {
+      display:block;
+      margin-top: 7px;
+    }
+
+    // App Tile Settings (top right)
+    a.options {
+      line-height: 19px;
+      .square(20px);
+      border-radius: 20px;
+      color: @dashboard-apps-tile-settings-color;
+      background-color: @dashboard-apps-tile-settings-bg-color;
+      float:right;
+      margin: -25px 5px 0px 0px;
+    }
+
+    a.options:hover {
+      color: @dashboard-apps-tile-settings-hover-color;
+      background-color: @dashboard-apps-tile-settings-hover-bg-color;
+    }
+    a.options i {
+      margin-top: 3px;
+    }
+
+    .app-custom-info {
+      position: relative;
+      top: -10px;
+      z-index: 999;
+    }
+
+    // Add application tile (tile with + button)
+    &.add-app {
+      padding:15px 0px;
+      font-size:140px;
+      color: @dashboard-apps-tile-add-color;
+      background-color: @dashboard-apps-tile-add-bg-color;
+    }
+
+    &.add-app a {
+      color: @dashboard-bg-color;
+
+      &:hover {
+        color: @brand-warning;
+      }
+    }
+  }
 }
 
 #impac {
@@ -2823,90 +2823,6 @@ form.editable-wrap .editable-controls input {
   }
 }
 
-#app-connect-modal {
-
-  select {
-    display: block;
-    margin: auto;
-  }
-
-  button[type="submit"] {
-    display: block;
-    margin: auto;
-  }
-}
-
-.app-deletion-modal {
-  .deletion-sentence {
-    color: @brand-danger;
-  }
-}
-
-//=======================================
-// Settings Modals
-//=======================================
-#app-settings-modal {
-
-  .modal-body {
-    padding: 5px;
-
-    div.app-name {
-      border: 0px;
-
-      .fa {
-        margin-left: 5px;
-      }
-    }
-
-    h4, .title {
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .sentence-check {
-      width: 100%;
-    }
-
-    .buttons {
-      width: 100%;
-      text-align: right;
-      padding-top: 20px;
-    }
-
-    .label {
-      font-size: 100%;
-      text-transform: capitalize;
-      padding: 6px 12px;
-
-      &.updating, &.upgrading, &.provisioning {
-        background-color: @mno-dock-settings-app-upgrading;
-      }
-      &.running, &.starting, &.restarting {
-        background-color: @mno-dock-settings-app-running;
-      }
-      &.terminating, &.terminated {
-        background-color: @mno-dock-settings-app-terminating;
-      }
-      &.neutral {
-        background-color: @mno-dock-settings-app-neutral;
-      }
-    }
-
-    .centered-buttons {
-      display: flex;
-      align-content: center;
-      justify-content: space-around;
-    }
-
-    .app-deletion {
-      .deletion-sentence {
-        color: @deletion-sentence-color;
-      }
-    }
-  }
-}
-
 .dashboard-organization {
   // credit card icons display modes
   //---------------------------------
@@ -3062,6 +2978,97 @@ form.editable-wrap .editable-controls input {
   }
 }
 
+#app-connect-modal {
+
+  select {
+    display: block;
+    margin: auto;
+  }
+
+  button[type="submit"] {
+    display: block;
+    margin: auto;
+  }
+}
+
+.app-deletion-modal {
+  .deletion-sentence {
+    color: @brand-danger;
+  }
+}
+
+//=======================================
+// Settings Modals
+//=======================================
+#app-settings-modal {
+
+  .modal-body {
+    padding: 5px;
+
+    div.app-name {
+      border: 0px;
+
+      .fa {
+        margin-left: 5px;
+      }
+    }
+
+    h4, .title {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .sentence-check {
+      width: 100%;
+    }
+
+    .buttons {
+      width: 100%;
+      text-align: right;
+      padding-top: 20px;
+    }
+
+    .label {
+      font-size: 100%;
+      text-transform: capitalize;
+      padding: 6px 12px;
+
+      &.updating, &.upgrading, &.provisioning {
+        background-color: @mno-dock-settings-app-upgrading;
+      }
+      &.running, &.starting, &.restarting {
+        background-color: @mno-dock-settings-app-running;
+      }
+      &.terminating, &.terminated {
+        background-color: @mno-dock-settings-app-terminating;
+      }
+      &.neutral {
+        background-color: @mno-dock-settings-app-neutral;
+      }
+    }
+
+    .centered-buttons {
+      display: flex;
+      align-content: center;
+      justify-content: space-around;
+    }
+
+    .app-deletion {
+      .deletion-sentence {
+        color: @deletion-sentence-color;
+      }
+    }
+  }
+}
+
+.create-review-modal {
+  textarea.form-control {
+    max-width: 100%;
+    background-color: white;
+  }
+}
+
 #app-info {
   ul {
     margin: 0;
@@ -3078,13 +3085,6 @@ form.editable-wrap .editable-controls input {
   mno-app-features {
     float: right;
     width: 250px;
-  }
-}
-
-.create-review-modal {
-  textarea.form-control {
-    max-width: 100%;
-    background-color: white;
   }
 }
 
