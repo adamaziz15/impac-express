@@ -4,11 +4,11 @@
 
 "impac-angular@git+https://git@github.com/maestrano/impac-angular.git#staging":
   version "1.6.2"
-  resolved "git+https://git@github.com/maestrano/impac-angular.git#cd916c9b54314902922ef7061a86ad8cb1b200ad"
+  resolved "git+https://git@github.com/maestrano/impac-angular.git#3e9a94254292bc45a27476cd704417808d8e72ac"
 
-"mno-enterprise-angular@git+https://git@github.com/xaun/mno-enterprise-angular.git#staging":
+"mno-enterprise-angular@git+https://git@github.com/maestrano/mno-enterprise-angular.git#1.1":
   version "1.1.2"
-  resolved "git+https://git@github.com/xaun/mno-enterprise-angular.git#aa302777a6f0d8cd0dc2149ae78b55a34f4d94bd"
+  resolved "git+https://git@github.com/maestrano/mno-enterprise-angular.git#dbf1036e61073a5d1d8cd72b87341bd8455afe13"
 
 "mnoe-admin-panel@git+https://git@github.com/maestrano/mnoe-admin-panel.git#1.0.x":
   version "1.0.4"
