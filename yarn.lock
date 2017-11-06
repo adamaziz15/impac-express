@@ -4,7 +4,7 @@
 
 "impac-angular@git+https://git@github.com/maestrano/impac-angular.git#feature/dates-formatting":
   version "1.6.4"
-  resolved "git+https://git@github.com/maestrano/impac-angular.git#3e6d3689b2f887635f4a4f6c30e4205558bd0aa4"
+  resolved "git+https://git@github.com/maestrano/impac-angular.git#62c1ca16ace282dccc9d4d764e73ea9a702acbd4"
 
 "mno-enterprise-angular@git+https://git@github.com/maestrano/mno-enterprise-angular.git#1.1":
   version "1.1.2"
