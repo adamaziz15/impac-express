@@ -1342,22 +1342,6 @@ dashboard-menu {
   }
 }
 
-mno-app-onboarding-btn {
-  display: block;
-
-  .button-check {
-    color: @onboarding-app-connect-check;
-  }
-
-  .button-loader {
-    color: @onboarding-app-connect-loader;
-  }
-
-  .btn {
-    margin-top: 5px;
-  }
-}
-
 #app-features {
   border: @onboarding-app-features-border;
   color: @onboarding-app-features-color;
@@ -1372,6 +1356,22 @@ mno-app-onboarding-btn {
   }
   .fa-square-o {
     color: @onboarding-app-features-unchecked;
+  }
+}
+
+mno-app-onboarding-btn {
+  display: block;
+
+  .button-check {
+    color: @onboarding-app-connect-check;
+  }
+
+  .button-loader {
+    color: @onboarding-app-connect-loader;
+  }
+
+  .btn {
+    margin-top: 5px;
   }
 }
 
@@ -1392,16 +1392,6 @@ mno-audit-events-list {
   }
 }
 
-mno-inline-message {
-  .mno-inline-checked {
-    color: @dashboard-account-inline-text-color-checked;
-  }
-
-  .mno-inline-unchecked {
-    color: @dashboard-account-inline-text-color-unchecked;
-  }
-}
-
 mno-impersonation-bar {
   #impersonate-bar {
     color: @text-inverse-strong-color;
@@ -1412,6 +1402,16 @@ mno-impersonation-bar {
     @media (max-width: @screen-xs-max) {
       padding-top: 40px;
     }
+  }
+}
+
+mno-inline-message {
+  .mno-inline-checked {
+    color: @dashboard-account-inline-text-color-checked;
+  }
+
+  .mno-inline-unchecked {
+    color: @dashboard-account-inline-text-color-unchecked;
   }
 }
 
@@ -2668,17 +2668,19 @@ form.editable-wrap .editable-controls input {
     text-align: center;
     justify-content: flex-start;
     padding: 1em;
+  }
 
-    #data-shared {
-      margin-left: 0.5em;
-      flex: 1;
-      padding: 0.5em;
-    }
+  #apps {
+    width: 50%;
+    padding: 0.5em;
+    flex: 1;
+  }
 
-    #apps-widget {
-      flex: 1;
-      padding: 0.5em;
-    }
+  #data-shared {
+    width: 50%;
+    padding: 1em;
+    flex: 1;
+  }
 
     #apps-widget {
       #widget-header-bar {
@@ -2735,6 +2737,10 @@ form.editable-wrap .editable-controls input {
           }
         }
 
+        .app-icon[disabled] {
+          cursor: not-allowed;
+        }
+
         .app-title {
           color: @onboarding-app-selector-title;
           text-align: center;
@@ -2778,7 +2784,6 @@ form.editable-wrap .editable-controls input {
         }
       }
     }
-  }
 
   .onboarding-footer {
     margin-top: 15px;
