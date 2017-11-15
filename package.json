@@ -2,7 +2,7 @@
   "name": "impac-express",
   "private": true,
   "dependencies": {
-    "impac-angular": "git+https://git@github.com/maestrano/impac-angular.git#feature/dates-formatting",
+    "impac-angular": "git+https://git@github.com/maestrano/impac-angular.git#staging",
     "mno-enterprise-angular": "git+https://git@github.com/maestrano/mno-enterprise-angular.git#1.1",
     "mnoe-admin-panel": "git+https://git@github.com/maestrano/mnoe-admin-panel.git#1.0.x"
   }

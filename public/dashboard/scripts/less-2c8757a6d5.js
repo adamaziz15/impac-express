@@ -1,6 +1,6 @@
 /**
  * mno-enterprise-angular - MnoEnterprise AngularJS Frontend
- * @version v1.1.2
+ * @version v1.1.3
  * @git git@github.com:maestrano/mno-enterprise-angular.git
  */
 /*!
