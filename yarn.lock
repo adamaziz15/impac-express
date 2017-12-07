@@ -3,8 +3,8 @@
 
 
 "impac-angular@git+https://git@github.com/maestrano/impac-angular.git#staging":
-  version "1.6.6"
-  resolved "git+https://git@github.com/maestrano/impac-angular.git#26d976141ee7a29af0708c22b0936249e34314c8"
+  version "1.6.7"
+  resolved "git+https://git@github.com/maestrano/impac-angular.git#0b515408f9f3e1a6d8fb32d7c84b01b60109824d"
 
 "mno-enterprise-angular@git+https://git@github.com/maestrano/mno-enterprise-angular.git#1.1":
   version "1.1.3"
